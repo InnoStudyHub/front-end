@@ -3,7 +3,7 @@ import 'package:study_hub/session/session.dart';
 import 'package:study_hub/session/session_binding.dart';
 import 'package:study_hub/util/routes.dart';
 
-class AppPages{
+class AppPages {
   static var list = [
     GetPage(
       name: AppRoutes.session,

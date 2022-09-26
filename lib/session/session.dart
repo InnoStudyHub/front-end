@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/util/color_codes.dart';
 import 'create/create_page.dart';
 import 'profile/profile_page.dart';
 import 'favourites/favourites_page.dart';
@@ -12,34 +13,30 @@ class Session extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SessionController>(builder: (controller){
+    return GetBuilder<SessionController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 36, 47, 61),
-          title: Text (controller.tabTitle),
+          title: Text(controller.tabTitle),
         ),
-
         body: SafeArea(
-            child: IndexedStack(
-              index: controller.tabIndex,
-              children: const [
-                HomePage(),
-                ProfilePage(),
-                FavouritesPage(),
-                CreatePage(),
-              ],
-            )
+          child: IndexedStack(
+            index: controller.tabIndex,
+            children: const [
+              HomePage(),
+              ProfilePage(),
+              FavouritesPage(),
+              CreatePage(),
+            ],
+          ),
         ),
-
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color.fromARGB(255, 36, 47, 61),
+          backgroundColor: const Color.fromARGB(255, 36, 47, 61),
           onTap: controller.changePage,
           currentIndex: controller.tabIndex,
           showUnselectedLabels: false,
           showSelectedLabels: false,
           type: BottomNavigationBarType.fixed,
-          unselectedItemColor: Color.fromARGB(100, 147, 143, 153),
-          selectedItemColor: Color.fromARGB(100, 245, 245, 245),
           items: [
             _homePageItem(controller.tabIndex),
             _profilePageItem(controller.tabIndex),
@@ -51,43 +48,43 @@ class Session extends StatelessWidget {
     });
   }
 
-  _homePageItem(int index){
+  _homePageItem(int index) {
     return BottomNavigationBarItem(
       icon: SvgPicture.asset(
         "assets/icons/bottom_bar/home_bottom_bar_ic.svg",
-        color: index==0? Colors.white : const Color.fromARGB(100, 147, 143, 153),
+        color: index == 0 ? selectedMenuColor : unselectedMenuColor,
       ),
       label: "Home",
     );
   }
 
-  _profilePageItem(int index){
+  _profilePageItem(int index) {
     return BottomNavigationBarItem(
       icon: SvgPicture.asset(
         "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
-        color: index==1? Colors.white : const Color.fromARGB(100, 147, 143, 153),
+        color: index == 1 ? selectedMenuColor : unselectedMenuColor,
       ),
       label: "Profile",
     );
   }
 
-  _favouritePageItem(int index){
+  _favouritePageItem(int index) {
     return BottomNavigationBarItem(
       icon: SvgPicture.asset(
         "assets/icons/bottom_bar/favourite_bottom_bar_ic.svg",
-        color: index==2? Colors.white : const Color.fromARGB(100, 147, 143, 153),
+        color: index == 2 ? selectedMenuColor : unselectedMenuColor,
       ),
       label: "Favourites",
     );
   }
 
-  _createPageItem(int index){
+  _createPageItem(int index) {
     return BottomNavigationBarItem(
       icon: SvgPicture.asset(
         "assets/icons/bottom_bar/create_bottom_bar_ic.svg",
-        color: index==3? Colors.white : const Color.fromARGB(100, 147, 143, 153),
-      ),      label: "Create",
+        color: index == 3 ? selectedMenuColor : unselectedMenuColor,
+      ),
+      label: "Create",
     );
   }
-
 }

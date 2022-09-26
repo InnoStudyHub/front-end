@@ -4,7 +4,6 @@ import 'package:study_hub/util/app_pages.dart';
 import 'package:study_hub/util/color_codes.dart';
 import 'package:study_hub/util/routes.dart';
 
-
 void main() {
   runApp(const MyApp());
 }

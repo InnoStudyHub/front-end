@@ -7,10 +7,9 @@ class SessionController extends GetxController {
 
   var tabTitle = "Home";
 
-  void changePage(int index){
+  void changePage(int index) {
     tabTitle = pages[index];
     tabIndex = index;
     update();
   }
-
 }
