@@ -15,10 +15,10 @@ class Session extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SessionController>(builder: (controller) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 36, 47, 61),
-          title: Text(controller.tabTitle),
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: const Color.fromARGB(255, 36, 47, 61),
+        //   title: Text(controller.tabTitle),
+        // ),
         body: SafeArea(
           child: IndexedStack(
             index: controller.tabIndex,
