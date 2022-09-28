@@ -118,4 +118,3 @@ const MaterialColor backgroundDarkBlue = MaterialColor(
   },
 );
 const int _backgroundDarkBlue = 0xFF0E1621;
-

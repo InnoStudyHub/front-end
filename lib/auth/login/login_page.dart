@@ -8,7 +8,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LoginController>(builder: (controller){
+    return GetBuilder<LoginController>(builder: (controller) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
     });
   }
 
-  Widget _heading(){
+  Widget _heading() {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
@@ -79,7 +79,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _passwordFormField({required LoginController controller}){
+  Widget _passwordFormField({required LoginController controller}) {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
       child: TextFormField(
@@ -97,10 +97,13 @@ class LoginPage extends StatelessWidget {
           ),
           labelText: "Password",
           suffixIcon: IconButton(
-            onPressed: () {controller.changePasswordVisibility();},
+            onPressed: () {
+              controller.changePasswordVisibility();
+            },
             icon: Icon(
-              !controller.isPasswordVisible ?
-              Icons.visibility_outlined: Icons.visibility_off_outlined,
+              !controller.isPasswordVisible
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
               color: greySecondary,
             ),
           ),
@@ -115,12 +118,12 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _forgotPasswordButton(){
+  Widget _forgotPasswordButton() {
     return Container(
         alignment: Alignment.centerRight,
         margin: const EdgeInsets.only(right: 34),
         child: TextButton(
-          onPressed:() {},
+          onPressed: () {},
           child: const Text(
             "Forgot password?",
             style: TextStyle(
@@ -129,11 +132,10 @@ class LoginPage extends StatelessWidget {
               fontSize: 12,
             ),
           ),
-        )
-    );
+        ));
   }
 
-  Widget _loginButton(){
+  Widget _loginButton() {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
       height: 44,
@@ -153,7 +155,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _registerButton(){
+  Widget _registerButton() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -180,14 +182,13 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _divider(){
-
+  Widget _divider() {
     return Container(
       margin: const EdgeInsets.only(top: 25, bottom: 40),
       child: Row(
         children: const [
           Expanded(
-            child:Divider(
+            child: Divider(
               thickness: 1,
               indent: 20,
               endIndent: 10,
@@ -203,7 +204,7 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child:Divider(
+            child: Divider(
               thickness: 1,
               indent: 10,
               endIndent: 20,
@@ -215,7 +216,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _continueWithUIAccount(){
+  Widget _continueWithUIAccount() {
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20),
       height: 44,
