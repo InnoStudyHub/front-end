@@ -1,5 +1,4 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:study_hub/auth/login/login_page.dart';
 import 'package:study_hub/auth/welcome_screen/welcome_screen.dart';
 import 'package:study_hub/session/session.dart';
 import 'package:study_hub/session/session_binding.dart';
