@@ -5,10 +5,12 @@ import 'package:study_hub/auth/register/register_controller.dart';
 
 import '../../util/color_codes.dart';
 
-class RegisterPage extends StatelessWidget{
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RegisterController>(builder: (controller){
+    return GetBuilder<RegisterController>(builder: (controller) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -88,7 +90,7 @@ class RegisterPage extends StatelessWidget{
         style: const TextStyle(color: selectedMenuColor),
         cursorColor: unselectedMenuColor,
         maxLines: 1,
-        decoration:  InputDecoration(
+        decoration: InputDecoration(
           filled: true,
           fillColor: backgroundDarkBlue,
           prefixIcon: SvgPicture.asset(
@@ -259,5 +261,4 @@ class RegisterPage extends StatelessWidget{
       ),
     );
   }
-
 }

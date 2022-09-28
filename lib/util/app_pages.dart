@@ -18,9 +18,8 @@ class AppPages {
       page: () => const WelcomeScreen(),
     ),
     GetPage(
-      name: AppRoutes.register,
-      page: () => RegisterPage(),
-      binding: RegisterBinding()
-    ),
+        name: AppRoutes.register,
+        page: () => const RegisterPage(),
+        binding: RegisterBinding()),
   ];
 }
