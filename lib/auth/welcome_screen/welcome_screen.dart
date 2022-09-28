@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/auth/login/login_page.dart';
 import 'package:study_hub/util/color_codes.dart';
+import 'package:study_hub/util/routes.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -68,7 +68,11 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       const Text(
                         "Continue with IU account",
-                        style: TextStyle(color: selectedTabColor),
+                        style: TextStyle(
+                          color: selectedTabColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   ),
@@ -78,11 +82,17 @@ class WelcomeScreen extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
                 height: 44,
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.login);
+                  },
                   color: selectedTabColor,
                   child: const Text(
                     "Continue with email",
-                    style: TextStyle(color: selectedMenuColor),
+                    style: TextStyle(
+                      color: selectedMenuColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),

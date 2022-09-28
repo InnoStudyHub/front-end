@@ -101,3 +101,21 @@ const MaterialColor greySecondary = MaterialColor(
   },
 );
 const int _greySecondary = 0xFFCAC4D0;
+
+const MaterialColor backgroundDarkBlue = MaterialColor(
+  _backgroundDarkBlue,
+  <int, Color>{
+    50: Color(0xFF0E1621),
+    100: Color(0xFF0E1621),
+    200: Color(0xFF0E1621),
+    300: Color(0xFF0E1621),
+    400: Color(0xFF0E1621),
+    500: Color(0xFF0E1621),
+    600: Color(0xFF0E1621),
+    700: Color(0xFF0E1621),
+    800: Color(0xFF0E1621),
+    900: Color(0xFF0E1621),
+  },
+);
+const int _backgroundDarkBlue = 0xFF0E1621;
+
