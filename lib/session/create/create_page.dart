@@ -10,14 +10,12 @@ class CreatePage extends GetView<CreateController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Favourites"),
+        title: const Text("Create"),
       ),
       body: const Center(
         child: Text(
           "Create Page",
-          style: TextStyle(
-            color: unselectedTabColor,
-          ),
+          style: TextStyle(color: unselectedTabColor),
         ),
       ),
     );
