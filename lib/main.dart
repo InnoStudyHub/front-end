@@ -14,13 +14,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    bool isLoggedIn = false;
     return GetMaterialApp(
       theme: ThemeData(
         primarySwatch: mainAppColor,
         scaffoldBackgroundColor: const Color.fromARGB(255, 14, 22, 33),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.session,
+      initialRoute: isLoggedIn? AppRoutes.session: AppRoutes.auth,
       getPages: AppPages.list,
     );
   }

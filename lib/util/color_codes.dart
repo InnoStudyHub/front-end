@@ -84,3 +84,20 @@ const MaterialColor unselectedMenuColor = MaterialColor(
   },
 );
 const int _unselectedMenuColor = 0xFF938F99;
+
+const MaterialColor greySecondary = MaterialColor(
+  _greySecondary,
+  <int, Color>{
+    50: Color(0xFFCAC4D0),
+    100: Color(0xFFCAC4D0),
+    200: Color(0xFFCAC4D0),
+    300: Color(0xFFCAC4D0),
+    400: Color(0xFFCAC4D0),
+    500: Color(0xFFCAC4D0),
+    600: Color(0xFFCAC4D0),
+    700: Color(0xFFCAC4D0),
+    800: Color(0xFFCAC4D0),
+    900: Color(0xFFCAC4D0),
+  },
+);
+const int _greySecondary = 0xFFCAC4D0;
