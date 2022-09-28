@@ -11,24 +11,26 @@ class LoginPage extends StatelessWidget {
     return GetBuilder<LoginController>(builder: (controller) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/login_page.png"),
-              alignment: Alignment.centerLeft,
+        body: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/login_page.png"),
+                alignment: Alignment.centerLeft,
+              ),
             ),
-          ),
-          child: ListView(
-            children: <Widget>[
-              _heading(),
-              _emailFormField(),
-              _passwordFormField(controller: controller),
-              _forgotPasswordButton(),
-              _loginButton(),
-              _registerButton(),
-              _divider(),
-              _continueWithUIAccount()
-            ],
+            child: ListView(
+              children: <Widget>[
+                _heading(),
+                _emailFormField(),
+                _passwordFormField(controller: controller),
+                _forgotPasswordButton(),
+                _loginButton(),
+                _registerButton(),
+                _divider(),
+                _continueWithUIAccount()
+              ],
+            ),
           ),
         ),
       );
