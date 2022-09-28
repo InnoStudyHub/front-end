@@ -15,7 +15,10 @@ class CreatePage extends GetView<CreateController> {
       body: const Center(
         child: Text(
           "Create Page",
-          style: TextStyle(color: unselectedTabColor),
+          style: TextStyle(
+              color:
+              unselectedTabColor
+          ),
         ),
       ),
     );
