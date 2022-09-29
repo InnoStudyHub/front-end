@@ -43,9 +43,9 @@ class RegisterPage extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        margin: const EdgeInsets.only(top: 60, left: 20),
+        margin: const EdgeInsets.only(top: 50, left: 20),
         child: const Text(
-          "Welcome Back!",
+          "Create Account",
           style: TextStyle(
             color: selectedMenuColor,
             fontSize: 28,
@@ -162,7 +162,9 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
           child: const Text(
             "Login",
             style: TextStyle(

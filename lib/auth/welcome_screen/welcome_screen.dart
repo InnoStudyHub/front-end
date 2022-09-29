@@ -83,7 +83,7 @@ class WelcomeScreen extends StatelessWidget {
                 height: 44,
                 child: MaterialButton(
                   onPressed: () {
-                    Get.toNamed(AppRoutes.login);
+                    Get.offNamed(AppRoutes.login);
                   },
                   color: selectedTabColor,
                   child: const Text(

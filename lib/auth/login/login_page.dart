@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/auth/login/login_controller.dart';
 import 'package:study_hub/util/color_codes.dart';
+import 'package:study_hub/util/routes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -41,7 +42,7 @@ class LoginPage extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-        margin: const EdgeInsets.only(top: 60, right: 20),
+        margin: const EdgeInsets.only(top: 50, right: 20),
         child: const Text(
           "Welcome Back!",
           style: TextStyle(
@@ -57,7 +58,7 @@ class LoginPage extends StatelessWidget {
 
   Widget _emailFormField() {
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 135, 20, 10),
+      margin: const EdgeInsets.fromLTRB(20, 135, 20, 0),
       child: TextFormField(
         style: const TextStyle(color: selectedMenuColor),
         cursorColor: unselectedMenuColor,
@@ -83,7 +84,7 @@ class LoginPage extends StatelessWidget {
 
   Widget _passwordFormField({required LoginController controller}) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+      margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
       child: TextFormField(
         style: const TextStyle(color: selectedMenuColor),
         cursorColor: unselectedMenuColor,
@@ -170,7 +171,9 @@ class LoginPage extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(AppRoutes.register);
+          },
           child: const Text(
             "Register",
             style: TextStyle(
