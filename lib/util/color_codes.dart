@@ -84,3 +84,20 @@ const MaterialColor unselectedMenuColor = MaterialColor(
   },
 );
 const int _unselectedMenuColor = 0xFF938F99;
+
+const MaterialColor purpleAppColor = MaterialColor(
+  _purpleAppColor,
+  <int, Color>{
+    50: Color(0xFF957EBA),
+    100: Color(0xFF957EBA),
+    200: Color(0xFF957EBA),
+    300: Color(0xFF957EBA),
+    400: Color(0xFF957EBA),
+    500: Color(_purpleAppColor),
+    600: Color(0xFF957EBA),
+    700: Color(0xFF957EBA),
+    800: Color(0xFF957EBA),
+    900: Color(0xFF957EBA),
+  },
+);
+const int _purpleAppColor = 0xFF957EBA;
