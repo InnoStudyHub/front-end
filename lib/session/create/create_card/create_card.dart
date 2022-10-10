@@ -7,14 +7,14 @@ class ForYouPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: SafeArea(
-      child: Container(
-        child: ListView(
-          children: <Widget>[_createCard(), _addButton(), _finishButton()],
+        body: SafeArea(
+          child: Container(
+            child: ListView(
+              children: <Widget>[_createCard(), _addButton(), _finishButton()],
+            ),
+          ),
         ),
-      ),
-    ),
-  );
+      );
 
   Widget _createCard() {
     // Я старался эти виджеты в ListView впихнуть, но почему-то они не отображались. Оставил так
@@ -71,7 +71,7 @@ class ForYouPage extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Container(
                       margin:
-                      const EdgeInsets.only(top: 15, left: 20, bottom: 20),
+                          const EdgeInsets.only(top: 15, left: 20, bottom: 20),
                       height: 44,
                       child: MaterialButton(
                         onPressed: () {},
@@ -129,7 +129,7 @@ class ForYouPage extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Container(
                       margin:
-                      const EdgeInsets.only(top: 15, left: 20, bottom: 20),
+                          const EdgeInsets.only(top: 15, left: 20, bottom: 20),
                       height: 44,
                       child: MaterialButton(
                         onPressed: () {},
