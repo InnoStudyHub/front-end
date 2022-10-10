@@ -8,10 +8,8 @@ class ForYouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: SafeArea(
-          child: Container(
-            child: ListView(
-              children: <Widget>[_createCard(), _addButton(), _finishButton()],
-            ),
+          child: ListView(
+            children: <Widget>[_createCard(), _addButton(), _finishButton()],
           ),
         ),
       );
@@ -19,7 +17,7 @@ class ForYouPage extends StatelessWidget {
   Widget _createCard() {
     // Я старался эти виджеты в ListView впихнуть, но почему-то они не отображались. Оставил так
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: <Widget>[
           Container(
@@ -45,7 +43,7 @@ class ForYouPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: TextFormField(
                     style: const TextStyle(color: selectedMenuColor),
                     keyboardType: TextInputType.multiline,
@@ -58,10 +56,10 @@ class ForYouPage extends StatelessWidget {
                           "assets/create_card_question_mark.svg",
                           color: unselectedMenuColor),
                       labelText: "Question",
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                         color: unselectedTabColor,
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: unselectedTabColor),
                       ),
                     ),
@@ -75,7 +73,7 @@ class ForYouPage extends StatelessWidget {
                       height: 44,
                       child: MaterialButton(
                         onPressed: () {},
-                        padding: EdgeInsets.symmetric(horizontal: 50),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         color: purpleAppColor,
                         child: const Text(
                           "Add Image",
@@ -104,7 +102,7 @@ class ForYouPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: TextFormField(
                     style: const TextStyle(color: selectedMenuColor),
                     cursorColor: unselectedMenuColor,
@@ -116,10 +114,10 @@ class ForYouPage extends StatelessWidget {
                           "assets/create_card_answer_tick.svg",
                           color: unselectedMenuColor),
                       labelText: "Answer",
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                         color: unselectedTabColor,
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: unselectedTabColor),
                       ),
                     ),
@@ -133,7 +131,7 @@ class ForYouPage extends StatelessWidget {
                       height: 44,
                       child: MaterialButton(
                         onPressed: () {},
-                        padding: EdgeInsets.symmetric(horizontal: 50),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         color: purpleAppColor,
                         child: const Text(
                           "Add Image",
@@ -161,7 +159,7 @@ class ForYouPage extends StatelessWidget {
       child: MaterialButton(
           onPressed: () {},
           color: mainAppColor,
-          child: Icon(
+          child: const Icon(
             Icons.add,
             color: selectedMenuColor,
           )),
