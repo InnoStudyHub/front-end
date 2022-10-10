@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'settings/setting_page.dart';
 import '../../util/color_codes.dart';
 import 'groups/groups_page.dart';
 import 'history/history_page.dart';
