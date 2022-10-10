@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/auth/login/login_controller.dart';
-import 'package:study_hub/util/color_codes.dart';
-import 'package:study_hub/util/routes.dart';
+import 'login_controller.dart';
+import '../../util/color_codes.dart';
+import '../../util/routes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

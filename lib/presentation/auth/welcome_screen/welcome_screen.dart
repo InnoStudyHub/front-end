@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/util/color_codes.dart';
-import 'package:study_hub/util/routes.dart';
+import '../../util/color_codes.dart';
+import '../../util/routes.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

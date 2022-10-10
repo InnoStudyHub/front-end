@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/auth/register/register_controller.dart';
+import 'register_controller.dart';
 
 import '../../util/color_codes.dart';
 

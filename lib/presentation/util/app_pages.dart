@@ -1,9 +1,9 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:study_hub/auth/register/register_page.dart';
-import 'package:study_hub/auth/welcome_screen/welcome_screen.dart';
-import 'package:study_hub/session/session.dart';
-import 'package:study_hub/session/session_binding.dart';
-import 'package:study_hub/util/routes.dart';
+import '../auth/register/register_page.dart';
+import '../auth/welcome_screen/welcome_screen.dart';
+import '../session/session.dart';
+import '../session/session_binding.dart';
+import 'routes.dart';
 import '../auth/login/login_page.dart';
 import '../auth/login/login_page_binding.dart';
 import '../auth/register/register_page_binding.dart';

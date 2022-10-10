@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/session/home/recent/recent_page.dart';
-import 'package:study_hub/session/home/search/search_page.dart';
+import 'recent/recent_page.dart';
+import 'search/search_page.dart';
 import '../../util/color_codes.dart';
 import 'for_you/for_you_page.dart';
 import 'home_controller.dart';
