@@ -1,7 +1,7 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:study_hub/session/session.dart';
-import 'package:study_hub/session/session_binding.dart';
-import 'package:study_hub/util/routes.dart';
+import '../session/session.dart';
+import '../session/session_binding.dart';
+import '../util/routes.dart';
 
 class AppPages {
   static var list = [
