@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/presentation/widgets/themed_material_button.dart';
+import '../../widgets/divider.dart';
+import '../../widgets/outlined_text_field.dart';
+import '../../widgets/continue_with_ui_button.dart';
 import 'register_controller.dart';
-
 import '../../util/color_codes.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -24,13 +26,34 @@ class RegisterPage extends StatelessWidget {
             child: ListView(
               children: <Widget>[
                 _heading(),
-                _emailFormField(),
-                _nameFormField(),
+                OutlinedTextField(
+                  label: "email",
+                  prefixIconData: Icons.email_outlined,
+                  textFieldController: controller.emailController,
+                ),
+
+                OutlinedTextField(
+                  label: "Full name",
+                  assetName: "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
+                  textFieldController: controller.fullNameController,
+                ),
+
+                OutlinedTextField(
+                  label: "Password",
+                  prefixIconData: Icons.lock_outline,
+                  textFieldController: controller.passwordController,
+                ),
+
                 _passwordFormField(controller: controller),
-                _registerButton(),
+
+                ThemedMaterialButton(
+                  text: "Register",
+                  callback: (){},
+                  color: selectedTabColor,
+                ),
                 _loginButton(),
-                _divider(),
-                _continueWithUIAccount(),
+                const ThemedDivider(),
+                ContinueWithUIButton(callback: (){}),
               ],
             ),
           ),
@@ -51,59 +74,6 @@ class RegisterPage extends StatelessWidget {
             fontSize: 28,
             fontFamily: "Roboto",
             fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _emailFormField() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 70, 20, 0),
-      child: TextFormField(
-        style: const TextStyle(color: selectedMenuColor),
-        cursorColor: unselectedMenuColor,
-        maxLines: 1,
-        decoration: const InputDecoration(
-          filled: true,
-          fillColor: backgroundDarkBlue,
-          prefixIcon: Icon(
-            Icons.email_outlined,
-            color: greySecondary,
-          ),
-          labelText: "Email",
-          labelStyle: TextStyle(
-            color: unselectedMenuColor,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: unselectedMenuColor),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _nameFormField() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-      child: TextFormField(
-        style: const TextStyle(color: selectedMenuColor),
-        cursorColor: unselectedMenuColor,
-        maxLines: 1,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: backgroundDarkBlue,
-          prefixIcon: SvgPicture.asset(
-            "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
-            color: greySecondary,
-            fit: BoxFit.scaleDown,
-          ),
-          labelText: "Full Name",
-          labelStyle: const TextStyle(
-            color: unselectedMenuColor,
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: unselectedMenuColor),
           ),
         ),
       ),
@@ -178,89 +148,4 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _registerButton() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
-      height: 44,
-      child: MaterialButton(
-        onPressed: () {},
-        color: selectedTabColor,
-        child: const Text(
-          "Register",
-          style: TextStyle(
-            color: selectedMenuColor,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _divider() {
-    return Container(
-      margin: const EdgeInsets.only(top: 25, bottom: 40),
-      child: Row(
-        children: const [
-          Expanded(
-            child: Divider(
-              thickness: 1,
-              indent: 20,
-              endIndent: 10,
-              color: unselectedMenuColor,
-            ),
-          ),
-          Text(
-            "or",
-            style: TextStyle(
-              color: unselectedMenuColor,
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-            ),
-          ),
-          Expanded(
-            child: Divider(
-              thickness: 1,
-              indent: 10,
-              endIndent: 20,
-              color: unselectedTabColor,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _continueWithUIAccount() {
-    return Container(
-      margin: const EdgeInsets.only(left: 20, right: 20),
-      height: 44,
-      child: MaterialButton(
-        onPressed: () {},
-        color: selectedMenuColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(right: 10),
-              child: Image.asset(
-                "assets/images/innopolis_logo.png",
-                height: 24,
-                width: 24,
-              ),
-            ),
-            const Text(
-              "Continue with IU account",
-              style: TextStyle(
-                color: selectedTabColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

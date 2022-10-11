@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromARGB(255, 14, 22, 33),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.session,
+      initialRoute: AppRoutes.auth,
       getPages: AppPages.list,
     );
   }

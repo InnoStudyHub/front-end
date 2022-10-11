@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../widgets/continue_with_ui_button.dart';
+import '../../widgets/divider.dart';
+import '../../widgets/outlined_text_field.dart';
+import '../../widgets/themed_material_button.dart';
 import 'login_controller.dart';
 import '../../util/color_codes.dart';
 import '../../util/routes.dart';
@@ -23,13 +27,20 @@ class LoginPage extends StatelessWidget {
             child: ListView(
               children: <Widget>[
                 _heading(),
-                _emailFormField(),
+                const OutlinedTextField(
+                  label: "Email",
+                  prefixIconData: Icons.email_outlined,
+                ),
                 _passwordFormField(controller: controller),
                 _forgotPasswordButton(),
-                _loginButton(),
+                ThemedMaterialButton(
+                  text: "Login",
+                  color: selectedTabColor,
+                  callback: (){},
+                ),
                 _registerButton(),
-                _divider(),
-                _continueWithUIAccount()
+                const ThemedDivider(),
+                ContinueWithUIButton(callback: (){}),
               ],
             ),
           ),
@@ -56,31 +67,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _emailFormField() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 135, 20, 0),
-      child: TextFormField(
-        style: const TextStyle(color: selectedMenuColor),
-        cursorColor: unselectedMenuColor,
-        maxLines: 1,
-        decoration: const InputDecoration(
-          filled: true,
-          fillColor: backgroundDarkBlue,
-          prefixIcon: Icon(
-            Icons.email_outlined,
-            color: greySecondary,
-          ),
-          labelText: "Email",
-          labelStyle: TextStyle(
-            color: unselectedMenuColor,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: unselectedMenuColor),
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget _passwordFormField({required LoginController controller}) {
     return Container(
@@ -138,25 +124,6 @@ class LoginPage extends StatelessWidget {
         ));
   }
 
-  Widget _loginButton() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-      height: 44,
-      child: MaterialButton(
-        onPressed: () {},
-        color: selectedTabColor,
-        child: const Text(
-          "Login",
-          style: TextStyle(
-            color: selectedMenuColor,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget _registerButton() {
     return Row(
@@ -187,69 +154,4 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _divider() {
-    return Container(
-      margin: const EdgeInsets.only(top: 25, bottom: 40),
-      child: Row(
-        children: const [
-          Expanded(
-            child: Divider(
-              thickness: 1,
-              indent: 20,
-              endIndent: 10,
-              color: unselectedMenuColor,
-            ),
-          ),
-          Text(
-            "or",
-            style: TextStyle(
-              color: unselectedMenuColor,
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-            ),
-          ),
-          Expanded(
-            child: Divider(
-              thickness: 1,
-              indent: 10,
-              endIndent: 20,
-              color: unselectedTabColor,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _continueWithUIAccount() {
-    return Container(
-      margin: const EdgeInsets.only(left: 20, right: 20),
-      height: 44,
-      child: MaterialButton(
-        onPressed: () {},
-        color: selectedMenuColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(right: 10),
-              child: Image.asset(
-                "assets/images/innopolis_logo.png",
-                height: 24,
-                width: 24,
-              ),
-            ),
-            const Text(
-              "Continue with IU account",
-              style: TextStyle(
-                color: selectedTabColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
