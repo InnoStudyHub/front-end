@@ -16,20 +16,21 @@ class ProfilePage extends GetView<ProfileController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
-        bottom: TabBar(
-          controller: controller.tabController,
-          labelColor: selectedTabColor,
-          unselectedLabelColor: unselectedTabColor,
-          indicatorColor: selectedTabColor,
-          indicatorSize: TabBarIndicatorSize.label,
-          isScrollable: true,
-          tabs: const [
-            Tab(text: 'Groups'),
-            Tab(text: 'History'),
-            Tab(text: 'Notifications'),
-            Tab(text: 'Settings'),
-          ],
+        flexibleSpace: SafeArea(
+          child: TabBar(
+            controller: controller.tabController,
+            labelColor: selectedTabColor,
+            unselectedLabelColor: unselectedTabColor,
+            indicatorColor: selectedTabColor,
+            indicatorSize: TabBarIndicatorSize.label,
+            isScrollable: true,
+            tabs: const [
+              Tab(text: 'Groups'),
+              Tab(text: 'History'),
+              Tab(text: 'Notifications'),
+              Tab(text: 'Settings'),
+            ],
+          ),
         ),
       ),
       body: TabBarView(

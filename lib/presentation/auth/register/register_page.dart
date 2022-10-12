@@ -31,29 +31,26 @@ class RegisterPage extends StatelessWidget {
                   prefixIconData: Icons.email_outlined,
                   textFieldController: controller.emailController,
                 ),
-
                 OutlinedTextField(
                   label: "Full name",
-                  assetName: "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
+                  assetName:
+                      "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
                   textFieldController: controller.fullNameController,
                 ),
-
                 OutlinedTextField(
                   label: "Password",
                   prefixIconData: Icons.lock_outline,
                   textFieldController: controller.passwordController,
                 ),
-
                 _passwordFormField(controller: controller),
-
                 ThemedMaterialButton(
                   text: "Register",
-                  callback: (){},
+                  callback: () {},
                   color: selectedTabColor,
                 ),
                 _loginButton(),
                 const ThemedDivider(),
-                ContinueWithUIButton(callback: (){}),
+                ContinueWithUIButton(callback: () {}),
               ],
             ),
           ),
@@ -147,5 +144,4 @@ class RegisterPage extends StatelessWidget {
       ],
     );
   }
-
 }

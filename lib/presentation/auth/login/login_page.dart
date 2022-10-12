@@ -36,11 +36,11 @@ class LoginPage extends StatelessWidget {
                 ThemedMaterialButton(
                   text: "Login",
                   color: selectedTabColor,
-                  callback: (){},
+                  callback: () {},
                 ),
                 _registerButton(),
                 const ThemedDivider(),
-                ContinueWithUIButton(callback: (){}),
+                ContinueWithUIButton(callback: () {}),
               ],
             ),
           ),
@@ -66,7 +66,6 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _passwordFormField({required LoginController controller}) {
     return Container(
@@ -124,7 +123,6 @@ class LoginPage extends StatelessWidget {
         ));
   }
 
-
   Widget _registerButton() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -153,5 +151,4 @@ class LoginPage extends StatelessWidget {
       ],
     );
   }
-
 }

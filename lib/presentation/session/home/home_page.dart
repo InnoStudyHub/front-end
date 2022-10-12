@@ -15,18 +15,20 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
-        bottom: TabBar(
-          controller: controller.tabController,
-          labelColor: selectedTabColor,
-          unselectedLabelColor: unselectedTabColor,
-          indicatorColor: selectedTabColor,
-          indicatorSize: TabBarIndicatorSize.label,
-          tabs: const [
-            Tab(text: 'Recent'),
-            Tab(text: 'For You'),
-            Tab(text: 'Search'),
-          ],
+        flexibleSpace: SafeArea(
+          child: TabBar(
+            controller: controller.tabController,
+            overlayColor: const MyColor(),
+            labelColor: selectedTabColor,
+            unselectedLabelColor: unselectedTabColor,
+            indicatorColor: selectedTabColor,
+            indicatorSize: TabBarIndicatorSize.label,
+            tabs: const [
+              Tab(text: 'Recent'),
+              Tab(text: 'For You'),
+              Tab(text: 'Search'),
+            ],
+          ),
         ),
       ),
       body: TabBarView(
@@ -38,5 +40,19 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+class MyColor extends MaterialStateColor {
+  const MyColor() : super(_defaultColor);
+
+  static const int _defaultColor = 0xFF938F99;
+  static const int _pressedColor = 0xFF938F99;
+
+  @override
+  Color resolve(Set<MaterialState> states) {
+    if (states.contains(MaterialState.pressed)) {
+      return const Color(_pressedColor);
+    }
+    return const Color(_defaultColor);
   }
 }

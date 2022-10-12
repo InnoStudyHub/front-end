@@ -2,26 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../util/color_codes.dart';
 
-
-class OutlinedTextField extends StatelessWidget{
-
+class OutlinedTextField extends StatelessWidget {
   final String label;
   final TextEditingController? textFieldController;
   final IconData? prefixIconData;
   final String? assetName;
 
-  const OutlinedTextField({
-    super.key, required this.label, this.prefixIconData,
-    this.assetName, this.textFieldController
-  });
+  const OutlinedTextField(
+      {super.key,
+      required this.label,
+      this.prefixIconData,
+      this.assetName,
+      this.textFieldController});
 
   @override
   Widget build(BuildContext context) {
-
     Icon? prefixIcon;
     IconButton? suffixIcon;
 
-    if (assetName != null){
+    if (assetName != null) {
       prefixIcon = SvgPicture.asset(
         assetName!,
         color: greySecondary,
@@ -32,7 +31,6 @@ class OutlinedTextField extends StatelessWidget{
           ? Icon(prefixIconData, color: greySecondary)
           : null;
     }
-
 
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 70, 20, 0),
@@ -57,5 +55,4 @@ class OutlinedTextField extends StatelessWidget{
       ),
     );
   }
-
 }

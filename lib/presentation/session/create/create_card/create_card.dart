@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../util/color_codes.dart';
 
-class ForYouPage extends StatelessWidget {
-  const ForYouPage({Key? key}) : super(key: key);
+class CreateCardPage extends StatelessWidget {
+  const CreateCardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(

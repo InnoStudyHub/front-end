@@ -15,6 +15,11 @@ class Session extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SessionController>(builder: (controller) {
       return Scaffold(
+        appBar: AppBar(
+          title: Text(controller.tabTitle),
+          elevation: 0,
+        ),
+
         body: SafeArea(
           child: IndexedStack(
             index: controller.tabIndex,

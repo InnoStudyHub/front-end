@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../util/color_codes.dart';
 
 class ContinueWithUIButton extends StatelessWidget {
-
   final VoidCallback callback;
-  const ContinueWithUIButton({Key? key, required this.callback}) : super(key: key);
+  const ContinueWithUIButton({Key? key, required this.callback})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

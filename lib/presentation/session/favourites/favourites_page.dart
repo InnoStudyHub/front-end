@@ -8,11 +8,8 @@ class FavouritesPage extends GetView<FavouritesController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Favourites"),
-      ),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text(
           "Favourites Page",
           style: TextStyle(
