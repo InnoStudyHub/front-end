@@ -53,7 +53,7 @@ class CreateCardPage extends StatelessWidget {
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       filled: true,
                       prefixIcon: SvgPicture.asset(
-                          "assets/create_card_question_mark.svg",
+                          "assets/icons/create_cards/create_card_question_mark.svg",
                           color: unselectedMenuColor),
                       labelText: "Question",
                       labelStyle: const TextStyle(
@@ -111,7 +111,7 @@ class CreateCardPage extends StatelessWidget {
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       filled: true,
                       prefixIcon: SvgPicture.asset(
-                          "assets/create_card_answer_tick.svg",
+                          "assets/icons/create_cards/create_card_answer_tick.svg",
                           color: unselectedMenuColor),
                       labelText: "Answer",
                       labelStyle: const TextStyle(
