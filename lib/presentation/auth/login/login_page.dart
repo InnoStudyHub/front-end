@@ -14,6 +14,16 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(builder: (controller) {
+      void showSnackBar() {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              controller.snackBarError.toString(),
+            ),
+          ),
+        );
+      }
+
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -32,6 +42,7 @@ class LoginPage extends StatelessWidget {
                   prefixIconData: Icons.email_outlined,
                   textFieldController: controller.emailController,
                   inputType: TextInputType.emailAddress,
+                  error: controller.emailError,
                 ),
                 _passwordFormField(controller: controller),
                 _forgotPasswordButton(),
@@ -39,7 +50,11 @@ class LoginPage extends StatelessWidget {
                   text: "Login",
                   color: selectedTabColor,
                   callback: () async {
-                    controller.login();
+                    await controller.login();
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    if (controller.snackBarError != null) {
+                      showSnackBar();
+                    }
                   },
                 ),
                 _registerButton(),
@@ -84,6 +99,7 @@ class LoginPage extends StatelessWidget {
           focusColor: selectedMenuColor,
           filled: true,
           fillColor: backgroundDarkBlue,
+          errorText: controller.passwordError,
           prefixIcon: const Icon(
             Icons.lock_outline,
             color: greySecondary,

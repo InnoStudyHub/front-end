@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:study_hub/common/constants.dart';
@@ -22,17 +21,26 @@ class AuthRepositoryImpl implements AuthRepository {
     var body = json
         .encode({"email": email, "fullname": fullName, "password": password});
 
-    final response = await http.post(headers: headers, url, body: body);
-    debugPrint("auth repo: status code: ${response.statusCode.toString()}");
+    http.Response response;
+    try {
+      response = await http.post(headers: headers, url, body: body);
+    } catch (e) {
+      return Fail(errorMessage: e.toString());
+    }
+    int statusCode = response.statusCode;
 
-    if (response.statusCode == 201) {
+    if (statusCode == 201) {
       var token = Token.fromJson(json.decode(response.body));
       getStorage.write("access", token.accessToken);
       getStorage.write("refresh", token.refreshToken);
       return Success(successData: token);
     } else {
-      debugPrint("auth repo: ${response.statusCode}, ${response.body}");
-      return Fail(errorMessage: "error message");
+      if (statusCode == 400) {
+        String message = "User with such email already exists";
+        return Fail(errorMessage: message, statusCode: 400);
+      } else {
+        return Fail(errorMessage: "Unexpected error", statusCode: 500);
+      }
     }
   }
 
@@ -43,17 +51,26 @@ class AuthRepositoryImpl implements AuthRepository {
 
     var body = json.encode({"email": email, "password": password});
 
-    final response = await http.post(url, headers: headers, body: body);
-    debugPrint("status code: ${response.statusCode.toString()}");
+    http.Response response;
 
-    if (response.statusCode == 200) {
+    try {
+      response = await http.post(url, headers: headers, body: body);
+    } catch (e) {
+      return Fail(errorMessage: e.toString());
+    }
+    int statusCode = response.statusCode;
+
+    if (statusCode == 200) {
       var token = Token.fromJson(json.decode(response.body));
       getStorage.write("access", token.accessToken);
       getStorage.write("refresh", token.refreshToken);
       return Success(successData: token);
     } else {
-      debugPrint("${response.statusCode}, ${response.body}");
-      return Fail(errorMessage: "error message");
+      if (statusCode == 401) {
+        return Fail(errorMessage: "Wrong email or password");
+      } else {
+        return Fail(errorMessage: "Unexpected error", statusCode: 500);
+      }
     }
   }
 

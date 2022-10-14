@@ -1,7 +1,8 @@
 class Resource<T> {
   T? data;
   String? message;
-  Resource({this.data, this.message});
+  int? errorCode;
+  Resource({this.data, this.message, this.errorCode});
 }
 
 class Success<T> extends Resource<T> {
@@ -11,5 +12,7 @@ class Success<T> extends Resource<T> {
 
 class Fail<T> extends Resource<T> {
   String errorMessage;
-  Fail({required this.errorMessage}) : super(message: errorMessage);
+  int? statusCode;
+  Fail({required this.errorMessage, this.statusCode})
+      : super(message: errorMessage, errorCode: statusCode);
 }

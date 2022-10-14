@@ -8,6 +8,7 @@ class OutlinedTextField extends StatelessWidget {
   final IconData? prefixIconData;
   final String? assetName;
   final TextInputType? inputType;
+  final String? error;
 
   const OutlinedTextField(
       {super.key,
@@ -15,12 +16,12 @@ class OutlinedTextField extends StatelessWidget {
       this.prefixIconData,
       this.assetName,
       this.textFieldController,
-      this.inputType});
+      this.inputType,
+      this.error});
 
   @override
   Widget build(BuildContext context) {
     IconButton? prefixIcon;
-    IconButton? suffixIcon;
 
     if (assetName != null) {
       IconButton kek = IconButton(
@@ -52,6 +53,7 @@ class OutlinedTextField extends StatelessWidget {
         keyboardType: inputType,
         decoration: InputDecoration(
           filled: true,
+          errorText: error,
           fillColor: backgroundDarkBlue,
           prefixIcon: prefixIcon,
           labelText: label,
@@ -61,7 +63,6 @@ class OutlinedTextField extends StatelessWidget {
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: unselectedMenuColor),
           ),
-          suffixIcon: suffixIcon,
         ),
       ),
     );

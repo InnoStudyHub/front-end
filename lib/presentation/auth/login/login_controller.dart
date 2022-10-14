@@ -10,12 +10,14 @@ class LoginController extends GetxController {
   LoginController() {
     emailController.addListener(() {
       _email = emailController.text.toString();
-      debugPrint(_email);
+      emailError = null;
+      update();
     });
 
     passwordController.addListener(() {
       _password = passwordController.text.toString();
-      debugPrint(_password);
+      passwordError = null;
+      update();
     });
   }
 
@@ -26,15 +28,38 @@ class LoginController extends GetxController {
   String _email = "";
   String _password = "";
 
+  String? emailError;
+  String? passwordError;
+  String? snackBarError;
+
   void changePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     update();
   }
 
   Future<void> login() async {
+    snackBarError = null;
+    if (!isFormValid()) return;
+
     var response = await authRepo.login(email: _email, password: _password);
     if (response is Success) {
       Get.offNamed(AppRoutes.session);
+    } else {
+      snackBarError = response.message.toString();
     }
+  }
+
+  bool isFormValid() {
+    bool isValid = true;
+    if (_email.isEmpty) {
+      emailError = "Email cannot be empty";
+      isValid = false;
+    }
+    if (_password.isEmpty) {
+      passwordError = "Password cannot be empty";
+      isValid = false;
+    }
+    update();
+    return isValid;
   }
 }

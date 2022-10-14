@@ -13,43 +13,67 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RegisterController>(builder: (controller) {
-      return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/register_page.png"),
-                alignment: Alignment.centerRight,
-              ),
+      void showSnackBar() {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              controller.snackBarError.toString(),
             ),
-            child: ListView(
-              children: <Widget>[
-                _heading(),
-                OutlinedTextField(
-                  label: "Email",
-                  prefixIconData: Icons.email_outlined,
-                  textFieldController: controller.emailController,
-                  inputType: TextInputType.emailAddress,
+          ),
+        );
+      }
+
+      return GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: SafeArea(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/register_page.png"),
+                  alignment: Alignment.centerRight,
                 ),
-                OutlinedTextField(
-                  label: "Full name",
-                  assetName:
-                      "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
-                  textFieldController: controller.fullNameController,
-                ),
-                _passwordFormField(controller: controller),
-                ThemedMaterialButton(
-                  text: "Register",
-                  callback: () async {
-                    await controller.register();
-                  },
-                  color: selectedTabColor,
-                ),
-                _loginButton(),
-                const ThemedDivider(),
-                ContinueWithUIButton(callback: () {}),
-              ],
+              ),
+              child: ListView(
+                children: <Widget>[
+                  _heading(),
+                  OutlinedTextField(
+                    label: "Email",
+                    prefixIconData: Icons.email_outlined,
+                    textFieldController: controller.emailController,
+                    inputType: TextInputType.emailAddress,
+                    error: controller.emailError,
+                  ),
+                  OutlinedTextField(
+                    label: "Full name",
+                    assetName:
+                        "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
+                    textFieldController: controller.fullNameController,
+                    error: controller.fullNameError,
+                  ),
+                  _passwordFormField(controller: controller),
+                  ThemedMaterialButton(
+                    text: "Register",
+                    color: selectedTabColor,
+                    callback: () async {
+                      await controller.register();
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      if (controller.snackBarError != null) {
+                        showSnackBar();
+                      }
+                    },
+                  ),
+                  _loginButton(),
+                  const ThemedDivider(),
+                  ContinueWithUIButton(callback: () {}),
+                ],
+              ),
             ),
           ),
         ),
@@ -88,6 +112,7 @@ class RegisterPage extends StatelessWidget {
           focusColor: selectedMenuColor,
           filled: true,
           fillColor: backgroundDarkBlue,
+          errorText: controller.passwordError,
           prefixIcon: const Icon(
             Icons.lock_outline,
             color: greySecondary,
