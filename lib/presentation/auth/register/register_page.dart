@@ -27,9 +27,10 @@ class RegisterPage extends StatelessWidget {
               children: <Widget>[
                 _heading(),
                 OutlinedTextField(
-                  label: "email",
+                  label: "Email",
                   prefixIconData: Icons.email_outlined,
                   textFieldController: controller.emailController,
+                  inputType: TextInputType.emailAddress,
                 ),
                 OutlinedTextField(
                   label: "Full name",
@@ -37,15 +38,12 @@ class RegisterPage extends StatelessWidget {
                       "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
                   textFieldController: controller.fullNameController,
                 ),
-                OutlinedTextField(
-                  label: "Password",
-                  prefixIconData: Icons.lock_outline,
-                  textFieldController: controller.passwordController,
-                ),
                 _passwordFormField(controller: controller),
                 ThemedMaterialButton(
                   text: "Register",
-                  callback: () {},
+                  callback: () async {
+                    await controller.register();
+                  },
                   color: selectedTabColor,
                 ),
                 _loginButton(),
@@ -63,7 +61,7 @@ class RegisterPage extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        margin: const EdgeInsets.only(top: 50, left: 20),
+        margin: const EdgeInsets.only(top: 50, left: 20, bottom: 65),
         child: const Text(
           "Create Account",
           style: TextStyle(
@@ -81,6 +79,7 @@ class RegisterPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
       child: TextFormField(
+        controller: controller.passwordController,
         style: const TextStyle(color: selectedMenuColor),
         cursorColor: unselectedMenuColor,
         maxLines: 1,

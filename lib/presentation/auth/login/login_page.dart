@@ -27,16 +27,20 @@ class LoginPage extends StatelessWidget {
             child: ListView(
               children: <Widget>[
                 _heading(),
-                const OutlinedTextField(
+                OutlinedTextField(
                   label: "Email",
                   prefixIconData: Icons.email_outlined,
+                  textFieldController: controller.emailController,
+                  inputType: TextInputType.emailAddress,
                 ),
                 _passwordFormField(controller: controller),
                 _forgotPasswordButton(),
                 ThemedMaterialButton(
                   text: "Login",
                   color: selectedTabColor,
-                  callback: () {},
+                  callback: () async {
+                    controller.login();
+                  },
                 ),
                 _registerButton(),
                 const ThemedDivider(),
@@ -53,7 +57,7 @@ class LoginPage extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-        margin: const EdgeInsets.only(top: 50, right: 20),
+        margin: const EdgeInsets.only(top: 50, right: 20, bottom: 65),
         child: const Text(
           "Welcome Back!",
           style: TextStyle(
@@ -74,6 +78,7 @@ class LoginPage extends StatelessWidget {
         style: const TextStyle(color: selectedMenuColor),
         cursorColor: unselectedMenuColor,
         maxLines: 1,
+        controller: controller.passwordController,
         obscureText: !controller.isPasswordVisible,
         decoration: InputDecoration(
           focusColor: selectedMenuColor,
