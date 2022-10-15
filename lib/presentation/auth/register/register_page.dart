@@ -58,17 +58,7 @@ class RegisterPage extends StatelessWidget {
                     error: controller.fullNameError,
                   ),
                   _passwordFormField(controller: controller),
-                  ThemedMaterialButton(
-                    text: "Register",
-                    color: selectedTabColor,
-                    callback: () async {
-                      await controller.register();
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      if (controller.snackBarError != null) {
-                        showSnackBar();
-                      }
-                    },
-                  ),
+                  _registerButton(controller, showSnackBar),
                   _loginButton(),
                   const ThemedDivider(),
                   ContinueWithUIButton(callback: () {}),
@@ -138,6 +128,33 @@ class RegisterPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _registerButton(
+      RegisterController controller, VoidCallback showSnackBar,
+      ){
+    if (controller.isLoading) {
+      return Container(
+        margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+        height: 44,
+        child: MaterialButton(
+          onPressed: (){},
+          child: const CircularProgressIndicator(),
+        ),
+      );
+    }
+    return ThemedMaterialButton(
+      text: "Register",
+      color: selectedTabColor,
+      callback: () async {
+        await controller.register();
+        FocusManager.instance.primaryFocus?.unfocus();
+        if (controller.snackBarError != null) {
+          showSnackBar();
+        }
+      },
+    );
+
   }
 
   Widget _loginButton() {

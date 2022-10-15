@@ -46,17 +46,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 _passwordFormField(controller: controller),
                 _forgotPasswordButton(),
-                ThemedMaterialButton(
-                  text: "Login",
-                  color: selectedTabColor,
-                  callback: () async {
-                    await controller.login();
-                    FocusManager.instance.primaryFocus?.unfocus();
-                    if (controller.snackBarError != null) {
-                      showSnackBar();
-                    }
-                  },
-                ),
+                _loginButton(controller, showSnackBar),
                 _registerButton(),
                 const ThemedDivider(),
                 ContinueWithUIButton(callback: () {}),
@@ -129,19 +119,44 @@ class LoginPage extends StatelessWidget {
 
   Widget _forgotPasswordButton() {
     return Container(
-        alignment: Alignment.centerRight,
-        margin: const EdgeInsets.only(right: 34),
-        child: TextButton(
-          onPressed: () {},
-          child: const Text(
-            "Forgot password?",
-            style: TextStyle(
-              color: unselectedMenuColor,
-              fontWeight: FontWeight.w400,
-              fontSize: 12,
-            ),
+      alignment: Alignment.centerRight,
+      margin: const EdgeInsets.only(right: 34),
+      child: TextButton(
+        onPressed: () {},
+        child: const Text(
+          "Forgot password?",
+          style: TextStyle(
+            color: unselectedMenuColor,
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
           ),
-        ));
+        ),
+      ),
+    );
+  }
+
+  Widget _loginButton(LoginController controller, VoidCallback showSnackBar){
+    if (controller.isLoading) {
+      return Container(
+        margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+        height: 44,
+        child: MaterialButton(
+          onPressed: (){},
+          child: const CircularProgressIndicator(),
+        ),
+      );
+    }
+    return ThemedMaterialButton(
+      text: "Login",
+      color: selectedTabColor,
+      callback: () async {
+        await controller.login();
+        FocusManager.instance.primaryFocus?.unfocus();
+        if (controller.snackBarError != null) {
+          showSnackBar();
+        }
+      },
+    );
   }
 
   Widget _registerButton() {

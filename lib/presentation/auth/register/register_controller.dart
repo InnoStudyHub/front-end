@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/common/constants.dart';
 import '../../../model/models/resource.dart';
 import '../../../model/repository/auth_repository.dart';
 
@@ -39,6 +40,7 @@ class RegisterController extends GetxController {
   String? passwordError;
   String? fullNameError;
   String? snackBarError;
+  bool isLoading = false;
 
   void changePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
@@ -51,6 +53,8 @@ class RegisterController extends GetxController {
     bool isFormValid = validateForm();
     if (!isFormValid) return;
 
+    isLoading = true;
+    update();
     var response = await authRepo.register(
         email: _email, password: _password, fullName: _fullName);
 
@@ -58,11 +62,14 @@ class RegisterController extends GetxController {
       Get.back();
     }
     if (response is Fail) {
-      if (response.errorCode == 400) {
+      if (response.errorCode == registerCredentialsAlreadyExistCode) {
         emailError = response.message;
+        isLoading = false;
         update();
       } else {
         snackBarError = response.message.toString();
+        isLoading = false;
+        update();
       }
     }
   }

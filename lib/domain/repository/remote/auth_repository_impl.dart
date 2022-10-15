@@ -29,17 +29,17 @@ class AuthRepositoryImpl implements AuthRepository {
     }
     int statusCode = response.statusCode;
 
-    if (statusCode == 201) {
+    if (statusCode == registerSuccessCode) {
       var token = Token.fromJson(json.decode(response.body));
       getStorage.write("access", token.accessToken);
       getStorage.write("refresh", token.refreshToken);
       return Success(successData: token);
     } else {
-      if (statusCode == 400) {
+      if (statusCode == registerCredentialsAlreadyExistCode) {
         String message = "User with such email already exists";
-        return Fail(errorMessage: message, statusCode: 400);
+        return Fail(errorMessage: message, statusCode: statusCode);
       } else {
-        return Fail(errorMessage: "Unexpected error", statusCode: 500);
+        return Fail(errorMessage: "Unexpected error", statusCode: statusCode);
       }
     }
   }
@@ -60,16 +60,16 @@ class AuthRepositoryImpl implements AuthRepository {
     }
     int statusCode = response.statusCode;
 
-    if (statusCode == 200) {
+    if (statusCode == loginSuccessCode) {
       var token = Token.fromJson(json.decode(response.body));
       getStorage.write("access", token.accessToken);
       getStorage.write("refresh", token.refreshToken);
       return Success(successData: token);
     } else {
-      if (statusCode == 401) {
+      if (statusCode == loginWrongCredentialsCode) {
         return Fail(errorMessage: "Wrong email or password");
       } else {
-        return Fail(errorMessage: "Unexpected error", statusCode: 500);
+        return Fail(errorMessage: "Unexpected error", statusCode: statusCode);
       }
     }
   }

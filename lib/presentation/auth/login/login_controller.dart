@@ -31,6 +31,7 @@ class LoginController extends GetxController {
   String? emailError;
   String? passwordError;
   String? snackBarError;
+  bool isLoading = false;
 
   void changePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
@@ -41,11 +42,17 @@ class LoginController extends GetxController {
     snackBarError = null;
     if (!isFormValid()) return;
 
+    isLoading = true;
+    update();
     var response = await authRepo.login(email: _email, password: _password);
     if (response is Success) {
+      isLoading = false;
+      update();
       Get.offNamed(AppRoutes.session);
     } else {
       snackBarError = response.message.toString();
+      isLoading = false;
+      update();
     }
   }
 
