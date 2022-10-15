@@ -131,14 +131,15 @@ class RegisterPage extends StatelessWidget {
   }
 
   Widget _registerButton(
-      RegisterController controller, VoidCallback showSnackBar,
-      ){
+    RegisterController controller,
+    VoidCallback showSnackBar,
+  ) {
     if (controller.isLoading) {
       return Container(
         margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
         height: 44,
         child: MaterialButton(
-          onPressed: (){},
+          onPressed: () {},
           child: const CircularProgressIndicator(),
         ),
       );
@@ -154,7 +155,6 @@ class RegisterPage extends StatelessWidget {
         }
       },
     );
-
   }
 
   Widget _loginButton() {

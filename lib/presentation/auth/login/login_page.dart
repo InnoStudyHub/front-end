@@ -135,13 +135,13 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _loginButton(LoginController controller, VoidCallback showSnackBar){
+  Widget _loginButton(LoginController controller, VoidCallback showSnackBar) {
     if (controller.isLoading) {
       return Container(
         margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
         height: 44,
         child: MaterialButton(
-          onPressed: (){},
+          onPressed: () {},
           child: const CircularProgressIndicator(),
         ),
       );
