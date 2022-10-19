@@ -18,7 +18,6 @@ class HomePage extends StatelessWidget {
         flexibleSpace: SafeArea(
           child: TabBar(
             controller: controller.tabController,
-            overlayColor: const MyColor(),
             labelColor: selectedTabColor,
             unselectedLabelColor: unselectedTabColor,
             indicatorColor: selectedTabColor,
@@ -40,19 +39,5 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-class MyColor extends MaterialStateColor {
-  const MyColor() : super(_defaultColor);
-
-  static const int _defaultColor = 0xFF938F99;
-  static const int _pressedColor = 0xFF938F99;
-
-  @override
-  Color resolve(Set<MaterialState> states) {
-    if (states.contains(MaterialState.pressed)) {
-      return const Color(_pressedColor);
-    }
-    return const Color(_defaultColor);
   }
 }

@@ -14,6 +14,16 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(builder: (controller) {
+      void showSnackBar() {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              controller.snackBarError.toString(),
+            ),
+          ),
+        );
+      }
+
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -27,17 +37,16 @@ class LoginPage extends StatelessWidget {
             child: ListView(
               children: <Widget>[
                 _heading(),
-                const OutlinedTextField(
+                OutlinedTextField(
                   label: "Email",
                   prefixIconData: Icons.email_outlined,
+                  textFieldController: controller.emailController,
+                  inputType: TextInputType.emailAddress,
+                  error: controller.emailError,
                 ),
                 _passwordFormField(controller: controller),
                 _forgotPasswordButton(),
-                ThemedMaterialButton(
-                  text: "Login",
-                  color: selectedTabColor,
-                  callback: () {},
-                ),
+                _loginButton(controller, showSnackBar),
                 _registerButton(),
                 const ThemedDivider(),
                 ContinueWithUIButton(callback: () {}),
@@ -53,7 +62,7 @@ class LoginPage extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-        margin: const EdgeInsets.only(top: 50, right: 20),
+        margin: const EdgeInsets.only(top: 50, right: 20, bottom: 65),
         child: const Text(
           "Welcome Back!",
           style: TextStyle(
@@ -74,11 +83,13 @@ class LoginPage extends StatelessWidget {
         style: const TextStyle(color: selectedMenuColor),
         cursorColor: unselectedMenuColor,
         maxLines: 1,
+        controller: controller.passwordController,
         obscureText: !controller.isPasswordVisible,
         decoration: InputDecoration(
           focusColor: selectedMenuColor,
           filled: true,
           fillColor: backgroundDarkBlue,
+          errorText: controller.passwordError,
           prefixIcon: const Icon(
             Icons.lock_outline,
             color: greySecondary,
@@ -108,19 +119,44 @@ class LoginPage extends StatelessWidget {
 
   Widget _forgotPasswordButton() {
     return Container(
-        alignment: Alignment.centerRight,
-        margin: const EdgeInsets.only(right: 34),
-        child: TextButton(
-          onPressed: () {},
-          child: const Text(
-            "Forgot password?",
-            style: TextStyle(
-              color: unselectedMenuColor,
-              fontWeight: FontWeight.w400,
-              fontSize: 12,
-            ),
+      alignment: Alignment.centerRight,
+      margin: const EdgeInsets.only(right: 34),
+      child: TextButton(
+        onPressed: () {},
+        child: const Text(
+          "Forgot password?",
+          style: TextStyle(
+            color: unselectedMenuColor,
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
           ),
-        ));
+        ),
+      ),
+    );
+  }
+
+  Widget _loginButton(LoginController controller, VoidCallback showSnackBar) {
+    if (controller.isLoading) {
+      return Container(
+        margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+        height: 44,
+        child: MaterialButton(
+          onPressed: () {},
+          child: const CircularProgressIndicator(),
+        ),
+      );
+    }
+    return ThemedMaterialButton(
+      text: "Login",
+      color: selectedTabColor,
+      callback: () async {
+        await controller.login();
+        FocusManager.instance.primaryFocus?.unfocus();
+        if (controller.snackBarError != null) {
+          showSnackBar();
+        }
+      },
+    );
   }
 
   Widget _registerButton() {

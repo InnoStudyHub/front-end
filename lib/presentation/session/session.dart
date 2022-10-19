@@ -19,7 +19,6 @@ class Session extends StatelessWidget {
           title: Text(controller.tabTitle),
           elevation: 0,
         ),
-
         body: SafeArea(
           child: IndexedStack(
             index: controller.tabIndex,

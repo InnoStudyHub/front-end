@@ -1,21 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/common/constants.dart';
+import '../../../model/models/resource.dart';
+import '../../../model/repository/auth_repository.dart';
 
 class RegisterController extends GetxController {
+  AuthRepository authRepo = Get.find();
+
   RegisterController() {
     emailController.addListener(() {
       _email = emailController.text.toString();
-      debugPrint(_email);
+      emailError = null;
+      update();
     });
 
     passwordController.addListener(() {
       _password = passwordController.text.toString();
-      debugPrint(_password);
+      passwordError = null;
+      update();
     });
 
     fullNameController.addListener(() {
       _fullName = fullNameController.text.toString();
-      debugPrint(_fullName);
+      fullNameError = null;
+      update();
     });
   }
 
@@ -28,8 +36,78 @@ class RegisterController extends GetxController {
   String _password = "";
   String _fullName = "";
 
+  String? emailError;
+  String? passwordError;
+  String? fullNameError;
+  String? snackBarError;
+  bool isLoading = false;
+
   void changePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     update();
+  }
+
+  Future<void> register() async {
+    snackBarError = null;
+
+    bool isFormValid = validateForm();
+    if (!isFormValid) return;
+
+    isLoading = true;
+    update();
+    var response = await authRepo.register(
+        email: _email, password: _password, fullName: _fullName);
+
+    if (response is Success) {
+      Get.back();
+    }
+    if (response is Fail) {
+      if (response.errorCode == registerCredentialsAlreadyExistCode) {
+        emailError = response.message;
+        isLoading = false;
+        update();
+      } else {
+        snackBarError = response.message.toString();
+        isLoading = false;
+        update();
+      }
+    }
+  }
+
+  bool validateForm() {
+    validateEmail();
+    validatePassword();
+    validateFullName();
+    update();
+
+    return emailError == null && passwordError == null && fullNameError == null;
+  }
+
+  validateEmail() {
+    var emailPattern =
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+    if (_email.isEmpty) {
+      emailError = "Email cannot be empty";
+    } else if (!RegExp(emailPattern).hasMatch(_email)) {
+      emailError = "Invalid email";
+    } else {
+      emailError = null;
+    }
+  }
+
+  validatePassword() {
+    if (_password.length <= 8) {
+      passwordError = "Password must be at least 8 characters long";
+    } else {
+      passwordError = null;
+    }
+  }
+
+  validateFullName() {
+    if (_fullName.isEmpty) {
+      fullNameError = "Full Name cannot be empty";
+    } else {
+      fullNameError = null;
+    }
   }
 }

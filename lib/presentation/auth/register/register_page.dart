@@ -13,45 +13,57 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RegisterController>(builder: (controller) {
-      return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/register_page.png"),
-                alignment: Alignment.centerRight,
-              ),
+      void showSnackBar() {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              controller.snackBarError.toString(),
             ),
-            child: ListView(
-              children: <Widget>[
-                _heading(),
-                OutlinedTextField(
-                  label: "email",
-                  prefixIconData: Icons.email_outlined,
-                  textFieldController: controller.emailController,
+          ),
+        );
+      }
+
+      return GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: SafeArea(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/register_page.png"),
+                  alignment: Alignment.centerRight,
                 ),
-                OutlinedTextField(
-                  label: "Full name",
-                  assetName:
-                      "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
-                  textFieldController: controller.fullNameController,
-                ),
-                OutlinedTextField(
-                  label: "Password",
-                  prefixIconData: Icons.lock_outline,
-                  textFieldController: controller.passwordController,
-                ),
-                _passwordFormField(controller: controller),
-                ThemedMaterialButton(
-                  text: "Register",
-                  callback: () {},
-                  color: selectedTabColor,
-                ),
-                _loginButton(),
-                const ThemedDivider(),
-                ContinueWithUIButton(callback: () {}),
-              ],
+              ),
+              child: ListView(
+                children: <Widget>[
+                  _heading(),
+                  OutlinedTextField(
+                    label: "Email",
+                    prefixIconData: Icons.email_outlined,
+                    textFieldController: controller.emailController,
+                    inputType: TextInputType.emailAddress,
+                    error: controller.emailError,
+                  ),
+                  OutlinedTextField(
+                    label: "Full name",
+                    assetName:
+                        "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
+                    textFieldController: controller.fullNameController,
+                    error: controller.fullNameError,
+                  ),
+                  _passwordFormField(controller: controller),
+                  _registerButton(controller, showSnackBar),
+                  _loginButton(),
+                  const ThemedDivider(),
+                  ContinueWithUIButton(callback: () {}),
+                ],
+              ),
             ),
           ),
         ),
@@ -63,7 +75,7 @@ class RegisterPage extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        margin: const EdgeInsets.only(top: 50, left: 20),
+        margin: const EdgeInsets.only(top: 50, left: 20, bottom: 65),
         child: const Text(
           "Create Account",
           style: TextStyle(
@@ -81,6 +93,7 @@ class RegisterPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
       child: TextFormField(
+        controller: controller.passwordController,
         style: const TextStyle(color: selectedMenuColor),
         cursorColor: unselectedMenuColor,
         maxLines: 1,
@@ -89,6 +102,7 @@ class RegisterPage extends StatelessWidget {
           focusColor: selectedMenuColor,
           filled: true,
           fillColor: backgroundDarkBlue,
+          errorText: controller.passwordError,
           prefixIcon: const Icon(
             Icons.lock_outline,
             color: greySecondary,
@@ -113,6 +127,33 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _registerButton(
+    RegisterController controller,
+    VoidCallback showSnackBar,
+  ) {
+    if (controller.isLoading) {
+      return Container(
+        margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+        height: 44,
+        child: MaterialButton(
+          onPressed: () {},
+          child: const CircularProgressIndicator(),
+        ),
+      );
+    }
+    return ThemedMaterialButton(
+      text: "Register",
+      color: selectedTabColor,
+      callback: () async {
+        await controller.register();
+        FocusManager.instance.primaryFocus?.unfocus();
+        if (controller.snackBarError != null) {
+          showSnackBar();
+        }
+      },
     );
   }
 
