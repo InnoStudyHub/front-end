@@ -18,24 +18,24 @@ class SearchPage extends StatelessWidget {
   Widget _searchBar() {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Container(
+      child: SizedBox(
         height: 50,
         child: TextField(
-          onChanged: (value) => null,
+          onChanged: (value) => {},
           decoration: const InputDecoration(
-              filled: true,
-              fillColor: mainAppColor,
-              contentPadding: EdgeInsets.all(0),
-              prefixIcon: Icon(
-                Icons.search,
-                color: greySecondary,
-              ),
-              border: OutlineInputBorder(borderSide: BorderSide.none),
-              hintStyle: TextStyle(fontSize: 18, color: unselectedTabColor),
-              hintText: "Search for a deck or course",
-              suffixIcon:
-                  Icon(Icons.filter_alt_outlined, color: greySecondary)),
-          style: TextStyle(fontSize: 18, color: greySecondary),
+            filled: true,
+            fillColor: mainAppColor,
+            contentPadding: EdgeInsets.all(0),
+            prefixIcon: Icon(
+              Icons.search,
+              color: greySecondary,
+            ),
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+            hintStyle: TextStyle(fontSize: 18, color: unselectedTabColor),
+            hintText: "Search for a deck or course",
+            suffixIcon: Icon(Icons.filter_alt_outlined, color: greySecondary),
+          ),
+          style: const TextStyle(fontSize: 18, color: greySecondary),
           cursorColor: greySecondary,
         ),
       ),

@@ -28,18 +28,19 @@ class FavouritesPage extends GetView<FavouritesController> {
       child: SizedBox(
         height: 50,
         child: TextField(
-          onChanged: (value) => null,
+          onChanged: (value) => {},
           decoration: const InputDecoration(
-              filled: true,
-              fillColor: mainAppColor,
-              contentPadding: EdgeInsets.all(0),
-              prefixIcon: Icon(
-                Icons.search,
-                color: greySecondary,
-              ),
-              border: OutlineInputBorder(borderSide: BorderSide.none),
-              hintStyle: TextStyle(fontSize: 18, color: unselectedTabColor),
-              hintText: "Search for a deck or course"),
+            filled: true,
+            fillColor: mainAppColor,
+            contentPadding: EdgeInsets.all(0),
+            prefixIcon: Icon(
+              Icons.search,
+              color: greySecondary,
+            ),
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+            hintStyle: TextStyle(fontSize: 18, color: unselectedTabColor),
+            hintText: "Search for a deck or course",
+          ),
           style: const TextStyle(fontSize: 18, color: greySecondary),
           cursorColor: greySecondary,
         ),
