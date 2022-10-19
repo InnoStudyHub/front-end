@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../util/color_codes.dart';
-import 'create/create_page.dart';
+import 'create/create_deck_page.dart';
 import 'profile/profile_page.dart';
 import 'favourites/favourites_page.dart';
 import 'session_controller.dart';
@@ -26,7 +26,7 @@ class Session extends StatelessWidget {
               HomePage(),
               ProfilePage(),
               FavouritesPage(),
-              CreatePage(),
+              CreateDeckPage(),
             ],
           ),
         ),
