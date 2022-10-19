@@ -10,7 +10,7 @@ class ContinueWithUIButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
       height: 44,
       child: MaterialButton(
         onPressed: callback,
