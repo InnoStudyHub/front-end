@@ -6,18 +6,18 @@ class ForYouPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: SafeArea(
-      child: ListView(
-        children: <Widget>[
-          _deckPreview(),
-          _deckPreview(),
-          _deckPreview(),
-          _deckPreview(),
-          _deckPreview(),
-        ],
-      ),
-    ),
-  );
+        body: SafeArea(
+          child: ListView(
+            children: <Widget>[
+              _deckPreview(),
+              _deckPreview(),
+              _deckPreview(),
+              _deckPreview(),
+              _deckPreview(),
+            ],
+          ),
+        ),
+      );
 
   Widget _deckPreview() {
     return Padding(

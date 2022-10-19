@@ -37,12 +37,9 @@ class FavouritesPage extends GetView<FavouritesController> {
                 Icons.search,
                 color: greySecondary,
               ),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide.none
-              ),
+              border: OutlineInputBorder(borderSide: BorderSide.none),
               hintStyle: TextStyle(fontSize: 18, color: unselectedTabColor),
-              hintText: "Search for a deck or course"
-          ),
+              hintText: "Search for a deck or course"),
           style: const TextStyle(fontSize: 18, color: greySecondary),
           cursorColor: greySecondary,
         ),

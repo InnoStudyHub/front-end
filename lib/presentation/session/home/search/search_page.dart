@@ -5,8 +5,7 @@ class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(
+  Widget build(BuildContext context) => Scaffold(
         body: SafeArea(
           child: ListView(
             children: <Widget>[
@@ -31,21 +30,15 @@ class SearchPage extends StatelessWidget {
                 Icons.search,
                 color: greySecondary,
               ),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide.none
-              ),
+              border: OutlineInputBorder(borderSide: BorderSide.none),
               hintStyle: TextStyle(fontSize: 18, color: unselectedTabColor),
               hintText: "Search for a deck or course",
-              suffixIcon: Icon(
-                Icons.filter_alt_outlined,
-                color: greySecondary
-              )
-          ),
+              suffixIcon:
+                  Icon(Icons.filter_alt_outlined, color: greySecondary)),
           style: TextStyle(fontSize: 18, color: greySecondary),
           cursorColor: greySecondary,
         ),
       ),
     );
   }
-
 }
