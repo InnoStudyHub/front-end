@@ -19,10 +19,10 @@ class SearchPage extends StatelessWidget {
   Widget _searchBar() {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Container(
+      child: SizedBox(
         height: 50,
         child: TextField(
-          onChanged: (value) => null,
+          onChanged: (value) => "",
           decoration: const InputDecoration(
               filled: true,
               fillColor: mainAppColor,
@@ -41,7 +41,7 @@ class SearchPage extends StatelessWidget {
                 color: greySecondary
               )
           ),
-          style: TextStyle(fontSize: 18, color: greySecondary),
+          style: const TextStyle(fontSize: 18, color: greySecondary),
           cursorColor: greySecondary,
         ),
       ),

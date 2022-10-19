@@ -28,7 +28,7 @@ class FavouritesPage extends GetView<FavouritesController> {
       child: SizedBox(
         height: 50,
         child: TextField(
-          onChanged: (value) => null,
+          onChanged: (value) => "",
           decoration: const InputDecoration(
               filled: true,
               fillColor: mainAppColor,
