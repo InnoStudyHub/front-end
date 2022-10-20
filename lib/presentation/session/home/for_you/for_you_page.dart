@@ -9,6 +9,10 @@ class ForYouPage extends StatelessWidget {
         body: SafeArea(
           child: ListView(
             children: <Widget>[
+              const SizedBox(
+                height: 17.5,
+              ),
+              _deckPreview(),
               _deckPreview(),
               _deckPreview(),
               _deckPreview(),
@@ -21,7 +25,8 @@ class ForYouPage extends StatelessWidget {
 
   Widget _deckPreview() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding:
+          const EdgeInsets.only(top: 12.5, left: 20, right: 20, bottom: 12.5),
       child: Column(
         children: <Widget>[
           Container(
@@ -34,7 +39,7 @@ class ForYouPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Container(
-                    margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 10, left: 16, right: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -42,7 +47,7 @@ class ForYouPage extends StatelessWidget {
                           "Final exam",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 16,
                             fontFamily: "Roboto",
                             fontWeight: FontWeight.w600,
                           ),
@@ -54,7 +59,7 @@ class ForYouPage extends StatelessWidget {
                             "13",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 12,
                               fontFamily: "Roboto",
                               fontWeight: FontWeight.w600,
                             ),
@@ -67,25 +72,25 @@ class ForYouPage extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.only(
-                      top: 15, left: 20, right: 20, bottom: 15),
+                      top: 8, left: 16, right: 16, bottom: 9),
                   child: const Text(
                     "Mathematical Analysis I",
                     style: TextStyle(
                       color: greySecondary,
-                      fontSize: 18,
+                      fontSize: 14,
                     ),
                   ),
                 ),
                 const Divider(
                   thickness: 1,
-                  indent: 20,
-                  endIndent: 10,
+                  indent: 16,
+                  endIndent: 16,
                   color: unselectedMenuColor,
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Container(
-                    margin: const EdgeInsets.only(left: 20),
+                    margin: const EdgeInsets.only(left: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -93,7 +98,7 @@ class ForYouPage extends StatelessWidget {
                           "2022",
                           style: TextStyle(
                             color: greySecondary,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontFamily: "Roboto",
                             fontWeight: FontWeight.w600,
                           ),

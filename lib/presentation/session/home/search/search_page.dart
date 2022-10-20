@@ -19,7 +19,7 @@ class SearchPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: SizedBox(
-        height: 50,
+        height: 48,
         child: TextField(
           onChanged: (value) => {},
           decoration: const InputDecoration(
@@ -31,7 +31,7 @@ class SearchPage extends StatelessWidget {
               color: greySecondary,
             ),
             border: OutlineInputBorder(borderSide: BorderSide.none),
-            hintStyle: TextStyle(fontSize: 18, color: unselectedTabColor),
+            hintStyle: TextStyle(fontSize: 16, color: unselectedTabColor),
             hintText: "Search for a deck or course",
             suffixIcon: Icon(Icons.filter_alt_outlined, color: greySecondary),
           ),
