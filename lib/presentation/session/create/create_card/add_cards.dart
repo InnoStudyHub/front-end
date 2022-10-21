@@ -8,7 +8,7 @@ class AddCardsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AddCardsController>(builder: (controller){
+    return GetBuilder<AddCardsController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
           child: ListView(
@@ -28,7 +28,9 @@ class AddCardsPage extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
       height: 60,
       child: MaterialButton(
-        onPressed: () {controller.addCard();},
+        onPressed: () {
+          controller.addCard();
+        },
         color: mainAppColor,
         child: const Icon(
           Icons.add,

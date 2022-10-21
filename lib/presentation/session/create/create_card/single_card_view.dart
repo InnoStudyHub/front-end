@@ -6,7 +6,7 @@ Widget singleCardView({
   required TextEditingController questionController,
   required TextEditingController answerController,
   required String? questionError,
-}){
+}) {
   return Container(
     margin: const EdgeInsets.all(10),
     decoration: BoxDecoration(
@@ -22,11 +22,11 @@ Widget singleCardView({
           label: "Question",
           error: questionError,
         ),
-        _addImageButton(() { }),
+        _addImageButton(() {}),
         _formFieldHeading("Answer"),
         _formField(
           controller: answerController,
-          asset:"assets/icons/create_cards/create_card_answer_tick.svg",
+          asset: "assets/icons/create_cards/create_card_answer_tick.svg",
           label: "Answer",
         ),
         _addImageButton(() {}),
@@ -35,8 +35,7 @@ Widget singleCardView({
   );
 }
 
-
-Widget _formFieldHeading(String heading){
+Widget _formFieldHeading(String heading) {
   return Align(
     alignment: Alignment.topLeft,
     child: Container(
@@ -59,7 +58,7 @@ Widget _formField({
   String? error,
   required String asset,
   required String label,
-}){
+}) {
   return Container(
     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
     child: TextFormField(
@@ -85,16 +84,17 @@ Widget _formField({
   );
 }
 
-Widget _addImageButton(VoidCallback callback){
+Widget _addImageButton(VoidCallback callback) {
   return Align(
     alignment: Alignment.topLeft,
     child: Container(
-      margin:
-      const EdgeInsets.only(top: 15, left: 10, bottom: 20),
+      margin: const EdgeInsets.only(top: 15, left: 10, bottom: 20),
       height: 28,
       width: 150,
       child: MaterialButton(
-        onPressed: () {callback();},
+        onPressed: () {
+          callback();
+        },
         //padding: const EdgeInsets.symmetric(horizontal: 50),
         color: purpleAppColor,
         child: const Text(

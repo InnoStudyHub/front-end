@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'single_card_view.dart';
 
-
-class AddCardsController extends GetxController{
-
+class AddCardsController extends GetxController {
   List<Widget> cardViews = [];
 
   List<TextEditingController> questionControllers = [];
@@ -14,7 +12,7 @@ class AddCardsController extends GetxController{
   List<TextEditingController> answerControllers = [];
   List<String?> answers = [];
 
-  void addCard(){
+  void addCard() {
     questionControllers.add(TextEditingController());
     answerControllers.add(TextEditingController());
     questions.add("");
@@ -33,30 +31,28 @@ class AddCardsController extends GetxController{
       debugPrint(answers.last);
     });
 
-    cardViews.add(
-      singleCardView(
-        questionController: questionControllers.last,
-        answerController: answerControllers.last,
-        questionError: questionErrors.last,
-      )
-    );
+    cardViews.add(singleCardView(
+      questionController: questionControllers.last,
+      answerController: answerControllers.last,
+      questionError: questionErrors.last,
+    ));
 
     update();
   }
 
-  void validateAll(){
-    for (int i = 0; i < cardViews.length; i++){
+  void validateAll() {
+    for (int i = 0; i < cardViews.length; i++) {
       validateForm(i);
       update();
     }
   }
 
-  AddCardsController(){
+  AddCardsController() {
     addCard();
   }
 
-  void validateForm(int i){
-    if (questions[i].isEmpty){
+  void validateForm(int i) {
+    if (questions[i].isEmpty) {
       questionErrors[i] = "Question must not be empty";
       debugPrint("$i, ${questionErrors[i]}");
     }
