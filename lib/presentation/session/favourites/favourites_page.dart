@@ -17,6 +17,8 @@ class FavouritesPage extends GetView<FavouritesController> {
               _deckPreview(),
               _deckPreview(),
               _deckPreview(),
+              _deckPreview(),
+              _deckPreview(),
             ],
           ),
         ),
@@ -26,7 +28,7 @@ class FavouritesPage extends GetView<FavouritesController> {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: SizedBox(
-        height: 50,
+        height: 48,
         child: TextField(
           onChanged: (value) => {},
           decoration: const InputDecoration(
@@ -38,7 +40,7 @@ class FavouritesPage extends GetView<FavouritesController> {
               color: greySecondary,
             ),
             border: OutlineInputBorder(borderSide: BorderSide.none),
-            hintStyle: TextStyle(fontSize: 18, color: unselectedTabColor),
+            hintStyle: TextStyle(fontSize: 16, color: unselectedTabColor),
             hintText: "Search for a deck or course",
           ),
           style: const TextStyle(fontSize: 18, color: greySecondary),
@@ -50,7 +52,8 @@ class FavouritesPage extends GetView<FavouritesController> {
 
   Widget _deckPreview() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding:
+          const EdgeInsets.only(top: 12.5, left: 20, right: 20, bottom: 12.5),
       child: Column(
         children: <Widget>[
           Container(
@@ -63,7 +66,7 @@ class FavouritesPage extends GetView<FavouritesController> {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Container(
-                    margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 10, left: 16, right: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -71,7 +74,7 @@ class FavouritesPage extends GetView<FavouritesController> {
                           "Final exam",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 16,
                             fontFamily: "Roboto",
                             fontWeight: FontWeight.w600,
                           ),
@@ -83,7 +86,7 @@ class FavouritesPage extends GetView<FavouritesController> {
                             "13",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 12,
                               fontFamily: "Roboto",
                               fontWeight: FontWeight.w600,
                             ),
@@ -96,25 +99,25 @@ class FavouritesPage extends GetView<FavouritesController> {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.only(
-                      top: 15, left: 20, right: 20, bottom: 15),
+                      top: 8, left: 16, right: 16, bottom: 9),
                   child: const Text(
                     "Mathematical Analysis I",
                     style: TextStyle(
                       color: greySecondary,
-                      fontSize: 18,
+                      fontSize: 14,
                     ),
                   ),
                 ),
                 const Divider(
                   thickness: 1,
-                  indent: 20,
-                  endIndent: 10,
+                  indent: 16,
+                  endIndent: 16,
                   color: unselectedMenuColor,
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Container(
-                    margin: const EdgeInsets.only(left: 20),
+                    margin: const EdgeInsets.only(left: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -122,7 +125,7 @@ class FavouritesPage extends GetView<FavouritesController> {
                           "2022",
                           style: TextStyle(
                             color: greySecondary,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontFamily: "Roboto",
                             fontWeight: FontWeight.w600,
                           ),
