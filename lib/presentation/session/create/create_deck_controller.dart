@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'create_card/create_card.dart';
+import 'package:study_hub/presentation/session/create/create_card/add_cards_controller.dart';
+import 'create_card/add_cards.dart';
 
 class CreateDeckController extends GetxController {
   CreateDeckController() {
@@ -78,10 +79,8 @@ class CreateDeckController extends GetxController {
     _validateCourseName();
     _validateDeckName();
     _validateMaterialSemester();
-
-    debugPrint("CreateController, createCards: canProceed = $canProceed");
-    if (canProceed) Get.to(const CreateCardPage());
-
+    Get.lazyPut<AddCardsController>(() => AddCardsController());
+    if (canProceed) Get.to(() => const AddCardsPage());
     update();
   }
 }
