@@ -16,7 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
     required String fullName,
   }) async {
-    var url = Uri.parse("$serverIP/user/register/");
+    var url = Uri.parse("$serverIP/auth/register/");
 
     var body = json
         .encode({"email": email, "fullname": fullName, "password": password});
@@ -47,7 +47,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Resource<Token>> login(
       {required String email, required String password}) async {
-    var url = Uri.parse("$serverIP/user/login/");
+    var url = Uri.parse("$serverIP/auth/login/");
 
     var body = json.encode({"email": email, "password": password});
 

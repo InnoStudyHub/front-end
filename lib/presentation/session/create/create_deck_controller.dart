@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/model/models/create_deck.dart';
 import 'package:study_hub/presentation/session/create/create_card/add_cards_controller.dart';
 import 'create_card/add_cards.dart';
 
@@ -79,8 +80,14 @@ class CreateDeckController extends GetxController {
     _validateCourseName();
     _validateDeckName();
     _validateMaterialSemester();
-    Get.lazyPut<AddCardsController>(() => AddCardsController());
-    if (canProceed) Get.to(() => const AddCardsPage());
+    if (!canProceed) {
+      update();
+      return;
+    }
+    var deck = CreateDeck(
+        folderId: 2, deckName: _deckName, semester: _materialSemester);
+    Get.lazyPut<AddCardsController>(() => AddCardsController(deck));
+    Get.to(() => const AddCardsPage());
     update();
   }
 }

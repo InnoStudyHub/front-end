@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'single_card_view.dart';
 import '../create_card/add_cards_controller.dart';
 import '../../../util/color_codes.dart';
 
@@ -10,10 +11,16 @@ class AddCardsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AddCardsController>(builder: (controller) {
       return Scaffold(
-        body: SafeArea(
-          child: ListView(
+        appBar: AppBar(
+          title: const Text("Create"),
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          physics: const ScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Column(children: controller.cardViews),
+              _cards(controller, context),
               _addButton(controller),
               _finishButton(controller),
             ],
@@ -23,6 +30,21 @@ class AddCardsPage extends StatelessWidget {
     });
   }
 
+  Widget _cards(AddCardsController controller, BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: controller.cardModels.length,
+      itemBuilder: (context, index) {
+        return singleCardView(
+          index: index,
+          controller: controller,
+          context: context,
+        );
+      },
+    );
+  }
+
   Widget _addButton(AddCardsController controller) {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
@@ -30,6 +52,7 @@ class AddCardsPage extends StatelessWidget {
       child: MaterialButton(
         onPressed: () {
           controller.addCard();
+          controller.update();
         },
         color: mainAppColor,
         child: const Icon(
@@ -46,7 +69,7 @@ class AddCardsPage extends StatelessWidget {
       height: 60,
       child: MaterialButton(
         onPressed: () {
-          controller.validateAll();
+          controller.finish();
           controller.update();
         },
         color: selectedTabColor,
