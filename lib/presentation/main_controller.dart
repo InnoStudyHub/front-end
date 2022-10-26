@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:study_hub/presentation/util/routes.dart';
@@ -8,8 +7,6 @@ class MainController extends GetxController {
 
   String get initialRoute {
     String? token = box.read("access");
-    debugPrint(token);
-
     return token != null ? AppRoutes.session : AppRoutes.auth;
   }
 }

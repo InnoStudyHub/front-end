@@ -16,7 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
     required String fullName,
   }) async {
-    var url = Uri.parse("$serverIP/user/register/");
+    var url = Uri.parse("$serverIP/auth/register/");
 
     var body = json
         .encode({"email": email, "fullname": fullName, "password": password});
@@ -47,7 +47,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Resource<Token>> login(
       {required String email, required String password}) async {
-    var url = Uri.parse("$serverIP/user/login/");
+    var url = Uri.parse("$serverIP/auth/login/");
 
     var body = json.encode({"email": email, "password": password});
 
@@ -79,6 +79,24 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       getStorage.erase();
       return Success(successData: 1);
+    } catch (e) {
+      return Fail(errorMessage: e.toString());
+    }
+  }
+
+  @override
+  Future<Resource<String>> refresh() async {
+    String refresh = getStorage.read("refresh");
+
+    var url = Uri.parse("$serverIP/auth/login/refresh/");
+    var body = jsonEncode({"refresh": refresh}).toString();
+
+    http.Response response;
+    String access;
+    try {
+      response = await http.post(url, headers: headers, body: body);
+      access = json.decode(response.body)["access"];
+      return Resource(data: access);
     } catch (e) {
       return Fail(errorMessage: e.toString());
     }

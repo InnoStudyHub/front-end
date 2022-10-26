@@ -12,4 +12,6 @@ abstract class AuthRepository {
       {required String email, required String password});
 
   Resource<int> logout();
+
+  Future<Resource<String>> refresh();
 }
