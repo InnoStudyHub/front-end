@@ -10,7 +10,8 @@ import 'package:http_parser/http_parser.dart';
 
 class DeckRepositoryImpl implements DeckRepository {
   @override
-  Future<Resource<DeckDetails>> uploadDeck(CreateDeck deck, String accessToken) async {
+  Future<Resource<DeckDetails>> uploadDeck(
+      CreateDeck deck, String accessToken) async {
     http.StreamedResponse? response;
     final url = Uri.parse("$serverIP/deck/create/");
     final data = jsonEncode(deck.toJson());
@@ -48,8 +49,9 @@ class DeckRepositoryImpl implements DeckRepository {
 
       response = await request.send();
 
-      if (response.statusCode != 201){
-        return Resource(errorCode: response.statusCode, message: "Error uploading deck");
+      if (response.statusCode != 201) {
+        return Resource(
+            errorCode: response.statusCode, message: "Error uploading deck");
       }
 
       var deckStr = await response.stream.bytesToString();
