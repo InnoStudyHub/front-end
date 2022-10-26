@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:study_hub/common/constants.dart';
 import 'package:study_hub/model/models/create_deck.dart';
+import 'package:study_hub/model/models/deck_detail.dart';
 import 'package:study_hub/model/models/resource.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
 import 'package:http/http.dart' as http;
@@ -9,11 +10,10 @@ import 'package:http_parser/http_parser.dart';
 
 class DeckRepositoryImpl implements DeckRepository {
   @override
-  Future<Resource<void>> uploadDeck(CreateDeck deck, String accessToken) async {
+  Future<Resource<DeckDetails>> uploadDeck(CreateDeck deck, String accessToken) async {
     http.StreamedResponse? response;
     final url = Uri.parse("$serverIP/deck/create/");
     final data = jsonEncode(deck.toJson());
-    debugPrint(data.toString());
 
     try {
       var request = http.MultipartRequest('POST', url);
@@ -46,17 +46,17 @@ class DeckRepositoryImpl implements DeckRepository {
       request.files.addAll(files);
       request.fields.addAll({"data": data.toString()});
 
-      debugPrint("Files: ${request.files.toString()}");
-
-      debugPrint(request.fields.toString());
-
       response = await request.send();
 
-      debugPrint("${response.statusCode}");
-      debugPrint("\n");
-      debugPrint(await response.stream.bytesToString());
+      if (response.statusCode != 201){
+        return Resource(errorCode: response.statusCode, message: "Error uploading deck");
+      }
+
+      var deckStr = await response.stream.bytesToString();
+      var newDeck = DeckDetails.fromJson(json.decode(deckStr));
+      return Resource(data: newDeck);
     } catch (error) {
-      debugPrint("Error: ${error.toString()}");
+      debugPrint("deck repository, uploadDeck 64. Error: ${error.toString()}");
     }
     return Resource(data: null);
   }

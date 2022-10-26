@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/model/models/create_card.dart';
 import 'package:study_hub/model/models/create_deck.dart';
+import 'package:study_hub/model/models/resource.dart';
 import 'package:study_hub/model/repository/auth_repository.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
 
@@ -21,7 +22,7 @@ class AddCardsController extends GetxController {
     update();
   }
 
-  void validateAll() {
+  bool validateAll() {
     bool isValid = true;
 
     for (int i = 0; i < cardModels.length; i++) {
@@ -33,9 +34,10 @@ class AddCardsController extends GetxController {
       update();
     }
     if (isValid) {
-      debugPrint("add_cards_controller ${cardModels.toString()}");
       deck.cards = cardModels;
+      return true;
     }
+    return false;
   }
 
   bool isFormValid(int i) {
@@ -48,11 +50,12 @@ class AddCardsController extends GetxController {
   }
 
   void finish() async {
-    validateAll();
-    var token =
-        await authRepo.login(email: "dias@pivas.com", password: "password");
-    var accessToken = token.data?.accessToken;
-    debugPrint("add_cards_controller, finish : ${deck.cards.toString()}");
-    await deckRepo.uploadDeck(deck, accessToken!);
+    if (!validateAll()) return;
+
+    var accessToken = await authRepo.refresh();
+    //TODO: error handling
+    if (accessToken is Fail) return;
+
+    await deckRepo.uploadDeck(deck, accessToken.data!);
   }
 }

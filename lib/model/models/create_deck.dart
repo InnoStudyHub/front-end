@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'create_card.dart';
 
 class CreateDeck {
@@ -27,7 +26,6 @@ class CreateDeck {
       "cards": cards,
     };
 
-    debugPrint("create_deck, toJson: $json");
     return json;
   }
 }

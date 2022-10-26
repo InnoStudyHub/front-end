@@ -83,4 +83,22 @@ class AuthRepositoryImpl implements AuthRepository {
       return Fail(errorMessage: e.toString());
     }
   }
+
+  @override
+  Future<Resource<String>> refresh() async {
+    String refresh = getStorage.read("refresh");
+
+    var url = Uri.parse("$serverIP/auth/login/refresh/");
+    var body = jsonEncode({"refresh": refresh}).toString();
+
+    http.Response response;
+    String access;
+    try {
+      response = await http.post(url, headers: headers, body: body);
+      access = json.decode(response.body)["access"];
+      return Resource(data: access);
+    } catch (e) {
+      return Fail(errorMessage: e.toString());
+    }
+  }
 }

@@ -36,7 +36,7 @@ class CreateCard {
 
   Map<String, Object?> toJson(int question) {
     Map<String, Object?> json = {
-      "question_text": _question,
+      "question_text": _question.trim(),
     };
 
     if (questionImage != null) {
@@ -44,7 +44,7 @@ class CreateCard {
       json["question_image_key"] = questionImageKey;
     }
     if (_answer != null) {
-      json["answer_text"] = _answer;
+      json["answer_text"] = _answer!.trim();
     }
     if (answerImages != null) {
       answerImageKeys = [];
