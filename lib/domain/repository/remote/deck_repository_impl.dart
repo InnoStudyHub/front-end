@@ -10,8 +10,7 @@ import 'package:http_parser/http_parser.dart';
 
 class DeckRepositoryImpl implements DeckRepository {
   @override
-  Future<Resource<Deck>> uploadDeck(
-      CreateDeck deck, String accessToken) async {
+  Future<Resource<Deck>> uploadDeck(CreateDeck deck, String accessToken) async {
     http.StreamedResponse? response;
     final url = Uri.parse("$serverIP/deck/create/");
     final data = jsonEncode(deck.toJson());

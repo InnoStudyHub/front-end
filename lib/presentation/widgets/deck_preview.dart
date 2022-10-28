@@ -3,9 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:study_hub/model/models/deck.dart';
 import '../util/color_codes.dart';
 
-Widget deckPreview(Deck deck){
-
-  Widget deckTitle(){
+Widget deckPreview(Deck deck) {
+  Widget deckTitle() {
     return Text(
       deck.deckName,
       style: const TextStyle(
@@ -17,7 +16,7 @@ Widget deckPreview(Deck deck){
     );
   }
 
-  Widget numberOfCards(){
+  Widget numberOfCards() {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: greySecondary),
@@ -36,7 +35,7 @@ Widget deckPreview(Deck deck){
     );
   }
 
-  Widget courseName(){
+  Widget courseName() {
     return Container(
       alignment: Alignment.centerLeft,
       margin: const EdgeInsets.only(top: 8, left: 16, right: 16),
@@ -52,7 +51,7 @@ Widget deckPreview(Deck deck){
     );
   }
 
-  Widget semester(){
+  Widget semester() {
     return Container(
       margin: const EdgeInsets.only(left: 16, bottom: 10),
       alignment: Alignment.center,
@@ -69,7 +68,7 @@ Widget deckPreview(Deck deck){
   }
 
   return GestureDetector(
-    onTap: (){
+    onTap: () {
       //TODO: navigate to DeckPage
     },
     child: Container(
@@ -77,7 +76,8 @@ Widget deckPreview(Deck deck){
         color: mainAppColor,
         borderRadius: BorderRadius.circular(3),
       ),
-      margin: const EdgeInsets.only(top: 12.5, left: 20, right: 20, bottom: 12.5),
+      margin:
+          const EdgeInsets.only(top: 12.5, left: 20, right: 20, bottom: 12.5),
       child: Column(
         children: <Widget>[
           Container(
@@ -110,9 +110,8 @@ Widget deckPreview(Deck deck){
                 },
                 padding: const EdgeInsets.only(right: 15, bottom: 10),
                 constraints: const BoxConstraints(),
-                icon: SvgPicture.asset(
-                    "assets/icons/deck_preview/duplicate.svg"
-                ),
+                icon:
+                    SvgPicture.asset("assets/icons/deck_preview/duplicate.svg"),
               ),
               IconButton(
                 padding: const EdgeInsets.only(right: 15, bottom: 10),
@@ -121,8 +120,7 @@ Widget deckPreview(Deck deck){
                   //TODO
                 },
                 icon: SvgPicture.asset(
-                    "assets/icons/deck_preview/add_to_favourites.svg"
-                ),
+                    "assets/icons/deck_preview/add_to_favourites.svg"),
               ),
             ],
           ),

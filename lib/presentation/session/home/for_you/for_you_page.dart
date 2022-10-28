@@ -9,7 +9,7 @@ class ForYouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<ForYouController>(() => ForYouController());
-    return GetBuilder<ForYouController>(builder: (controller){
+    return GetBuilder<ForYouController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
           child: ListView(
@@ -22,7 +22,7 @@ class ForYouPage extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.decks.length,
-                itemBuilder: (context, index){
+                itemBuilder: (context, index) {
                   return deckPreview(controller.decks[index]);
                 },
               ),

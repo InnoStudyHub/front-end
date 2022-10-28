@@ -3,14 +3,13 @@ import 'recent_controller.dart';
 import '../../../widgets/deck_preview.dart';
 import 'package:get/get.dart';
 
-
 class RecentPage extends StatelessWidget {
   const RecentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<RecentController>(() => RecentController());
-    return GetBuilder<RecentController>(builder: (controller){
+    return GetBuilder<RecentController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
           child: ListView(
@@ -23,7 +22,7 @@ class RecentPage extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.decks.length,
-                itemBuilder: (context, index){
+                itemBuilder: (context, index) {
                   return deckPreview(controller.decks[index]);
                 },
               ),

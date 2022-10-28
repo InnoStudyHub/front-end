@@ -7,10 +7,10 @@ class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     Get.lazyPut<SearchController>(() => SearchController());
-    return GetBuilder<SearchController>(builder: (controller){
-      return   Scaffold(
+    return GetBuilder<SearchController>(builder: (controller) {
+      return Scaffold(
         body: SafeArea(
           child: ListView(
             children: <Widget>[

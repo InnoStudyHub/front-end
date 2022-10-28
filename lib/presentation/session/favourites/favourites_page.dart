@@ -4,13 +4,13 @@ import '../../util/color_codes.dart';
 import '../../widgets/deck_preview.dart';
 import 'favourites_controller.dart';
 
-class FavouritesPage extends StatelessWidget{
+class FavouritesPage extends StatelessWidget {
   const FavouritesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<FavouritesController>(() => FavouritesController());
-    return GetBuilder<FavouritesController>(builder: (controller){
+    return GetBuilder<FavouritesController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
           child: ListView(
@@ -21,7 +21,7 @@ class FavouritesPage extends StatelessWidget{
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.decks.length,
-                itemBuilder: (context, index){
+                itemBuilder: (context, index) {
                   return deckPreview(controller.decks[index]);
                 },
               ),
@@ -57,6 +57,4 @@ class FavouritesPage extends StatelessWidget{
       ),
     );
   }
-
-
 }
