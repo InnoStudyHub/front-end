@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'my_decks/my_deck_page.dart';
 import 'settings/setting_page.dart';
 import '../../util/color_codes.dart';
 import 'groups/groups_page.dart';
@@ -26,6 +27,7 @@ class ProfilePage extends GetView<ProfileController> {
             isScrollable: true,
             tabs: const [
               Tab(text: 'Groups'),
+              Tab(text: "My Decks"),
               Tab(text: 'History'),
               Tab(text: 'Notifications'),
               Tab(text: 'Settings'),
@@ -37,6 +39,7 @@ class ProfilePage extends GetView<ProfileController> {
         controller: controller.tabController,
         children: const <Widget>[
           GroupsPage(),
+          MyDecksPage(),
           HistoryPage(),
           NotificationsPage(),
           SettingsPage(),

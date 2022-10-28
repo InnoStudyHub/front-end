@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:study_hub/common/constants.dart';
 import 'package:study_hub/model/models/create_deck.dart';
-import 'package:study_hub/model/models/deck_detail.dart';
+import 'package:study_hub/model/models/deck.dart';
 import 'package:study_hub/model/models/resource.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
 import 'package:http/http.dart' as http;
@@ -10,7 +10,7 @@ import 'package:http_parser/http_parser.dart';
 
 class DeckRepositoryImpl implements DeckRepository {
   @override
-  Future<Resource<DeckDetails>> uploadDeck(
+  Future<Resource<Deck>> uploadDeck(
       CreateDeck deck, String accessToken) async {
     http.StreamedResponse? response;
     final url = Uri.parse("$serverIP/deck/create/");
@@ -55,7 +55,7 @@ class DeckRepositoryImpl implements DeckRepository {
       }
 
       var deckStr = await response.stream.bytesToString();
-      var newDeck = DeckDetails.fromJson(json.decode(deckStr));
+      var newDeck = Deck.fromJson(json.decode(deckStr));
       return Resource(data: newDeck);
     } catch (error) {
       debugPrint("deck repository, uploadDeck 64. Error: ${error.toString()}");

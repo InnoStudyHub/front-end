@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:study_hub/model/models/deck.dart';
 
-class FavouritesController extends GetxController {
+
+class ForYouController extends GetxController{
   List<Deck> decks = [];
 }

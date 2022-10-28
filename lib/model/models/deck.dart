@@ -1,6 +1,6 @@
 import 'card.dart';
 
-class DeckDetails {
+class Deck {
   int id;
   int folderId;
   int authorId;
@@ -8,7 +8,9 @@ class DeckDetails {
   String semester;
   List<Card> cards;
 
-  DeckDetails(
+  get folderName => folderId.toString();
+
+  Deck(
       {required this.id,
       required this.folderId,
       required this.authorId,
@@ -16,14 +18,14 @@ class DeckDetails {
       required this.semester,
       required this.cards});
 
-  static DeckDetails fromJson(Map<String, Object?> jsonMap) {
+  static Deck fromJson(Map<String, Object?> jsonMap) {
     var cardsJson = jsonMap["cards"] as List;
     List<Card> cards = [];
     for (int i = 0; i < cardsJson.length; i++) {
       cards.add(Card.fromJson(cardsJson[i]));
     }
 
-    return DeckDetails(
+    return Deck(
       id: jsonMap["id"] as int,
       folderId: jsonMap["folder_id"] as int,
       authorId: jsonMap["author_id"] as int,
