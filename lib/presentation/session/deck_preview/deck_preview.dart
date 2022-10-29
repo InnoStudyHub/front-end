@@ -24,7 +24,10 @@ class DeckPreview extends StatelessWidget {
             borderRadius: BorderRadius.circular(3),
           ),
           margin: const EdgeInsets.only(
-              top: 12.5, left: 20, right: 20, bottom: 12.5,
+            top: 12.5,
+            left: 20,
+            right: 20,
+            bottom: 12.5,
           ),
           child: Column(
             children: <Widget>[
@@ -59,7 +62,7 @@ class DeckPreview extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 15, bottom: 10),
                     constraints: const BoxConstraints(),
                     icon: SvgPicture.asset(
-                        "assets/icons/deck_preview/duplicate.svg",
+                      "assets/icons/deck_preview/duplicate.svg",
                     ),
                   ),
                   IconButton(

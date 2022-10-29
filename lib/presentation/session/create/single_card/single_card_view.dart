@@ -183,7 +183,11 @@ class SingleCardView extends StatelessWidget {
   }
 
   Widget _imagePreview(
-      String? image, bool isQuestion, int i, Function() update,) {
+    String? image,
+    bool isQuestion,
+    int i,
+    Function() update,
+  ) {
     var tag = "$index $isQuestion $i";
 
     return image != null
