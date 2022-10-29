@@ -10,6 +10,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<SettingsController>(() => SettingsController());
+
     return GetBuilder<SettingsController>(builder: (controller) {
       return Scaffold(
         body: Center(

@@ -6,11 +6,12 @@ class ThemedMaterialButton extends StatelessWidget {
   final VoidCallback callback;
   final MaterialColor color;
 
-  const ThemedMaterialButton(
-      {super.key,
-      required this.text,
-      required this.callback,
-      required this.color});
+  const ThemedMaterialButton({
+    super.key,
+    required this.text,
+    required this.callback,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {

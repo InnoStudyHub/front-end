@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MainController());
+
     return Listener(
       onPointerDown: (_) {
         FocusScopeNode currentFocus = FocusScope.of(context);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'recent_controller.dart';
-import '../../../widgets/deck_preview.dart';
+import '../../deck_preview/deck_preview.dart';
 import 'package:get/get.dart';
 
 class RecentPage extends StatelessWidget {
@@ -9,6 +9,7 @@ class RecentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<RecentController>(() => RecentController());
+
     return GetBuilder<RecentController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
@@ -23,7 +24,7 @@ class RecentPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.decks.length,
                 itemBuilder: (context, index) {
-                  return deckPreview(controller.decks[index]);
+                  return DeckPreview(deck: controller.decks[index]);
                 },
               ),
             ],

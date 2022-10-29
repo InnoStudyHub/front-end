@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../util/color_codes.dart';
-import '../../widgets/deck_preview.dart';
+import '../deck_preview/deck_preview.dart';
 import 'favourites_controller.dart';
 
 class FavouritesPage extends StatelessWidget {
@@ -10,6 +10,7 @@ class FavouritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<FavouritesController>(() => FavouritesController());
+
     return GetBuilder<FavouritesController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
@@ -22,7 +23,7 @@ class FavouritesPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.decks.length,
                 itemBuilder: (context, index) {
-                  return deckPreview(controller.decks[index]);
+                  return DeckPreview(deck: controller.decks[index]);
                 },
               ),
             ],

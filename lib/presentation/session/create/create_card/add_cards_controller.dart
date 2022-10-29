@@ -35,8 +35,10 @@ class AddCardsController extends GetxController {
     }
     if (isValid) {
       deck.cards = cardModels;
+
       return true;
     }
+
     return false;
   }
 
@@ -44,8 +46,8 @@ class AddCardsController extends GetxController {
     return cardModels[i].isValid();
   }
 
-  void deleteCard(int i) {
-    cardModels.removeAt(i);
+  void deleteCard(CreateCard card) {
+    cardModels.remove(card);
     update();
   }
 

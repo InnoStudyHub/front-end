@@ -49,7 +49,9 @@ class LoginPage extends StatelessWidget {
                 _loginButton(controller, showSnackBar),
                 _registerButton(),
                 const ThemedDivider(),
-                ContinueWithUIButton(callback: () {}),
+                ContinueWithUIButton(callback: () {
+                  //TODO
+                }),
               ],
             ),
           ),
@@ -122,7 +124,9 @@ class LoginPage extends StatelessWidget {
       alignment: Alignment.centerRight,
       margin: const EdgeInsets.only(right: 34),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          //TODO
+        },
         child: const Text(
           "Forgot password?",
           style: TextStyle(
@@ -141,11 +145,14 @@ class LoginPage extends StatelessWidget {
         margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
         height: 44,
         child: MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            //TODO
+          },
           child: const CircularProgressIndicator(),
         ),
       );
     }
+
     return ThemedMaterialButton(
       text: "Login",
       color: selectedTabColor,

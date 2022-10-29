@@ -50,15 +50,19 @@ class DeckRepositoryImpl implements DeckRepository {
 
       if (response.statusCode != 201) {
         return Resource(
-            errorCode: response.statusCode, message: "Error uploading deck");
+          errorCode: response.statusCode,
+          message: "Error uploading deck",
+        );
       }
 
       var deckStr = await response.stream.bytesToString();
       var newDeck = Deck.fromJson(json.decode(deckStr));
+
       return Resource(data: newDeck);
     } catch (error) {
       debugPrint("deck repository, uploadDeck 64. Error: ${error.toString()}");
     }
+
     return Resource(data: null);
   }
 }

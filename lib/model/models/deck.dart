@@ -10,13 +10,14 @@ class Deck {
 
   get folderName => folderId.toString();
 
-  Deck(
-      {required this.id,
-      required this.folderId,
-      required this.authorId,
-      required this.deckName,
-      required this.semester,
-      required this.cards});
+  Deck({
+    required this.id,
+    required this.folderId,
+    required this.authorId,
+    required this.deckName,
+    required this.semester,
+    required this.cards,
+  });
 
   static Deck fromJson(Map<String, Object?> jsonMap) {
     var cardsJson = jsonMap["cards"] as List;

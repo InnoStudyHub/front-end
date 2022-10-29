@@ -67,6 +67,7 @@ class LoginController extends GetxController {
       isValid = false;
     }
     update();
+
     return isValid;
   }
 }

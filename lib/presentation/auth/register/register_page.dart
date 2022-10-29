@@ -61,7 +61,9 @@ class RegisterPage extends StatelessWidget {
                   _registerButton(controller, showSnackBar),
                   _loginButton(),
                   const ThemedDivider(),
-                  ContinueWithUIButton(callback: () {}),
+                  ContinueWithUIButton(callback: () {
+                    //TODO
+                  }),
                 ],
               ),
             ),
@@ -139,11 +141,14 @@ class RegisterPage extends StatelessWidget {
         margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
         height: 44,
         child: MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            //TODO
+          },
           child: const CircularProgressIndicator(),
         ),
       );
     }
+
     return ThemedMaterialButton(
       text: "Register",
       color: selectedTabColor,

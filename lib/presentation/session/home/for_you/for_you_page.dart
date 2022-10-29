@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../widgets/deck_preview.dart';
+import '../../deck_preview/deck_preview.dart';
 import 'for_you_controller.dart';
 
 class ForYouPage extends StatelessWidget {
@@ -9,6 +9,7 @@ class ForYouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<ForYouController>(() => ForYouController());
+
     return GetBuilder<ForYouController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
@@ -23,7 +24,7 @@ class ForYouPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.decks.length,
                 itemBuilder: (context, index) {
-                  return deckPreview(controller.decks[index]);
+                  return DeckPreview(deck: controller.decks[index]);
                 },
               ),
             ],

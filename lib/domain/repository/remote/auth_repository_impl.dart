@@ -33,10 +33,12 @@ class AuthRepositoryImpl implements AuthRepository {
       var token = Token.fromJson(json.decode(response.body));
       getStorage.write("access", token.accessToken);
       getStorage.write("refresh", token.refreshToken);
+
       return Success(successData: token);
     } else {
       if (statusCode == registerCredentialsAlreadyExistCode) {
         String message = "User with such email already exists";
+
         return Fail(errorMessage: message, statusCode: statusCode);
       } else {
         return Fail(errorMessage: "Unexpected error", statusCode: statusCode);
@@ -45,8 +47,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Resource<Token>> login(
-      {required String email, required String password}) async {
+  Future<Resource<Token>> login({
+    required String email,
+    required String password,
+  }) async {
     var url = Uri.parse("$serverIP/auth/login/");
 
     var body = json.encode({"email": email, "password": password});
@@ -64,13 +68,12 @@ class AuthRepositoryImpl implements AuthRepository {
       var token = Token.fromJson(json.decode(response.body));
       getStorage.write("access", token.accessToken);
       getStorage.write("refresh", token.refreshToken);
+
       return Success(successData: token);
     } else {
-      if (statusCode == loginWrongCredentialsCode) {
-        return Fail(errorMessage: "Wrong email or password");
-      } else {
-        return Fail(errorMessage: "Unexpected error", statusCode: statusCode);
-      }
+      return statusCode == loginWrongCredentialsCode
+          ? Fail(errorMessage: "Wrong email or password")
+          : Fail(errorMessage: "Unexpected error", statusCode: statusCode);
     }
   }
 
@@ -78,6 +81,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Resource<int> logout() {
     try {
       getStorage.erase();
+
       return Success(successData: 1);
     } catch (e) {
       return Fail(errorMessage: e.toString());
@@ -96,6 +100,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       response = await http.post(url, headers: headers, body: body);
       access = json.decode(response.body)["access"];
+
       return Resource(data: access);
     } catch (e) {
       return Fail(errorMessage: e.toString());
