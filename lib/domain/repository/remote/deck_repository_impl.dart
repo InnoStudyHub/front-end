@@ -21,27 +21,7 @@ class DeckRepositoryImpl implements DeckRepository {
         "Authorization": "Bearer $accessToken",
       });
       List<http.MultipartFile> files = [];
-
-      for (var card in deck.cards) {
-        if (card.questionImage != null) {
-          var file = await http.MultipartFile.fromPath(
-            card.questionImageKey!,
-            card.questionImage!,
-            contentType: MediaType('image', 'jpg'),
-          );
-          files.add(file);
-        }
-        if (card.answerImages != null) {
-          for (var i = 0; i < card.answerImages!.length; i++) {
-            var file = await http.MultipartFile.fromPath(
-              card.answerImageKeys![i],
-              card.answerImages![i],
-              contentType: MediaType('image', 'jpg'),
-            );
-            files.add(file);
-          }
-        }
-      }
+      collectImages(deck, files);
 
       request.files.addAll(files);
       request.fields.addAll({"data": data.toString()});
@@ -61,8 +41,32 @@ class DeckRepositoryImpl implements DeckRepository {
       return Resource(data: newDeck);
     } catch (error) {
       debugPrint("deck repository, uploadDeck 64. Error: ${error.toString()}");
-    }
 
-    return Resource(data: null);
+      return Resource(message: error.toString());
+    }
+  }
+
+  void collectImages(CreateDeck deck, List<http.MultipartFile> files) async {
+    for (var card in deck.cards) {
+      if (card.questionImage != null) {
+        var file = await http.MultipartFile.fromPath(
+          card.questionImageKey!,
+          card.questionImage!,
+          contentType: MediaType('image', 'jpg'),
+        );
+        files.add(file);
+      }
+
+      if (card.answerImages != null) {
+        for (var i = 0; i < card.answerImages!.length; i++) {
+          var file = await http.MultipartFile.fromPath(
+            card.answerImageKeys![i],
+            card.answerImages![i],
+            contentType: MediaType('image', 'jpg'),
+          );
+          files.add(file);
+        }
+      }
+    }
   }
 }
