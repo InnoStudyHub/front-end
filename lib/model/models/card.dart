@@ -18,9 +18,9 @@ class Card {
 
     if (json["answer_images"] != null) {
       answerImages = [];
-      var answerImagesJson = json["answer_images"] as List<Map<String, Object>>;
+      var answerImagesJson = json["answer_images"] as List<dynamic>;
       for (int i = 0; i < answerImagesJson.length; i++) {
-        answerImages.add(answerImagesJson[i]["AdditionalProp1"] as String);
+        answerImages.add(answerImagesJson[i] as String);
       }
     }
 

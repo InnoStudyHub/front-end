@@ -20,8 +20,7 @@ class DeckRepositoryImpl implements DeckRepository {
       request.headers.addAll({
         "Authorization": "Bearer $accessToken",
       });
-      List<http.MultipartFile> files = [];
-      collectImages(deck, files);
+      List<http.MultipartFile> files = await collectImages(deck);
 
       request.files.addAll(files);
       request.fields.addAll({"data": data.toString()});
@@ -29,24 +28,25 @@ class DeckRepositoryImpl implements DeckRepository {
       response = await request.send();
 
       if (response.statusCode != 201) {
-        return Resource(
-          errorCode: response.statusCode,
-          message: "Error uploading deck",
+        return Fail(
+          statusCode: response.statusCode,
+          errorMessage: await response.stream.bytesToString(),
         );
       }
 
       var deckStr = await response.stream.bytesToString();
       var newDeck = Deck.fromJson(json.decode(deckStr));
 
-      return Resource(data: newDeck);
+      return Success(successData: newDeck);
     } catch (error) {
       debugPrint("deck repository, uploadDeck 64. Error: ${error.toString()}");
 
-      return Resource(message: error.toString());
+      return Fail(errorMessage: error.toString());
     }
   }
 
-  void collectImages(CreateDeck deck, List<http.MultipartFile> files) async {
+  Future<List<http.MultipartFile>> collectImages(CreateDeck deck) async {
+    List<http.MultipartFile> files = [];
     for (var card in deck.cards) {
       if (card.questionImage != null) {
         var file = await http.MultipartFile.fromPath(
@@ -67,6 +67,38 @@ class DeckRepositoryImpl implements DeckRepository {
           files.add(file);
         }
       }
+    }
+
+    return files;
+  }
+
+  @override
+  Future<Resource<List<Deck>>> getDecks(String accessToken) async {
+    final url = Uri.parse("$serverIP/user/decks/get/");
+    final authCredentials = {"Authorization": "Bearer $accessToken"};
+    http.Response response;
+
+    try {
+      response = await http.get(url, headers: authCredentials);
+    } catch (error) {
+      debugPrint("deck repository, getDecks. Error: ${error.toString()}");
+
+      return Fail(errorMessage: error.toString());
+    }
+
+    var statusCode = response.statusCode;
+
+    if (statusCode == 200) {
+      List<Deck> decks = [];
+      List decksListJson = json.decode(response.body);
+
+      for (var deckJson in decksListJson) {
+        decks.add(Deck.fromJson(deckJson));
+      }
+
+      return Success(successData: decks);
+    } else {
+      return Fail(errorMessage: response.body);
     }
   }
 }

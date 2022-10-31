@@ -58,6 +58,7 @@ class AddCardsController extends GetxController {
     var accessToken = await authRepo.refresh();
     if (accessToken is Fail) return;
 
+    showLoadingIndicator();
     var result = await deckRepo.uploadDeck(deck, accessToken.data!);
     Navigator.of(Get.overlayContext!).pop();
 

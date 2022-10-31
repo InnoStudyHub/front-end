@@ -35,4 +35,7 @@ class Deck {
       cards: cards,
     );
   }
+
+  @override
+  String toString() => "Deck($id $folderId $authorId $deckName $semester)";
 }

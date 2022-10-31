@@ -13,7 +13,7 @@ class DeckPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut<DeckPreviewController>(() => DeckPreviewController());
 
-    return GetBuilder(builder: (controller) {
+    return GetBuilder<DeckPreviewController>(builder: (controller) {
       return GestureDetector(
         onTap: () {
           //TODO: navigate to DeckPage

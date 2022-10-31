@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'my_decks/my_deck_page.dart';
 import 'settings/setting_page.dart';
 import '../../util/color_codes.dart';
-import 'groups/groups_page.dart';
 import 'history/history_page.dart';
-import 'notifications/notifications_page.dart';
 import 'profile_controller.dart';
 
 class ProfilePage extends GetView<ProfileController> {
@@ -24,12 +22,12 @@ class ProfilePage extends GetView<ProfileController> {
             unselectedLabelColor: unselectedTabColor,
             indicatorColor: selectedTabColor,
             indicatorSize: TabBarIndicatorSize.label,
-            isScrollable: true,
+            //isScrollable: true,
             tabs: const [
-              Tab(text: 'Groups'),
+              //Tab(text: 'Groups'),
               Tab(text: "My Decks"),
               Tab(text: 'History'),
-              Tab(text: 'Notifications'),
+              //Tab(text: 'Notifications'),
               Tab(text: 'Settings'),
             ],
           ),
@@ -38,10 +36,10 @@ class ProfilePage extends GetView<ProfileController> {
       body: TabBarView(
         controller: controller.tabController,
         children: const <Widget>[
-          GroupsPage(),
+          //GroupsPage(),
           MyDecksPage(),
           HistoryPage(),
-          NotificationsPage(),
+          //NotificationsPage(),
           SettingsPage(),
         ],
       ),

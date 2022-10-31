@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../util/color_codes.dart';
+import 'package:study_hub/presentation/session/deck_preview/deck_preview.dart';
 import 'my_decks_controller.dart';
 
 class MyDecksPage extends StatelessWidget {
@@ -11,12 +11,21 @@ class MyDecksPage extends StatelessWidget {
     Get.lazyPut<MyDecksController>(() => MyDecksController());
 
     return GetBuilder<MyDecksController>(builder: (controller) {
-      return const Scaffold(
+      return Scaffold(
         body: Center(
-          child: Text(
-            'MyDecksPage content',
-            style: TextStyle(color: unselectedTabColor),
-          ),
+          child: controller.decks == null
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: controller.decks!.length,
+                  itemBuilder: (context, index) {
+                    debugPrint(
+                        "index: $index, card: ${controller.decks![index]}");
+
+                    return DeckPreview(deck: controller.decks![index]);
+                  },
+                ),
         ),
       );
     });
