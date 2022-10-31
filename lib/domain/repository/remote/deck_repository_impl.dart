@@ -75,11 +75,26 @@ class DeckRepositoryImpl implements DeckRepository {
   @override
   Future<Resource<List<Deck>>> getDecks(String accessToken) async {
     final url = Uri.parse("$serverIP/user/decks/get/");
-    final authCredentials = {"Authorization": "Bearer $accessToken"};
+
+    return requestForDeck(url: url, accessToken: accessToken);
+  }
+
+  @override
+  Future<Resource<List<Deck>>> getFavourites(String accessToken) {
+    final url = Uri.parse("$serverIP/user/favourite/get/");
+
+    return requestForDeck(url: url, accessToken: accessToken);
+  }
+
+  Future<Resource<List<Deck>>> requestForDeck({
+    required Uri url,
+    required String accessToken,
+  }) async {
+    final credentials = {"Authorization": "Bearer $accessToken"};
     http.Response response;
 
     try {
-      response = await http.get(url, headers: authCredentials);
+      response = await http.get(url, headers: credentials);
     } catch (error) {
       debugPrint("deck repository, getDecks. Error: ${error.toString()}");
 
