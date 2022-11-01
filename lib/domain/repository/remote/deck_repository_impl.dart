@@ -17,7 +17,8 @@ class DeckRepositoryImpl implements DeckRepository {
     var response = await authRepo.refresh();
     if (response is Success) {
       return Success(
-          successData: {"Authorization": "Bearer ${response.data!}"});
+        successData: {"Authorization": "Bearer ${response.data!}"},
+      );
     }
 
     return Fail(errorMessage: "couldn't update access token");

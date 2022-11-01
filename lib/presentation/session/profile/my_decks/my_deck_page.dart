@@ -20,9 +20,6 @@ class MyDecksPage extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   itemCount: controller.decks!.length,
                   itemBuilder: (context, index) {
-                    debugPrint(
-                        "index: $index, card: ${controller.decks![index]}");
-
                     return DeckPreview(deck: controller.decks![index]);
                   },
                 ),
