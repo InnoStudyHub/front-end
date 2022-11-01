@@ -23,6 +23,9 @@ class FavouritesController extends GetxController {
 
     if (result is Success) {
       decks = result.data!;
+      for (var deck in decks) {
+        deck.isFavourite = true;
+      }
       update();
     }
   }

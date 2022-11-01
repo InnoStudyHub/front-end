@@ -101,7 +101,7 @@ class AuthRepositoryImpl implements AuthRepository {
       response = await http.post(url, headers: headers, body: body);
       access = json.decode(response.body)["access"];
 
-      return Resource(data: access);
+      return Success(successData: access);
     } catch (e) {
       return Fail(errorMessage: e.toString());
     }

@@ -26,6 +26,8 @@ class MyDecksController extends GetxController {
       decks = result.data!;
       debugPrint(decks.toString());
       update();
+    } else {
+      debugPrint(result.message);
     }
   }
 }

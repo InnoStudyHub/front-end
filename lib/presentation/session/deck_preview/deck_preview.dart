@@ -13,6 +13,15 @@ class DeckPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut<DeckPreviewController>(() => DeckPreviewController());
 
+    void showSnackBar(String message){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          duration: const Duration(milliseconds: 800),
+        ),
+      );
+    }
+
     return GetBuilder<DeckPreviewController>(builder: (controller) {
       return GestureDetector(
         onTap: () {
@@ -68,11 +77,17 @@ class DeckPreview extends StatelessWidget {
                   IconButton(
                     padding: const EdgeInsets.only(right: 15, bottom: 10),
                     constraints: const BoxConstraints(),
-                    onPressed: () {
-                      //TODO
+                    onPressed: () async {
+                      deck.isFavourite
+                          ? await controller.removeDeckFromFavourites(deck)
+                          : await controller.addDeckToFavourites(deck);
+
+                      showSnackBar(controller.result);
                     },
                     icon: SvgPicture.asset(
-                      "assets/icons/deck_preview/add_to_favourites.svg",
+                      deck.isFavourite
+                          ? "assets/icons/deck_preview/favourite.svg"
+                          : "assets/icons/deck_preview/add_to_favourites.svg",
                     ),
                   ),
                 ],

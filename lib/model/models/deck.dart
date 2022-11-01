@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import 'card.dart';
 
 class Deck {
@@ -7,6 +9,7 @@ class Deck {
   String deckName;
   String semester;
   List<Card> cards;
+  bool isFavourite = false;
 
   get folderName => folderId.toString();
 
@@ -20,6 +23,7 @@ class Deck {
   });
 
   static Deck fromJson(Map<String, Object?> jsonMap) {
+    debugPrint(jsonMap.toString());
     var cardsJson = jsonMap["cards"] as List;
     List<Card> cards = [];
     for (int i = 0; i < cardsJson.length; i++) {
