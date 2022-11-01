@@ -5,6 +5,7 @@ import 'package:study_hub/model/models/deck.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
 import 'package:study_hub/presentation/widgets/themed_material_button.dart';
 
+import '../study/study_page.dart';
 import 'deck_view_controller.dart';
 
 class DeckViewPage extends StatelessWidget {
@@ -59,7 +60,7 @@ class DeckViewPage extends StatelessWidget {
               ThemedMaterialButton(
                 text: "Study Material",
                 callback: () {
-                  //TODO
+                  Get.to(() => StudyPage(cards: deck.cards));
                 },
                 color: purpleAppColor,
               ),
@@ -134,7 +135,10 @@ class DeckViewPage extends StatelessWidget {
         return Container(
           height: 200,
           width: 300,
-          color: darkCard,
+          decoration: BoxDecoration(
+            color: darkCard,
+            borderRadius: BorderRadius.circular(3),
+          ),
           margin: const EdgeInsets.only(right: 20),
           padding: const EdgeInsets.all(15),
           child: Center(
