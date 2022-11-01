@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../util/color_codes.dart';
+import '../util/do_nothing_callback.dart';
 
 class OutlinedTextField extends StatelessWidget {
   final String label;
@@ -10,14 +11,15 @@ class OutlinedTextField extends StatelessWidget {
   final TextInputType? inputType;
   final String? error;
 
-  const OutlinedTextField(
-      {super.key,
-      required this.label,
-      this.prefixIconData,
-      this.assetName,
-      this.textFieldController,
-      this.inputType,
-      this.error});
+  const OutlinedTextField({
+    super.key,
+    required this.label,
+    this.prefixIconData,
+    this.assetName,
+    this.textFieldController,
+    this.inputType,
+    this.error,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +32,21 @@ class OutlinedTextField extends StatelessWidget {
           color: greySecondary,
           fit: BoxFit.scaleDown,
         ),
-        onPressed: () {},
+        onPressed: () {
+          doNothing();
+        },
       );
       prefixIcon = kek;
     } else {
-      prefixIcon = prefixIconData != null
-          ? IconButton(
+      prefixIcon = prefixIconData == null
+          ? null
+          : IconButton(
               icon: Icon(prefixIconData),
               color: greySecondary,
-              onPressed: () {},
-            )
-          : null;
+              onPressed: () {
+                doNothing();
+              },
+            );
     }
 
     return Container(

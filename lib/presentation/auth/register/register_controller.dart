@@ -56,7 +56,10 @@ class RegisterController extends GetxController {
     isLoading = true;
     update();
     var response = await authRepo.register(
-        email: _email, password: _password, fullName: _fullName);
+      email: _email,
+      password: _password,
+      fullName: _fullName,
+    );
 
     if (response is Success) {
       Get.back();
@@ -96,18 +99,12 @@ class RegisterController extends GetxController {
   }
 
   validatePassword() {
-    if (_password.length <= 8) {
-      passwordError = "Password must be at least 8 characters long";
-    } else {
-      passwordError = null;
-    }
+    passwordError = _password.length <= 8
+        ? "Password must be at least 8 characters long"
+        : null;
   }
 
   validateFullName() {
-    if (_fullName.isEmpty) {
-      fullNameError = "Full Name cannot be empty";
-    } else {
-      fullNameError = null;
-    }
+    fullNameError = _fullName.isEmpty ? "Full Name cannot be empty" : null;
   }
 }

@@ -20,9 +20,10 @@ class AppPages {
       page: () => const WelcomeScreen(),
     ),
     GetPage(
-        name: AppRoutes.register,
-        page: () => const RegisterPage(),
-        binding: RegisterBinding()),
+      name: AppRoutes.register,
+      page: () => const RegisterPage(),
+      binding: RegisterBinding(),
+    ),
     GetPage(
       name: AppRoutes.login,
       page: () => const LoginPage(),

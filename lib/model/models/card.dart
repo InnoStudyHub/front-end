@@ -4,11 +4,12 @@ class Card {
   String? answer;
   List<String>? answerImageUrls;
 
-  Card(
-      {required this.question,
-      this.questionImageUrl,
-      this.answer,
-      this.answerImageUrls});
+  Card({
+    required this.question,
+    this.questionImageUrl,
+    this.answer,
+    this.answerImageUrls,
+  });
 
   static Card fromJson(Map<String, Object?> json) {
     List<String>? answerImages;
@@ -17,9 +18,9 @@ class Card {
 
     if (json["answer_images"] != null) {
       answerImages = [];
-      var answerImagesJson = json["answer_images"] as List<Map<String, Object>>;
+      var answerImagesJson = json["answer_images"] as List<dynamic>;
       for (int i = 0; i < answerImagesJson.length; i++) {
-        answerImages.add(answerImagesJson[i]["AdditionalProp1"] as String);
+        answerImages.add(answerImagesJson[i] as String);
       }
     }
 
@@ -30,6 +31,7 @@ class Card {
     if (json["answer_text"] != null) {
       answer = json["answer_text"] as String;
     }
+
     return Card(
       question: json["question_text"] as String,
       questionImageUrl: questionImage,

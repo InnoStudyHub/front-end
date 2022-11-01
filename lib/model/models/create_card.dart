@@ -29,8 +29,10 @@ class CreateCard {
   bool isValid() {
     if (_question.isEmpty) {
       questionError = "Cannot be empty";
+
       return false;
     }
+
     return true;
   }
 

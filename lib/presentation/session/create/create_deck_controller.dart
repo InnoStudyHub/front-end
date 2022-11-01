@@ -68,7 +68,8 @@ class CreateDeckController extends GetxController {
       } else {
         materialSemesterError = "Invalid format";
         debugPrint(
-            "CreateController, validateMaterial: $materialSemesterError");
+          "CreateController, validateMaterial: $materialSemesterError",
+        );
         canProceed = false;
       }
     }
@@ -82,10 +83,14 @@ class CreateDeckController extends GetxController {
     _validateMaterialSemester();
     if (!canProceed) {
       update();
+
       return;
     }
     var deck = CreateDeck(
-        folderId: 2, deckName: _deckName, semester: _materialSemester);
+      folderId: 2,
+      deckName: _deckName,
+      semester: _materialSemester,
+    );
     Get.lazyPut<AddCardsController>(() => AddCardsController(deck));
     Get.to(() => const AddCardsPage());
     update();

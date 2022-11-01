@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 import 'package:study_hub/model/models/create_card.dart';
 
 class FullscreenImage extends StatelessWidget {
-  const FullscreenImage(
-      {Key? key,
-      required this.card,
-      required this.isQuestion,
-      required this.index,
-      required this.update,
-      required this.heroTag})
-      : super(key: key);
+  const FullscreenImage({
+    Key? key,
+    required this.card,
+    required this.isQuestion,
+    required this.index,
+    required this.update,
+    required this.heroTag,
+  }) : super(key: key);
   final String heroTag;
   final VoidCallback update;
   final CreateCard card;
@@ -24,6 +24,7 @@ class FullscreenImage extends StatelessWidget {
   Widget build(BuildContext context) {
     String imagePath =
         isQuestion ? card.questionImage! : card.answerImages![index];
+
     return Scaffold(
       appBar: AppBar(
         actions: [

@@ -7,7 +7,7 @@ class ProfileController extends GetxController
 
   @override
   void onInit() {
-    tabController = TabController(vsync: this, length: 4);
+    tabController = TabController(vsync: this, length: 3);
     super.onInit();
   }
 }

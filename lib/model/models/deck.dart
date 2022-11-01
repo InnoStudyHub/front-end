@@ -1,29 +1,36 @@
+import 'package:flutter/cupertino.dart';
+
 import 'card.dart';
 
-class DeckDetails {
+class Deck {
   int id;
   int folderId;
   int authorId;
   String deckName;
   String semester;
   List<Card> cards;
+  bool isFavourite = false;
 
-  DeckDetails(
-      {required this.id,
-      required this.folderId,
-      required this.authorId,
-      required this.deckName,
-      required this.semester,
-      required this.cards});
+  get folderName => folderId.toString();
 
-  static DeckDetails fromJson(Map<String, Object?> jsonMap) {
+  Deck({
+    required this.id,
+    required this.folderId,
+    required this.authorId,
+    required this.deckName,
+    required this.semester,
+    required this.cards,
+  });
+
+  static Deck fromJson(Map<String, Object?> jsonMap) {
+    debugPrint(jsonMap.toString());
     var cardsJson = jsonMap["cards"] as List;
     List<Card> cards = [];
     for (int i = 0; i < cardsJson.length; i++) {
       cards.add(Card.fromJson(cardsJson[i]));
     }
 
-    return DeckDetails(
+    return Deck(
       id: jsonMap["id"] as int,
       folderId: jsonMap["folder_id"] as int,
       authorId: jsonMap["author_id"] as int,
@@ -32,4 +39,7 @@ class DeckDetails {
       cards: cards,
     );
   }
+
+  @override
+  String toString() => "Deck($id $folderId $authorId $deckName $semester)";
 }

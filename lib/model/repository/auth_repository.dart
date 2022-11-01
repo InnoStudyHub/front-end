@@ -8,8 +8,10 @@ abstract class AuthRepository {
     required String password,
   });
 
-  Future<Resource<Token>> login(
-      {required String email, required String password});
+  Future<Resource<Token>> login({
+    required String email,
+    required String password,
+  });
 
   Resource<int> logout();
 

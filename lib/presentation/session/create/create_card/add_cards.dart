@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'single_card_view.dart';
+import '../single_card/single_card_view.dart';
 import '../create_card/add_cards_controller.dart';
 import '../../../util/color_codes.dart';
 
@@ -36,10 +36,10 @@ class AddCardsPage extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: controller.cardModels.length,
       itemBuilder: (context, index) {
-        return singleCardView(
+        return SingleCardView(
           index: index,
-          controller: controller,
-          context: context,
+          card: controller.cardModels[index],
+          delete: controller.deleteCard,
         );
       },
     );

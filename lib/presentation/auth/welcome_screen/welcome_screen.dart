@@ -53,7 +53,9 @@ class WelcomeScreen extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 68.0, left: 20, right: 20),
                 height: 44,
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    //TODO
+                  },
                   color: selectedMenuColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
