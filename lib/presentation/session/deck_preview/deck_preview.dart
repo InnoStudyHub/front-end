@@ -13,7 +13,7 @@ class DeckPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut<DeckPreviewController>(() => DeckPreviewController());
 
-    void showSnackBar(String message){
+    void showSnackBar(String message) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),

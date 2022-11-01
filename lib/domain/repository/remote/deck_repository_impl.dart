@@ -16,7 +16,8 @@ class DeckRepositoryImpl implements DeckRepository {
   Future<Resource<Map<String, String>>> getAuthorizationHeader() async {
     var response = await authRepo.refresh();
     if (response is Success) {
-      return Success(successData: {"Authorization": "Bearer ${response.data!}"});
+      return Success(
+          successData: {"Authorization": "Bearer ${response.data!}"});
     }
 
     return Fail(errorMessage: "couldn't update access token");
@@ -163,7 +164,7 @@ class DeckRepositoryImpl implements DeckRepository {
       return Success(successData: statusCode);
     } else {
       debugPrint(
-          "Couldn't add deck to favourites: $statusCode, ${response.body}",
+        "Couldn't add deck to favourites: $statusCode, ${response.body}",
       );
       if (statusCode == 403) {
         return Fail(errorMessage: "Deck is already in favourites");
