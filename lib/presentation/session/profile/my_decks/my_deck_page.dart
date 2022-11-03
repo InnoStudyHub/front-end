@@ -8,8 +8,6 @@ class MyDecksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<MyDecksController>(() => MyDecksController());
-
     return GetBuilder<MyDecksController>(builder: (controller) {
       return Scaffold(
         body: Center(
