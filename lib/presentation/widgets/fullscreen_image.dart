@@ -13,11 +13,13 @@ class FullScreenImage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Image"),
       ),
-      body: SafeArea(
-        child: Center(
-          child: Hero(
-            tag: url,
-            child: Image.network(url),
+      body: InteractiveViewer(
+        child: SafeArea(
+          child: Center(
+            child: Hero(
+              tag: url,
+              child: Image.network(url),
+            ),
           ),
         ),
       ),

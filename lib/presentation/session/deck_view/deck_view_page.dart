@@ -107,6 +107,9 @@ class DeckViewPage extends StatelessWidget {
   }
 
   Widget _numberOfCards() {
+    String cardString = "";
+    deck.cards.length == 1 ? cardString = "card" : cardString = "cards";
+
     return Container(
       margin: const EdgeInsets.only(right: 20, top: 20),
       decoration: BoxDecoration(
@@ -115,7 +118,7 @@ class DeckViewPage extends StatelessWidget {
       ),
       padding: const EdgeInsets.fromLTRB(2, 4, 2, 4),
       child: Text(
-        "${deck.cards.length} cards",
+        "${deck.cards.length} $cardString",
         style: const TextStyle(
           color: greySecondary,
           fontSize: 12,
