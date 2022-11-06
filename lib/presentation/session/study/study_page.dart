@@ -66,10 +66,13 @@ class StudyPage extends StatelessWidget {
   }
 
   Widget _numberOfCards() {
+    String cardString = "";
+    cards.length == 1 ? cardString = "card" : cardString = "cards";
+
     return Container(
       margin: const EdgeInsets.only(top: 20),
       child: Text(
-        "${cards.length} cards",
+        "${cards.length} $cardString",
         style: const TextStyle(
           fontWeight: FontWeight.w400,
           color: greySecondary,
