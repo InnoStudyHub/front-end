@@ -17,7 +17,8 @@ class DeckRepositoryImpl implements DeckRepository {
     var response = await authRepo.refresh();
     if (response is Success) {
       return Success(
-          successData: {"Authorization": "Bearer ${response.data!}"});
+        successData: {"Authorization": "Bearer ${response.data!}"},
+      );
     }
 
     return Fail(errorMessage: "couldn't update access token");
@@ -57,7 +58,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
       return Success(successData: newDeck);
     } catch (error) {
-      debugPrint("deck repository, uploadDeck 64. Error: ${error.toString()}");
+      //debugPrint("deck repository, uploadDeck 64. Error: ${error.toString()}");
 
       return Fail(errorMessage: error.toString());
     }

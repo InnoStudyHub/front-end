@@ -9,7 +9,7 @@ class FavouritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<FavouritesController>(() => FavouritesController());
+    //Get.lazyPut<FavouritesController>(() => FavouritesController());
 
     return GetBuilder<FavouritesController>(builder: (controller) {
       return Scaffold(

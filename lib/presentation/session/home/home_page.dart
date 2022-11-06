@@ -11,33 +11,33 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
-
-    return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: SafeArea(
-          child: TabBar(
-            controller: controller.tabController,
-            labelColor: selectedTabColor,
-            unselectedLabelColor: unselectedTabColor,
-            indicatorColor: selectedTabColor,
-            indicatorSize: TabBarIndicatorSize.label,
-            tabs: const [
-              Tab(text: 'Recent'),
-              Tab(text: 'For You'),
-              Tab(text: 'Search'),
-            ],
+    return GetBuilder<HomeController>(builder: (controller) {
+      return Scaffold(
+        appBar: AppBar(
+          flexibleSpace: SafeArea(
+            child: TabBar(
+              controller: controller.tabController,
+              labelColor: selectedTabColor,
+              unselectedLabelColor: unselectedTabColor,
+              indicatorColor: selectedTabColor,
+              indicatorSize: TabBarIndicatorSize.label,
+              tabs: const [
+                Tab(text: 'Recent'),
+                Tab(text: 'For You'),
+                Tab(text: 'Search'),
+              ],
+            ),
           ),
         ),
-      ),
-      body: TabBarView(
-        controller: controller.tabController,
-        children: const <Widget>[
-          RecentPage(),
-          ForYouPage(),
-          SearchPage(),
-        ],
-      ),
-    );
+        body: TabBarView(
+          controller: controller.tabController,
+          children: const <Widget>[
+            RecentPage(),
+            ForYouPage(),
+            SearchPage(),
+          ],
+        ),
+      );
+    });
   }
 }
