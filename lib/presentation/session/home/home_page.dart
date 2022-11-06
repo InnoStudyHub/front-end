@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'recent/recent_page.dart';
-import 'search/search_page.dart';
 import '../../util/color_codes.dart';
 import 'for_you/for_you_page.dart';
 import 'home_controller.dart';
@@ -22,9 +21,8 @@ class HomePage extends StatelessWidget {
               indicatorColor: selectedTabColor,
               indicatorSize: TabBarIndicatorSize.label,
               tabs: const [
-                Tab(text: 'Recent'),
                 Tab(text: 'For You'),
-                Tab(text: 'Search'),
+                Tab(text: 'Recent'),
               ],
             ),
           ),
@@ -32,9 +30,8 @@ class HomePage extends StatelessWidget {
         body: TabBarView(
           controller: controller.tabController,
           children: const <Widget>[
-            RecentPage(),
             ForYouPage(),
-            SearchPage(),
+            RecentPage(),
           ],
         ),
       );

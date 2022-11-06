@@ -13,9 +13,25 @@ class SearchPage extends StatelessWidget {
     return GetBuilder<SearchController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
-          child: ListView(
-            children: <Widget>[
-              _searchBar(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: selectedMenuColor,
+                    ),
+                  ),
+                  _searchBar(),
+                ],
+              ),
             ],
           ),
         ),
@@ -24,20 +40,15 @@ class SearchPage extends StatelessWidget {
   }
 
   Widget _searchBar() {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: SizedBox(
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.only(right: 20, top: 6),
         height: 48,
         child: TextField(
           onChanged: (value) => {},
           decoration: const InputDecoration(
             filled: true,
             fillColor: mainAppColor,
-            contentPadding: EdgeInsets.all(0),
-            prefixIcon: Icon(
-              Icons.search,
-              color: greySecondary,
-            ),
             border: OutlineInputBorder(borderSide: BorderSide.none),
             hintStyle: TextStyle(fontSize: 16, color: unselectedTabColor),
             hintText: "Search for a deck or course",
