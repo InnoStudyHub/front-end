@@ -67,7 +67,8 @@ class FlipCard extends StatelessWidget {
           if (card.questionImageUrl != null)
             Expanded(
               child: imagePreview(
-                card.questionImageUrl!, 50,
+                card.questionImageUrl!,
+                50,
               ),
             ),
         ],
@@ -86,7 +87,7 @@ class FlipCard extends StatelessWidget {
           color: darkCard,
           borderRadius: BorderRadius.circular(3),
         ),
-        child:  Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (card.answer != null)
@@ -108,11 +109,10 @@ class FlipCard extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
                   itemCount: card.answerImageUrls!.length,
-                  itemBuilder: (_, index){
+                  itemBuilder: (_, index) {
                     return imagePreview(card.answerImageUrls![index], 100);
                   },
                 ),
-
               ),
           ],
         ),

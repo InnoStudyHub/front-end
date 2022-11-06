@@ -173,7 +173,8 @@ class StudyPage extends StatelessWidget {
                         itemCount: cards[i].answerImageUrls!.length,
                         itemBuilder: (context, index) {
                           return imagePreview(
-                            cards[i].answerImageUrls![index], 50,
+                            cards[i].answerImageUrls![index],
+                            50,
                           );
                         },
                       ),

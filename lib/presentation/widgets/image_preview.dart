@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
 import 'fullscreen_image.dart';
 
-Widget imagePreview(String url, double height){
+Widget imagePreview(String url, double height) {
   return Container(
     margin: const EdgeInsets.all(10),
     constraints: BoxConstraints(

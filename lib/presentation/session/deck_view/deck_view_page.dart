@@ -158,11 +158,11 @@ class DeckViewPage extends StatelessWidget {
                   ),
                 ),
               ),
-
               if (deck.cards[index].questionImageUrl != null)
                 Expanded(
                   child: imagePreview(
-                      deck.cards[index].questionImageUrl!, 50,
+                    deck.cards[index].questionImageUrl!,
+                    50,
                   ),
                 ),
             ],
