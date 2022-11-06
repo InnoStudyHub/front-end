@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/presentation/session/study/study_controller.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
-import '../../widgets/fullscreen_image.dart';
+import '../../widgets/image_preview.dart';
 
 class StudyPage extends StatelessWidget {
   final List<card.Card> cards;
@@ -130,7 +130,7 @@ class StudyPage extends StatelessWidget {
               ),
               cards[index].questionImageUrl == null
                   ? Container()
-                  : _imagePreview(cards[index].questionImageUrl!),
+                  : imagePreview(cards[index].questionImageUrl!, 50),
             ],
           ),
         ],
@@ -172,8 +172,8 @@ class StudyPage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: cards[i].answerImageUrls!.length,
                         itemBuilder: (context, index) {
-                          return _imagePreview(
-                            cards[i].answerImageUrls![index],
+                          return imagePreview(
+                            cards[i].answerImageUrls![index], 50,
                           );
                         },
                       ),
@@ -181,29 +181,6 @@ class StudyPage extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _imagePreview(String url) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      constraints: const BoxConstraints(
-        maxHeight: 50,
-        maxWidth: 300,
-      ),
-      child: GestureDetector(
-        onTap: () {
-          Get.to(() => FullScreenImage(url: url));
-        },
-        child: Hero(
-          tag: url,
-          child: Image.network(
-            url,
-            fit: BoxFit.scaleDown,
-            height: 50,
-          ),
-        ),
       ),
     );
   }

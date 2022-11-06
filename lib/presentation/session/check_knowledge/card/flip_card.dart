@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
 import '../../../../model/models/card.dart' as c;
+import '../../../widgets/image_preview.dart';
 import 'flip_card_controller.dart';
 
 class FlipCard extends StatelessWidget {
@@ -49,7 +50,28 @@ class FlipCard extends StatelessWidget {
         color: darkCard,
         borderRadius: BorderRadius.circular(3),
       ),
-      child: const Text("Front"),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+            child: Text(
+              card.question,
+              style: const TextStyle(
+                fontSize: 16,
+                color: selectedMenuColor,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          if (card.questionImageUrl != null)
+            Expanded(
+              child: imagePreview(
+                card.questionImageUrl!, 50,
+              ),
+            ),
+        ],
+      ),
     );
   }
 
@@ -64,7 +86,36 @@ class FlipCard extends StatelessWidget {
           color: darkCard,
           borderRadius: BorderRadius.circular(3),
         ),
-        child: const Text("Back"),
+        child:  Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (card.answer != null)
+              Container(
+                margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+                child: Text(
+                  card.answer!,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: selectedMenuColor,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            if (card.answerImageUrls != null)
+              Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: card.answerImageUrls!.length,
+                  itemBuilder: (_, index){
+                    return imagePreview(card.answerImageUrls![index], 100);
+                  },
+                ),
+
+              ),
+          ],
+        ),
       ),
     );
   }

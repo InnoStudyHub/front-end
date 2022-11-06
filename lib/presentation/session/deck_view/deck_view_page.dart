@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:study_hub/model/models/deck.dart';
 import 'package:study_hub/presentation/session/check_knowledge/check_knowledge_page.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
+import 'package:study_hub/presentation/widgets/image_preview.dart';
 import 'package:study_hub/presentation/widgets/themed_material_button.dart';
-
 import '../study/study_page.dart';
 import 'deck_view_controller.dart';
 
@@ -145,15 +145,27 @@ class DeckViewPage extends StatelessWidget {
           ),
           margin: const EdgeInsets.only(right: 20),
           padding: const EdgeInsets.all(15),
-          child: Center(
-            child: Text(
-              deck.cards[index].question,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  deck.cards[index].question,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ),
-            ),
+
+              if (deck.cards[index].questionImageUrl != null)
+                Expanded(
+                  child: imagePreview(
+                      deck.cards[index].questionImageUrl!, 50,
+                  ),
+                ),
+            ],
           ),
         );
       },
