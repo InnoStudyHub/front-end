@@ -15,9 +15,9 @@ class StudyPage extends StatelessWidget {
     Get.lazyPut<StudyController>(() => StudyController());
 
     return GetBuilder<StudyController>(builder: (controller) {
-      return SafeArea(
-        child: Scaffold(
-          body: Column(
+      return Scaffold(
+        body: SafeArea(
+          child: Column(
             children: [
               _header(),
               ListView.builder(

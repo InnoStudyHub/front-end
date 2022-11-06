@@ -42,6 +42,8 @@ dependencies:
   get_storage: ^2.0.3
   image_picker: ^0.8.6
   http_parser: ^4.0.2
+  percent_indicator: ^4.2.2
+  swipable_stack: ^2.0.0
 
 dev_dependencies:
   flutter_test:

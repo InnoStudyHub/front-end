@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/model/models/deck.dart';
+import 'package:study_hub/presentation/session/check_knowledge/check_knowledge_page.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
 import 'package:study_hub/presentation/widgets/themed_material_button.dart';
 
@@ -17,13 +18,13 @@ class DeckViewPage extends StatelessWidget {
     Get.lazyPut<DeckViewController>(() => DeckViewController());
 
     return GetBuilder<DeckViewController>(builder: (controller) {
-      return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(deck.deckName),
-            elevation: 0,
-          ),
-          body: Column(
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(deck.deckName),
+          elevation: 0,
+        ),
+        body: SafeArea(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _infoField(
@@ -53,7 +54,7 @@ class DeckViewPage extends StatelessWidget {
               ThemedMaterialButton(
                 text: "Check knowledge",
                 callback: () {
-                  //TODO
+                  Get.to(() => CheckKnowledgePage(cards: deck.cards));
                 },
                 color: selectedTabColor,
               ),
