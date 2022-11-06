@@ -12,8 +12,10 @@ class SessionBinding extends Bindings {
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
     Get.lazyPut<ProfileController>(() => ProfileController(), fenix: true);
     Get.lazyPut<CreateDeckController>(() => CreateDeckController(),
-        fenix: true);
+        fenix: true,
+    );
     Get.lazyPut<FavouritesController>(() => FavouritesController(),
-        fenix: true);
+        fenix: true,
+    );
   }
 }
