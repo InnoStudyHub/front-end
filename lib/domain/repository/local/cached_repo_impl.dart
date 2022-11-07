@@ -2,12 +2,10 @@ import 'package:get/get.dart';
 import 'package:study_hub/model/models/deck.dart';
 import 'package:study_hub/model/repository/cached_repository.dart';
 
-class CachedRepoImpl implements CachedRepository{
-
+class CachedRepoImpl implements CachedRepository {
   final RxList<Deck> _favouriteDecks = RxList();
   final RxList<Deck> _myDecks = RxList();
   final RxList<Deck> _recentDecks = RxList();
-
 
   @override
   RxList<Deck> get favouriteDecks => _favouriteDecks;
@@ -32,5 +30,4 @@ class CachedRepoImpl implements CachedRepository{
   void uploadDeck({required Deck deck}) {
     // TODO: implement uploadDeck
   }
-
 }
