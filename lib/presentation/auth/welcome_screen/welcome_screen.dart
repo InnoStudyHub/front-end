@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 import '../../util/color_codes.dart';
@@ -10,26 +11,28 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          _textAndButtons(),
-          const SizedBox(width: 23),
-          _welcomeImage(),
-        ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Row(
+            children: <Widget>[
+              _textAndButtons(),
+              const SizedBox(width: 23),
+              _welcomeImage(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
   Widget _textAndButtons() {
     return Container(
-      height: 450,
-      width: 659,
+      width: 510,
       margin: const EdgeInsets.only(top: 150.0, bottom: 150.0, left: 194.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           _textTitleAndSubtitle(),
+          const SizedBox(height: 197,),
           _emailButtons(),
         ],
       ),
@@ -38,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget _welcomeImage() {
     return Container(
-      margin: const EdgeInsets.only(right: 54.0),
+      margin: const EdgeInsets.only(top: 150.0, bottom: 150.0, right: 54.0),
       height: 450,
       width: 659,
       child: Image.asset("assets/images/wel.png"),
