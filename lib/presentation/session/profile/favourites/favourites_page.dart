@@ -14,7 +14,6 @@ class FavouritesPage extends StatelessWidget {
           child: Obx(
             () => ListView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
               itemCount: controller.decks.length,
               itemBuilder: (context, index) {
                 return DeckPreview(deck: controller.decks[index]);

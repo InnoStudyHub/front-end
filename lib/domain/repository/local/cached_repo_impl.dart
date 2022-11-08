@@ -21,17 +21,35 @@ class CachedRepoImpl implements CachedRepository {
 
   @override
   void addToFavourites({required Deck deck}) {
-    // TODO: implement addToFavourites
+    _favouriteDecks.add(deck);
+
+    for (var temp in _myDecks) {
+      if (temp.id == deck.id) {
+        temp.isFavourite = true;
+      }
+    }
   }
 
   @override
   void deleteFromFavourites({required Deck deck}) {
-    // TODO: implement deleteFromFavourites
+    for (var temp in _favouriteDecks) {
+      if (temp.id == deck.id) {
+        _favouriteDecks.remove(temp);
+        break;
+      }
+    }
+
+    for (var temp in _myDecks) {
+      if (temp.id == deck.id) {
+        temp.isFavourite = false;
+        break;
+      }
+    }
   }
 
   @override
   void uploadDeck({required Deck deck}) {
-    // TODO: implement uploadDeck
+    _myDecks.add(deck);
   }
 
   @override
