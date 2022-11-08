@@ -1,7 +1,3 @@
-class AddToFavouritesUseCase{
+class AddToFavouritesUseCase {
   const AddToFavouritesUseCase._();
-
-
-
-
 }

@@ -1,7 +1,3 @@
-class CreateDeckUseCase{
+class CreateDeckUseCase {
   const CreateDeckUseCase._();
-
-
-
-
 }

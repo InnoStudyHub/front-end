@@ -10,17 +10,15 @@ class MyDecksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<MyDecksController>(builder: (controller) {
       return Scaffold(
-        body: Center(
-          child: controller.decks == null
-              ? const Center(child: CircularProgressIndicator())
-              : ListView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: controller.decks!.length,
-                  itemBuilder: (context, index) {
-                    return DeckPreview(deck: controller.decks![index]);
-                  },
-                ),
+        body: Obx(
+          () => ListView.builder(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemCount: controller.decks.length,
+            itemBuilder: (context, index) {
+              return DeckPreview(deck: controller.decks[index]);
+            },
+          ),
         ),
       );
     });

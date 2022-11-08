@@ -1,7 +1,3 @@
-class RemoveFromFavouritesUseCase{
+class RemoveFromFavouritesUseCase {
   const RemoveFromFavouritesUseCase._();
-
-
-
-
 }

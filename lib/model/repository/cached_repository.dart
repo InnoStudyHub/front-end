@@ -13,4 +13,8 @@ abstract class CachedRepository {
   void deleteFromFavourites({required Deck deck});
 
   void uploadDeck({required Deck deck});
+
+  Future<void> updateMyDecks();
+
+  Future<void> updateFavourites();
 }

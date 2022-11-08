@@ -126,7 +126,7 @@ class DeckRepositoryImpl implements DeckRepository {
       List<Deck> decks = [];
       List decksListJson = json.decode(response.body);
 
-      for (var i = decksListJson.length - 1; i > 0; i--) {
+      for (var i = decksListJson.length - 1; i >= 0; i--) {
         decks.add(Deck.fromJson(decksListJson[i]));
       }
 
