@@ -21,7 +21,7 @@ class CachedRepoImpl implements CachedRepository {
 
   @override
   void addToFavourites({required Deck deck}) {
-    _favouriteDecks.add(deck);
+    _favouriteDecks.insert(0, deck);
 
     for (var temp in _myDecks) {
       if (temp.id == deck.id) {
@@ -49,7 +49,7 @@ class CachedRepoImpl implements CachedRepository {
 
   @override
   void uploadDeck({required Deck deck}) {
-    _myDecks.add(deck);
+    _myDecks.insert(0, deck);
   }
 
   @override
@@ -57,7 +57,7 @@ class CachedRepoImpl implements CachedRepository {
     var response = await remote.getDecks("accessToken");
     if (response is Success) {
       for (var deck in response.data!) {
-        _myDecks.add(deck);
+        _myDecks.insert(0, deck);
       }
     }
   }
@@ -67,7 +67,7 @@ class CachedRepoImpl implements CachedRepository {
     var response = await remote.getFavourites("accessToken");
     if (response is Success) {
       for (var deck in response.data!) {
-        _favouriteDecks.add(deck);
+        _favouriteDecks.insert(0, deck);
       }
     }
   }
