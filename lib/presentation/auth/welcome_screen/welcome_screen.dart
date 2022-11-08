@@ -11,73 +11,90 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        scrollDirection: Axis.horizontal,
         children: <Widget>[
-          _TextTitle(),
-          _TextSubtitle(),
-          _WelcomeImage(),
-          _EmailButtons(),
+          _textAndButtons(),
+          const SizedBox(width: 23),
+          _welcomeImage(),
         ],
       ),
     );
   }
 
-  Widget _TextTitle() {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Container(
-        margin: const EdgeInsets.only(top: 21.0),
-        child: const Text(
-          "StudyHub",
-          style: TextStyle(
-            color: selectedMenuColor,
-            fontSize: 40,
-            fontFamily: "ArchitectsDaughter",
-          ),
-        ),
+  Widget _textAndButtons() {
+    return Container(
+      height: 450,
+      width: 659,
+      margin: const EdgeInsets.only(top: 150.0, bottom: 150.0, left: 194.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          _textTitleAndSubtitle(),
+          _emailButtons(),
+        ],
       ),
     );
   }
 
-  Widget _TextSubtitle() {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Container(
-        margin: const EdgeInsets.only(top: 21.0),
-        child: const Text(
-          "prepare to exams together",
-          style: TextStyle(
-            color: selectedMenuColor,
-            fontSize: 24,
-            fontFamily: "ArchitectsDaughter",
-          ),
-        ),
-      ),
+  Widget _welcomeImage() {
+    return Container(
+      margin: const EdgeInsets.only(right: 54.0),
+      height: 450,
+      width: 659,
+      child: Image.asset("assets/images/wel.png"),
     );
   }
 
-  Widget _WelcomeImage() {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Container(
-        margin: const EdgeInsets.only(top: 150.0, bottom: 150.0),
-        child: Image.asset("assets/images/wel.png"),
-      ),
-    );
-  }
-
-  Widget _EmailButtons() {
+  Widget _textTitleAndSubtitle() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        _IUAccountContainer(),
-        _MailAccountContainer(),
+      children: const <Widget>[
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            "StudyHub",
+            style: TextStyle(
+              color: selectedMenuColor,
+              fontSize: 64,
+              fontFamily: "ArchitectsDaughter",
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "prepare to exams together",
+            style: TextStyle(
+              color: selectedMenuColor,
+              fontSize: 36,
+              fontFamily: "ArchitectsDaughter",
+            ),
+          ),
+        ),
       ],
     );
   }
 
+  Widget _emailButtons() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Column(
+        //crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          _IUAccountContainer(),
+          const SizedBox(
+            height: 15,
+          ),
+          _MailAccountContainer(),
+        ],
+      ),
+    );
+  }
+
   Widget _IUAccountContainer() {
-    return Container(
-      margin: const EdgeInsets.only(top: 68.0, left: 20, right: 20),
+    return SizedBox(
       height: 44,
       width: 320,
       child: MaterialButton(
@@ -111,8 +128,7 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   Widget _MailAccountContainer() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+    return SizedBox(
       height: 44,
       width: 320,
       child: MaterialButton(
