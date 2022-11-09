@@ -10,8 +10,8 @@ class HomeController extends GetxController
   @override
   void onInit() {
     tabController = TabController(vsync: this, length: 2);
-    Get.lazyPut<RecentController>(() => RecentController());
-    Get.lazyPut<ForYouController>(() => ForYouController());
+    Get.put<RecentController>(RecentController(), permanent: true);
+    Get.put<ForYouController>(ForYouController(), permanent: true);
 
     super.onInit();
   }

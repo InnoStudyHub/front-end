@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/presentation/session/favourites/favourites_page.dart';
+import 'favourites/favourites_page.dart';
 import 'my_decks/my_deck_page.dart';
 import 'settings/setting_page.dart';
 import '../../util/color_codes.dart';
