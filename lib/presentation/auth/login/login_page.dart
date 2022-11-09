@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../util/color_codes.dart';
+import '../../util/routes.dart';
 import '../../widgets/continue_with_ui_button.dart';
 import '../../widgets/divider.dart';
 import '../../widgets/outlined_text_field.dart';
 import '../../widgets/themed_material_button.dart';
 import 'login_controller.dart';
-import '../../util/color_codes.dart';
-import '../../util/routes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -27,52 +28,71 @@ class LoginPage extends StatelessWidget {
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/login_page.png"),
-                alignment: Alignment.centerLeft,
-              ),
-            ),
-            child: ListView(
-              children: <Widget>[
-                _heading(),
-                OutlinedTextField(
-                  label: "Email",
-                  prefixIconData: Icons.email_outlined,
-                  textFieldController: controller.emailController,
-                  inputType: TextInputType.emailAddress,
-                  error: controller.emailError,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              _imageBackground(),
+              const SizedBox(width: 115,),
+              Container(
+                width: 333,
+                margin: const EdgeInsets.only(top: 124.0, bottom: 124.0),
+                child: Column(
+                  children: <Widget>[
+                    _heading(),
+                    const SizedBox(
+                      height: 87,
+                    ),
+                    OutlinedTextField(
+                      label: "Email",
+                      prefixIconData: Icons.email_outlined,
+                      textFieldController: controller.emailController,
+                      inputType: TextInputType.emailAddress,
+                      error: controller.emailError,
+                    ),
+                    _passwordFormField(controller: controller),
+                    _forgotPasswordButton(),
+                    const SizedBox(height: 10,),
+                    _loginButton(controller, showSnackBar),
+                    _registerButton(),
+                    const SizedBox(height: 27,),
+                    const ThemedDivider(),
+                    const SizedBox(height: 12,),
+                    ContinueWithUIButton(callback: () {
+                      //TODO
+                    }),
+                  ],
                 ),
-                _passwordFormField(controller: controller),
-                _forgotPasswordButton(),
-                _loginButton(controller, showSnackBar),
-                _registerButton(),
-                const ThemedDivider(),
-                ContinueWithUIButton(callback: () {
-                  //TODO
-                }),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
     });
   }
 
+  Widget _imageBackground() {
+    return Container(
+      height: 632,
+      width: 280,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/login_page_desktop.png"),
+          alignment: Alignment.center,
+        ),
+      ),
+    );
+  }
+
   Widget _heading() {
-    return Align(
-      alignment: Alignment.topRight,
-      child: Container(
-        margin: const EdgeInsets.only(top: 50, right: 20, bottom: 65),
-        child: const Text(
-          "Welcome Back!",
-          style: TextStyle(
-            color: selectedMenuColor,
-            fontSize: 28,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w600,
-          ),
+    return const Align(
+      alignment: Alignment.topCenter,
+      child: Text(
+        "Welcome Back!",
+        style: TextStyle(
+          color: selectedMenuColor,
+          fontSize: 48,
+          fontFamily: "Roboto",
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
@@ -142,7 +162,7 @@ class LoginPage extends StatelessWidget {
   Widget _loginButton(LoginController controller, VoidCallback showSnackBar) {
     if (controller.isLoading) {
       return Container(
-        margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+        margin: const EdgeInsets.fromLTRB(20, 40, 20, 0),
         height: 44,
         child: MaterialButton(
           onPressed: () {
