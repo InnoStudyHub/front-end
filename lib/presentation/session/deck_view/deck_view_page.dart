@@ -52,14 +52,14 @@ class DeckViewPage extends StatelessWidget {
               ),
               Expanded(child: Container()),
               ThemedMaterialButton(
-                text: "Check knowledge",
+                text: "Start",
                 callback: () {
                   Get.to(() => CheckKnowledgePage(cards: deck.cards));
                 },
                 color: selectedTabColor,
               ),
               ThemedMaterialButton(
-                text: "Study Material",
+                text: "Overview",
                 callback: () {
                   Get.to(() => StudyPage(cards: deck.cards));
                 },

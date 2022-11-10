@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:study_hub/common/constants.dart';
 import 'package:study_hub/model/models/create_deck.dart';
 import 'package:study_hub/model/models/deck.dart';
+import 'package:study_hub/model/models/folders_list.dart';
 import 'package:study_hub/model/models/resource.dart';
 import 'package:study_hub/model/repository/auth_repository.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
@@ -211,5 +212,47 @@ class DeckRepositoryImpl implements DeckRepository {
 
       return Fail(errorMessage: "Unexpected error");
     }
+  }
+
+  @override
+  Future<Resource<List<Folder>>> getFolderList() async {
+    var credentialsResponse = await getAuthorizationHeader();
+    if (credentialsResponse is Fail) {
+      return Fail(errorMessage: credentialsResponse.message!);
+    }
+
+    var credentials = credentialsResponse.data!;
+
+    var headers = {"Content-Type": "application/json"};
+    headers.addAll(credentials);
+    var url = Uri.parse("$serverIP/folder/list/");
+    http.Response response;
+
+    try {
+      response = await http.get(url, headers: headers);
+    } catch (error) {
+      debugPrint("deck repository, getFolderList. Error: ${error.toString()}");
+
+      return Fail(errorMessage: error.toString());
+    }
+
+    var statusCode = response.statusCode;
+
+    if (statusCode == 200) {
+      List<Folder> folders = [];
+      List decksListJson = json.decode(response.body);
+      debugPrint(response.body);
+
+      for (var i = decksListJson.length - 1; i >= 0; i--) {
+        folders.add(Folder.fromJson(decksListJson[i]));
+      }
+
+      return Success(successData: folders);
+    } else {
+      debugPrint(response.body);
+
+      return Fail(errorMessage: response.body);
+    }
+
   }
 }

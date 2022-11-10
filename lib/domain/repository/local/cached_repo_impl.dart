@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:study_hub/model/models/deck.dart';
+import 'package:study_hub/model/models/folders_list.dart';
 import 'package:study_hub/model/repository/cached_repository.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
 import '../../../model/models/resource.dart';
@@ -9,6 +10,7 @@ class CachedRepoImpl implements CachedRepository {
   final RxList<Deck> _favouriteDecks = RxList();
   final RxList<Deck> _myDecks = RxList();
   final RxList<Deck> _recentDecks = RxList();
+  final RxList<Folder> _folderList = RxList();
 
   @override
   RxList<Deck> get favouriteDecks => _favouriteDecks;
@@ -18,6 +20,9 @@ class CachedRepoImpl implements CachedRepository {
 
   @override
   RxList<Deck> get recentDecks => _recentDecks;
+
+  @override
+  RxList<Folder> get folderList => _folderList;
 
   @override
   void addToFavourites({required Deck deck}) {
@@ -68,6 +73,16 @@ class CachedRepoImpl implements CachedRepository {
     if (response is Success) {
       for (var deck in response.data!) {
         _favouriteDecks.insert(0, deck);
+      }
+    }
+  }
+
+  @override
+  Future<void> updateFolders() async {
+    var response = await remote.getFolderList();
+    if (response is Success) {
+      for (var folder in response.data!){
+        _folderList.add(folder);
       }
     }
   }

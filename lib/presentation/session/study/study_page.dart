@@ -118,20 +118,22 @@ class StudyPage extends StatelessWidget {
             "assets/icons/create_cards/create_card_question_mark.svg",
             color: unselectedMenuColor,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(left: 10),
-                child: Text(
-                  cards[index].question,
-                  style: _style,
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    cards[index].question,
+                    style: _style,
+                  ),
                 ),
-              ),
-              cards[index].questionImageUrl == null
-                  ? Container()
-                  : imagePreview(cards[index].questionImageUrl!, 50),
-            ],
+                cards[index].questionImageUrl == null
+                    ? Container()
+                    : imagePreview(cards[index].questionImageUrl!, 50),
+              ],
+            ),
           ),
         ],
       ),
