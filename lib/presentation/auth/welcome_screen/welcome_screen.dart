@@ -14,6 +14,8 @@ class WelcomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _textAndButtons(),
               const SizedBox(width: 23),

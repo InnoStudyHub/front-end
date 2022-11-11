@@ -34,57 +34,57 @@ class RegisterPage extends StatelessWidget {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: SafeArea(
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                Container(
-                  height: 601,
-                  width: 333,
-                  margin: const EdgeInsets.only(top: 102.0, bottom: 103.0),
-                  child: Column(
-                    children: <Widget>[
-                      _heading(),
-                      const SizedBox(
-                        height: 87,
-                      ),
-                      OutlinedTextField(
-                        label: "Email",
-                        prefixIconData: Icons.email_outlined,
-                        textFieldController: controller.emailController,
-                        inputType: TextInputType.emailAddress,
-                        error: controller.emailError,
-                      ),
-                      OutlinedTextField(
-                        label: "Full name",
-                        assetName:
-                            "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
-                        textFieldController: controller.fullNameController,
-                        error: controller.fullNameError,
-                      ),
-                      _passwordFormField(controller: controller),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      _registerButton(controller, showSnackBar),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      _loginButton(),
-                      const SizedBox(
-                        height: 18,
-                      ),
-                      const ThemedDivider(),
-                      ContinueWithUIButton(callback: () {
-                        //TODO
-                      }),
-                    ],
+            child: SingleChildScrollView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    height: 601,
+                    width: 333,
+                    margin: const EdgeInsets.only(top: 102.0, bottom: 103.0),
+                    child: Column(
+                      children: <Widget>[
+                        _heading(),
+                        const SizedBox(
+                          height: 87,
+                        ),
+                        OutlinedTextField(
+                          label: "Email",
+                          prefixIconData: Icons.email_outlined,
+                          textFieldController: controller.emailController,
+                          inputType: TextInputType.emailAddress,
+                          error: controller.emailError,
+                        ),
+                        OutlinedTextField(
+                          label: "Full name",
+                          assetName:
+                              "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
+                          textFieldController: controller.fullNameController,
+                          error: controller.fullNameError,
+                        ),
+                        _passwordFormField(controller: controller),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        _registerButton(controller, showSnackBar),
+                        _loginButton(),
+                        const SizedBox(
+                          height: 18,
+                        ),
+                        const ThemedDivider(),
+                        ContinueWithUIButton(callback: () {
+                          //TODO
+                        }),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 114,
-                ),
-                _imageBackground(),
-              ],
+                  const SizedBox(
+                    width: 114,
+                  ),
+                  _imageBackground(),
+                ],
+              ),
             ),
           ),
         ),

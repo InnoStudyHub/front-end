@@ -28,50 +28,53 @@ class LoginPage extends StatelessWidget {
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              _imageBackground(),
-              const SizedBox(
-                width: 115,
-              ),
-              Container(
-                width: 333,
-                margin: const EdgeInsets.only(top: 124.0, bottom: 124.0),
-                child: Column(
-                  children: <Widget>[
-                    _heading(),
-                    const SizedBox(
-                      height: 87,
-                    ),
-                    OutlinedTextField(
-                      label: "Email",
-                      prefixIconData: Icons.email_outlined,
-                      textFieldController: controller.emailController,
-                      inputType: TextInputType.emailAddress,
-                      error: controller.emailError,
-                    ),
-                    _passwordFormField(controller: controller),
-                    _forgotPasswordButton(),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    _loginButton(controller, showSnackBar),
-                    _registerButton(),
-                    const SizedBox(
-                      height: 27,
-                    ),
-                    const ThemedDivider(),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    ContinueWithUIButton(callback: () {
-                      //TODO
-                    }),
-                  ],
+          child: SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                _imageBackground(),
+                const SizedBox(
+                  width: 115,
                 ),
-              ),
-            ],
+                Container(
+                  width: 333,
+                  margin: const EdgeInsets.only(top: 124.0, bottom: 124.0),
+                  child: Column(
+                    children: <Widget>[
+                      _heading(),
+                      const SizedBox(
+                        height: 87,
+                      ),
+                      OutlinedTextField(
+                        label: "Email",
+                        prefixIconData: Icons.email_outlined,
+                        textFieldController: controller.emailController,
+                        inputType: TextInputType.emailAddress,
+                        error: controller.emailError,
+                      ),
+                      _passwordFormField(controller: controller),
+                      _forgotPasswordButton(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      _loginButton(controller, showSnackBar),
+                      _registerButton(),
+                      const SizedBox(
+                        height: 27,
+                      ),
+                      const ThemedDivider(),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      ContinueWithUIButton(callback: () {
+                        //TODO
+                      }),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
