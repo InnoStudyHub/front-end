@@ -32,7 +32,9 @@ class LoginPage extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               _imageBackground(),
-              const SizedBox(width: 115,),
+              const SizedBox(
+                width: 115,
+              ),
               Container(
                 width: 333,
                 margin: const EdgeInsets.only(top: 124.0, bottom: 124.0),
@@ -51,12 +53,18 @@ class LoginPage extends StatelessWidget {
                     ),
                     _passwordFormField(controller: controller),
                     _forgotPasswordButton(),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     _loginButton(controller, showSnackBar),
                     _registerButton(),
-                    const SizedBox(height: 27,),
+                    const SizedBox(
+                      height: 27,
+                    ),
                     const ThemedDivider(),
-                    const SizedBox(height: 12,),
+                    const SizedBox(
+                      height: 12,
+                    ),
                     ContinueWithUIButton(callback: () {
                       //TODO
                     }),

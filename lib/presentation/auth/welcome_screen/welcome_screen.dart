@@ -32,7 +32,9 @@ class WelcomeScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           _textTitleAndSubtitle(),
-          const SizedBox(height: 197,),
+          const SizedBox(
+            height: 197,
+          ),
           _emailButtons(),
         ],
       ),
