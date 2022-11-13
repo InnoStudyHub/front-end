@@ -1,32 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'home/search/search_page.dart';
+
 import '../util/color_codes.dart';
 import 'create/create_deck_page.dart';
+import 'home/home_page.dart';
 import 'profile/profile_page.dart';
 import 'session_controller.dart';
-import 'home/home_page.dart';
 
 class Session extends StatelessWidget {
   const Session({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+
     return GetBuilder<SessionController>(builder: (controller) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(controller.tabTitle),
-          actions: [
-            if (controller.tabTitle == "Home")
-              IconButton(
-                onPressed: () {
-                  Get.to(() => const SearchPage());
-                },
-                icon: const Icon(Icons.search, color: greySecondary),
+        appBar: PreferredSize(
+          preferredSize: Size(screenSize.width, 60),
+          child: Container(
+            color: mainAppColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 18.5),
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(width: screenSize.width * 0.35),
+                    InkWell(
+                      onTap: () {
+                        //TODO
+                      },
+                      child: Text(
+                        'Home',
+                        style: TextStyle(
+                          color: controller.tabIndex == 0
+                              ? selectedMenuColor
+                              : unselectedTabColor,
+                          fontSize: 20,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: screenSize.width * 0.11),
+                    InkWell(
+                      onTap: () {
+                        //TODO
+                      },
+                      child: Text(
+                        'Create',
+                        style: TextStyle(
+                          color: controller.tabIndex == 1
+                              ? selectedMenuColor
+                              : unselectedTabColor,
+                          fontSize: 20,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: screenSize.width * 0.11),
+                    InkWell(
+                      onTap: () {
+                        //TODO
+                      },
+                      child: Text(
+                        'Profile',
+                        style: TextStyle(
+                          color: controller.tabIndex == 2
+                              ? selectedMenuColor
+                              : unselectedTabColor,
+                          fontSize: 20,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-          ],
-          elevation: 0,
+            ),
+          ),
         ),
         body: SafeArea(
           child: IndexedStack(

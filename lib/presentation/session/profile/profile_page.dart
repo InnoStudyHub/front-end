@@ -13,6 +13,8 @@ class ProfilePage extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundDarkBlue,
+        elevation: 0.0,
         flexibleSpace: SafeArea(
           child: TabBar(
             controller: controller.tabController,
@@ -22,11 +24,9 @@ class ProfilePage extends GetView<ProfileController> {
             indicatorSize: TabBarIndicatorSize.label,
             //isScrollable: true,
             tabs: const [
-              //Tab(text: 'Groups'),
-              Tab(text: "Favourites"),
+              Tab(text: 'Groups'),
               Tab(text: "My Decks"),
-              //Tab(text: 'History'),
-              //Tab(text: 'Notifications'),
+              Tab(text: 'History'),
               Tab(text: 'Settings'),
             ],
           ),

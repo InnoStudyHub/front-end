@@ -13,6 +13,8 @@ class HomePage extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: backgroundDarkBlue,
           flexibleSpace: SafeArea(
             child: TabBar(
               controller: controller.tabController,
@@ -21,8 +23,8 @@ class HomePage extends StatelessWidget {
               indicatorColor: selectedTabColor,
               indicatorSize: TabBarIndicatorSize.label,
               tabs: const [
-                Tab(text: 'For You'),
                 Tab(text: 'Recent'),
+                Tab(text: 'For You'),
               ],
             ),
           ),
