@@ -13,6 +13,9 @@ class AddCardsPage extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           title: const Text("Create"),
+          actions: [
+            _finishButton(controller),
+          ],
           elevation: 0,
         ),
         body: SingleChildScrollView(
@@ -22,7 +25,6 @@ class AddCardsPage extends StatelessWidget {
             children: <Widget>[
               _cards(controller, context),
               _addButton(controller),
-              _finishButton(controller),
             ],
           ),
         ),
@@ -31,23 +33,26 @@ class AddCardsPage extends StatelessWidget {
   }
 
   Widget _cards(AddCardsController controller, BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: controller.cardModels.length,
-      itemBuilder: (context, index) {
-        return SingleCardView(
-          index: index,
-          card: controller.cardModels[index],
-          delete: controller.deleteCard,
-        );
-      },
+    return Container(
+      margin: const EdgeInsets.only(left: 85, right: 85, top: 21),
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: controller.cardModels.length,
+        itemBuilder: (context, index) {
+          return SingleCardView(
+            index: index,
+            card: controller.cardModels[index],
+            delete: controller.deleteCard,
+          );
+        },
+      ),
     );
   }
 
   Widget _addButton(AddCardsController controller) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+      margin: const EdgeInsets.fromLTRB(105, 30, 105, 0),
       height: 60,
       child: MaterialButton(
         onPressed: () {
@@ -65,8 +70,9 @@ class AddCardsPage extends StatelessWidget {
 
   Widget _finishButton(AddCardsController controller) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
-      height: 60,
+      margin: const EdgeInsets.fromLTRB(0, 15, 105, 15),
+      width: 156,
+      height: 30,
       child: MaterialButton(
         onPressed: () {
           controller.finish();
@@ -77,7 +83,7 @@ class AddCardsPage extends StatelessWidget {
           "Finish",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 14,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
         ),

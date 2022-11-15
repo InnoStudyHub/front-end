@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/presentation/session/favourites/favourites_page.dart';
-import 'my_decks/my_deck_page.dart';
-import 'settings/setting_page.dart';
+import 'package:study_hub/presentation/session/profile/groups/groups_page.dart';
 import '../../util/color_codes.dart';
+import 'history/history_page.dart';
+import 'my_decks/my_deck_page.dart';
 import 'profile_controller.dart';
+import 'settings/setting_page.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   const ProfilePage({super.key});
@@ -17,6 +18,7 @@ class ProfilePage extends GetView<ProfileController> {
         elevation: 0.0,
         flexibleSpace: SafeArea(
           child: TabBar(
+            isScrollable: true,
             controller: controller.tabController,
             labelColor: selectedTabColor,
             unselectedLabelColor: unselectedTabColor,
@@ -35,10 +37,10 @@ class ProfilePage extends GetView<ProfileController> {
       body: TabBarView(
         controller: controller.tabController,
         children: const <Widget>[
-          //GroupsPage(),
-          FavouritesPage(),
+          GroupsPage(),
+          //FavouritesPage(),
           MyDecksPage(),
-          //HistoryPage(),
+          HistoryPage(),
           //NotificationsPage(),
           SettingsPage(),
         ],

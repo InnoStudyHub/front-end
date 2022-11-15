@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
           backgroundColor: backgroundDarkBlue,
           flexibleSpace: SafeArea(
             child: TabBar(
+              isScrollable: true,
               controller: controller.tabController,
               labelColor: selectedTabColor,
               unselectedLabelColor: unselectedTabColor,

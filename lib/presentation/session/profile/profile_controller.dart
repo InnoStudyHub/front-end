@@ -13,8 +13,9 @@ class ProfileController extends GetxController
     Get.put<MyDecksController>(MyDecksController(), permanent: true);
     Get.put<SettingsController>(SettingsController(), permanent: true);
     Get.put<FavouritesController>(FavouritesController(), permanent: true);
+    //TODO Controllers for new pages
 
-    tabController = TabController(vsync: this, length: 3);
+    tabController = TabController(vsync: this, length: 4);
     super.onInit();
   }
 }
