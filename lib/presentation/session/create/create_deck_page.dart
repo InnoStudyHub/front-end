@@ -16,6 +16,7 @@ class CreateDeckPage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Center(
+            //TODO тоже идеально не центрируется
             child: SizedBox(
               width: 320,
               child: Column(

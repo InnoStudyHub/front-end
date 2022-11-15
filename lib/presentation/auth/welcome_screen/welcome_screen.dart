@@ -13,6 +13,8 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
+          // TODO не центрится идеально по центру. Даже если убрать bottom
+          // TODO из _textAndButtons() и _welcomeImage()
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,17 +92,17 @@ class WelcomeScreen extends StatelessWidget {
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _IUAccountContainer(),
+          _innopolisAccountContainer(),
           const SizedBox(
             height: 15,
           ),
-          _MailAccountContainer(),
+          _mailAccountContainer(),
         ],
       ),
     );
   }
 
-  Widget _IUAccountContainer() {
+  Widget _innopolisAccountContainer() {
     return SizedBox(
       height: 44,
       width: 320,
@@ -134,7 +136,7 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _MailAccountContainer() {
+  Widget _mailAccountContainer() {
     return SizedBox(
       height: 44,
       width: 320,

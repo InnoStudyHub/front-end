@@ -18,6 +18,9 @@ class Session extends StatelessWidget {
     return GetBuilder<SessionController>(builder: (controller) {
       return Scaffold(
         appBar: PreferredSize(
+          //TODO это верхняя часть экрана, которая над tabbar-ом
+          //TODO нужно при нажатии на них открываться нужная страница. Тут нужно пошаманить с контроллерами. Я старался, но не получилось
+          //TODO Если нажмешь на bottombar кнопки то страница будет меняться, как и цвет верхних кнопок
           preferredSize: Size(screenSize.width, 60),
           child: Container(
             color: mainAppColor,

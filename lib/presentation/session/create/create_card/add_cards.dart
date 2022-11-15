@@ -14,6 +14,7 @@ class AddCardsPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Create"),
           actions: [
+            //TODO Finish нужно починить. id нужно поменять. Но я не понял какие именно "id" нужно поменять в репозиториях
             _finishButton(controller),
           ],
           elevation: 0,
@@ -41,6 +42,8 @@ class AddCardsPage extends StatelessWidget {
         itemCount: controller.cardModels.length,
         itemBuilder: (context, index) {
           return SingleCardView(
+            // TODO фотография селектиться, но после селекта ошибка.
+            //  TODO В гугле пишут что вебка читает байтами и.т.д. Хотел так попробовать, но я не очень понял твой код ImagePicker-а ))
             index: index,
             card: controller.cardModels[index],
             delete: controller.deleteCard,

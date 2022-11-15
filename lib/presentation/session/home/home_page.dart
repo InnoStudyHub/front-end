@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
           backgroundColor: backgroundDarkBlue,
           flexibleSpace: SafeArea(
             child: TabBar(
+              //TODO нужно их сделать с margin-ами. Если запихнуть в такой контейнер то табы просто не отображаются. Решение пока не нашел
               isScrollable: true,
               controller: controller.tabController,
               labelColor: selectedTabColor,

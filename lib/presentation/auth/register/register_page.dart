@@ -35,6 +35,7 @@ class RegisterPage extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: SingleChildScrollView(
+              // TODO не центрится идеально по центру.
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
