@@ -1,4 +1,4 @@
-class Folder{
+class Folder {
   final int id;
   final String name;
 
@@ -13,6 +13,18 @@ class Folder{
 
   @override
   String toString() {
-    return "($id: $name)";
+    return "$id: $name";
+  }
+
+  @override
+  int get hashCode => Object.hash(id, name);
+
+  @override
+  bool operator ==(Object other) {
+    if (other.runtimeType != runtimeType) {
+      return false;
+    }
+
+    return other is Folder && other.id == id;
   }
 }

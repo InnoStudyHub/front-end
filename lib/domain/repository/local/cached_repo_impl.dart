@@ -81,7 +81,7 @@ class CachedRepoImpl implements CachedRepository {
   Future<void> updateFolders() async {
     var response = await remote.getFolderList();
     if (response is Success) {
-      for (var folder in response.data!){
+      for (var folder in response.data!) {
         _folderList.add(folder);
       }
     }

@@ -253,6 +253,5 @@ class DeckRepositoryImpl implements DeckRepository {
 
       return Fail(errorMessage: response.body);
     }
-
   }
 }
