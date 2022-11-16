@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:study_hub/model/models/image.dart';
 import 'single_card_controller.dart';
 import '../../../../model/models/create_card.dart';
 import '../../../util/color_codes.dart';
@@ -51,7 +53,13 @@ class SingleCardView extends StatelessWidget {
                 card.questionImage == null
                     ? _addImageButton(true, controller.update)
                     : const Center(),
-                _imagePreview(card.questionImage, true, 0, controller.update),
+                if (card.questionImage != null)
+                  _imagePreview(
+                    card.questionImage!,
+                    true,
+                    0,
+                    controller.update,
+                  ),
               ],
             ),
             _formFieldHeading("Answer"),
@@ -159,20 +167,32 @@ class SingleCardView extends StatelessWidget {
             title,
             style: const TextStyle(
               color: Colors.white,
-              fontFamily: "Roboto",
               fontWeight: FontWeight.w500,
               fontSize: 14,
             ),
           ),
           onPressed: () async {
             XFile? im = await picker.pickImage(source: ImageSource.gallery);
-            if (isQuestion) {
-              card.questionImage = im!.path;
-            } else {
-              if (card.answerImages == null) {
-                card.answerImages = [im!.path];
+            if (!kIsWeb) {
+              if (isQuestion) {
+                card.questionImage = CardImage(image: im!.path);
               } else {
-                card.answerImages!.add(im!.path);
+                if (card.answerImages == null) {
+                  card.answerImages = [CardImage(image: im!.path)];
+                } else {
+                  card.answerImages!.add(CardImage(image: im!.path));
+                }
+              }
+            } else if (kIsWeb) {
+              var f = await im!.readAsBytes();
+              if (isQuestion) {
+                card.questionImage = CardImage(webImage: f);
+              } else {
+                if (card.answerImages == null) {
+                  card.answerImages = [CardImage(webImage: f)];
+                } else {
+                  card.answerImages!.add(CardImage(webImage: f));
+                }
               }
             }
             update();
@@ -183,41 +203,42 @@ class SingleCardView extends StatelessWidget {
   }
 
   Widget _imagePreview(
-    String? image,
+    CardImage image,
     bool isQuestion,
     int i,
     Function() update,
   ) {
     var tag = "$index $isQuestion $i";
+    var isWeb = image.webImage != null;
 
-    return image != null
-        ? Container(
-            margin: const EdgeInsets.all(10),
-            constraints: const BoxConstraints(
-              maxHeight: 50,
-              maxWidth: 300,
-            ),
-            child: GestureDetector(
-              onTap: () {
-                Get.to(() => FullscreenImageCreate(
-                      card: card,
-                      isQuestion: isQuestion,
-                      index: i,
-                      update: update,
-                      heroTag: tag,
-                    ));
-              },
-              child: Hero(
-                tag: tag,
-                child: Image(
-                  image: FileImage(File(image)),
-                  fit: BoxFit.scaleDown,
-                  height: 50,
-                ),
-              ),
-            ),
-          )
-        : const Center();
+    return Container(
+      margin: const EdgeInsets.all(10),
+      constraints: const BoxConstraints(
+        maxHeight: 50,
+        maxWidth: 300,
+      ),
+      child: GestureDetector(
+        onTap: () {
+          Get.to(() => FullscreenImageCreate(
+                card: card,
+                isQuestion: isQuestion,
+                index: i,
+                update: update,
+                heroTag: tag,
+              ));
+        },
+        child: Hero(
+          tag: tag,
+          child: Image(
+            image: isWeb
+                ? MemoryImage(image.webImage!, scale: 1) as ImageProvider
+                : FileImage(File(image.image!)),
+            fit: BoxFit.scaleDown,
+            height: 50,
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _imagePreviewList(Function() update) {

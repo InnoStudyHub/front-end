@@ -16,18 +16,20 @@ class HomePage extends StatelessWidget {
           elevation: 0.0,
           backgroundColor: backgroundDarkBlue,
           flexibleSpace: SafeArea(
-            child: TabBar(
-              //TODO нужно их сделать с margin-ами. Если запихнуть в такой контейнер то табы просто не отображаются. Решение пока не нашел
-              isScrollable: true,
-              controller: controller.tabController,
-              labelColor: selectedTabColor,
-              unselectedLabelColor: unselectedTabColor,
-              indicatorColor: selectedTabColor,
-              indicatorSize: TabBarIndicatorSize.label,
-              tabs: const [
-                Tab(text: 'Recent'),
-                Tab(text: 'For You'),
-              ],
+            child: Container(
+              margin: const EdgeInsets.only(left: 105),
+              child: TabBar(
+                isScrollable: true,
+                controller: controller.tabController,
+                labelColor: selectedTabColor,
+                unselectedLabelColor: unselectedTabColor,
+                indicatorColor: selectedTabColor,
+                indicatorSize: TabBarIndicatorSize.label,
+                tabs: const [
+                  Tab(text: 'Recent'),
+                  Tab(text: 'For You'),
+                ],
+              ),
             ),
           ),
         ),

@@ -16,7 +16,6 @@ class CreateDeckPage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Center(
-            //TODO тоже идеально не центрируется
             child: SizedBox(
               width: 320,
               child: Column(
@@ -39,7 +38,8 @@ class CreateDeckPage extends StatelessWidget {
                   OutlinedTextField(
                     label: "Semester. ex: Sum21, F21, S21",
                     assetName: "assets/icons/create_page/materials_year.svg",
-                    textFieldController: controller.materialSemesterNameController,
+                    textFieldController:
+                        controller.materialSemesterNameController,
                     error: controller.materialSemesterError,
                   ),
                   ThemedMaterialButton(

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-
 import '../../util/color_codes.dart';
 import '../../util/routes.dart';
 
@@ -13,8 +11,6 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
-          // TODO не центрится идеально по центру. Даже если убрать bottom
-          // TODO из _textAndButtons() и _welcomeImage()
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

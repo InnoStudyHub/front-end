@@ -68,22 +68,40 @@ class DeckRepositoryImpl implements DeckRepository {
     List<http.MultipartFile> files = [];
     for (var card in deck.cards) {
       if (card.questionImage != null) {
-        var file = await http.MultipartFile.fromPath(
-          card.questionImageKey!,
-          card.questionImage!,
-          contentType: MediaType('image', 'jpg'),
-        );
-        files.add(file);
+        if (card.questionImage!.image != null) {
+          var file = await http.MultipartFile.fromPath(
+            card.questionImageKey!,
+            card.questionImage!.image!,
+            contentType: MediaType('image', 'jpg'),
+          );
+          files.add(file);
+        } else if (card.questionImage!.webImage != null) {
+          var file = http.MultipartFile.fromBytes(
+            card.questionImageKey!,
+            card.questionImage!.webImage!,
+            contentType: MediaType('image', 'jpg'),
+          );
+          files.add(file);
+        }
       }
 
       if (card.answerImages != null) {
         for (var i = 0; i < card.answerImages!.length; i++) {
-          var file = await http.MultipartFile.fromPath(
-            card.answerImageKeys![i],
-            card.answerImages![i],
-            contentType: MediaType('image', 'jpg'),
-          );
-          files.add(file);
+          if (card.answerImages![i].image != null) {
+            var file = await http.MultipartFile.fromPath(
+              card.answerImageKeys![i],
+              card.answerImages![i].image!,
+              contentType: MediaType('image', 'jpg'),
+            );
+            files.add(file);
+          } else if (card.answerImages![i].webImage != null) {
+            var file = http.MultipartFile.fromBytes(
+              card.answerImageKeys![i],
+              card.answerImages![i].webImage!,
+              contentType: MediaType('image', 'jpg'),
+            );
+            files.add(file);
+          }
         }
       }
     }
@@ -126,8 +144,10 @@ class DeckRepositoryImpl implements DeckRepository {
       List<Deck> decks = [];
       List decksListJson = json.decode(response.body);
 
-      for (var i = decksListJson.length - 1; i > 0; i--) {
-        decks.add(Deck.fromJson(decksListJson[i]));
+      for (var i = decksListJson.length - 1; i >= 0; i--) {
+        var temp = Deck.fromJson(decksListJson[i]);
+        debugPrint(temp.toString());
+        decks.add(temp);
       }
 
       return Success(successData: decks);

@@ -17,20 +17,22 @@ class ProfilePage extends GetView<ProfileController> {
         backgroundColor: backgroundDarkBlue,
         elevation: 0.0,
         flexibleSpace: SafeArea(
-          child: TabBar(
-            isScrollable: true,
-            controller: controller.tabController,
-            labelColor: selectedTabColor,
-            unselectedLabelColor: unselectedTabColor,
-            indicatorColor: selectedTabColor,
-            indicatorSize: TabBarIndicatorSize.label,
-            //isScrollable: true,
-            tabs: const [
-              Tab(text: 'Groups'),
-              Tab(text: "My Decks"),
-              Tab(text: 'History'),
-              Tab(text: 'Settings'),
-            ],
+          child: Container(
+            margin: const EdgeInsets.only(left: 105),
+            child: TabBar(
+              isScrollable: true,
+              controller: controller.tabController,
+              labelColor: selectedTabColor,
+              unselectedLabelColor: unselectedTabColor,
+              indicatorColor: selectedTabColor,
+              indicatorSize: TabBarIndicatorSize.label,
+              tabs: const [
+                Tab(text: 'Groups'),
+                Tab(text: "My Decks"),
+                Tab(text: 'History'),
+                Tab(text: 'Settings'),
+              ],
+            ),
           ),
         ),
       ),

@@ -7,7 +7,7 @@ class Deck {
   String deckName;
   String semester;
   List<Card> cards;
-  bool isFavourite = false;
+  bool isFavourite;
 
   get folderName => folderId.toString();
 
@@ -18,6 +18,7 @@ class Deck {
     required this.deckName,
     required this.semester,
     required this.cards,
+    required this.isFavourite,
   });
 
   static Deck fromJson(Map<String, Object?> jsonMap) {
@@ -28,11 +29,12 @@ class Deck {
     }
 
     return Deck(
-      id: jsonMap["id"] as int,
+      id: jsonMap["deck_id"] as int,
       folderId: jsonMap["folder_id"] as int,
       authorId: jsonMap["author_id"] as int,
       deckName: jsonMap["deck_name"] as String,
       semester: jsonMap["semester"] as String,
+      isFavourite: jsonMap["is_favourite"] as bool,
       cards: cards,
     );
   }
