@@ -76,6 +76,8 @@ class CreateDeckPage extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Obx(
         () => DropdownButton<Folder>(
+          dropdownColor: backgroundDarkBlue,
+
           value: controller.folderList.isEmpty
               ? Folder(id: -1, name: "name")
               : controller.folderList.first,
@@ -94,14 +96,17 @@ class CreateDeckPage extends StatelessWidget {
               );
             }).toList();
           },
-          dropdownColor:
-              controller.courseNameError == null ? Colors.red : Colors.white,
+
           items: controller.folderList
               .map<DropdownMenuItem<Folder>>((Folder value) {
             return DropdownMenuItem<Folder>(
               value: value,
               child: Text(
                 value.name,
+                style: const TextStyle(
+                  color: selectedMenuColor,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             );
           }).toList(),
