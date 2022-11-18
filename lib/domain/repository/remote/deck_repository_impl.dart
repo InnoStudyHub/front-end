@@ -79,7 +79,8 @@ class DeckRepositoryImpl implements DeckRepository {
           var file = http.MultipartFile.fromBytes(
             card.questionImageKey!,
             card.questionImage!.webImage!,
-            contentType: MediaType('image', 'jpg'),
+            contentType: MediaType('application', 'json'),
+            filename: "Name",
           );
           files.add(file);
         }
