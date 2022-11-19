@@ -12,7 +12,7 @@ class DeckPreviewController extends GetxController {
     var response = await deckRepo.addToFavourites(deck);
     if (response is Success) {
       deck.isFavourite = true;
-      result = "Successfully added deck to favourites";
+      result = "Successfully ADDED deck to favourites";
       update();
     } else {
       result = "Couldn't add deck to favourites, try again later";
@@ -24,7 +24,7 @@ class DeckPreviewController extends GetxController {
     var response = await deckRepo.removeFromFavourites(deck);
     if (response is Success) {
       deck.isFavourite = false;
-      result = "Successfully removed deck from favourites";
+      result = "Successfully REMOVED deck from favourites";
       update();
     } else {
       result = "Couldn't remove deck from favourites, try again later";

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/presentation/session/profile/groups/groups_page.dart';
@@ -20,7 +21,9 @@ class ProfilePage extends GetView<ProfileController> {
           child: Container(
             margin: const EdgeInsets.only(left: 105),
             child: TabBar(
-              isScrollable: true,
+              isScrollable: kIsWeb
+                  ? true
+                  : false,
               controller: controller.tabController,
               labelColor: selectedTabColor,
               unselectedLabelColor: unselectedTabColor,
