@@ -11,7 +11,6 @@ class MyDecksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<MyDecksController>(builder: (controller) {
       return kIsWeb
           ? _web(controller)
@@ -39,7 +38,7 @@ class MyDecksPage extends StatelessWidget {
           : Container(
               margin: const EdgeInsets.fromLTRB(108, 40, 102, 5),
               child:
-              /*ListView.builder(
+                  /*ListView.builder(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 itemCount: controller.decks!.length,
@@ -47,7 +46,7 @@ class MyDecksPage extends StatelessWidget {
                   return DeckPreview(deck: controller.decks![index]);
                 },
               ),*/
-              GridView.builder(
+                  GridView.builder(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

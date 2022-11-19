@@ -20,9 +20,7 @@ class HomePage extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(left: 105),
               child: TabBar(
-                isScrollable: kIsWeb
-                    ? true
-                    : false,
+                isScrollable: kIsWeb ? true : false,
                 controller: controller.tabController,
                 labelColor: selectedTabColor,
                 unselectedLabelColor: unselectedTabColor,
