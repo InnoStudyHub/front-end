@@ -23,14 +23,14 @@ class DeckViewPage extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
 
     return GetBuilder<DeckViewController>(builder: (controller) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(deck.deckName),
-          elevation: 0,
-        ),
-        body: kIsWeb
-            ? _webDeckView(controller, screenSize)
-            : SafeArea(
+      return kIsWeb
+          ? _webDeckView(controller, screenSize)
+          : Scaffold(
+              appBar: AppBar(
+                title: Text(deck.deckName),
+                elevation: 0,
+              ),
+              body: SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -79,7 +79,7 @@ class DeckViewPage extends StatelessWidget {
                   ],
                 ),
               ),
-      );
+            );
     });
   }
 
@@ -180,26 +180,28 @@ class DeckViewPage extends StatelessWidget {
   }
 
   _webDeckView(DeckViewController controller, Size screenSize) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _webDeckInfoColumn(),
-              _webDeckButtons(),
-            ],
-          ),
-          _webNumberOfCards(),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(
-                  top: 40, left: 105, right: 105, bottom: 20),
-              child: webCards(screenSize),
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _webDeckInfoColumn(),
+                _webDeckButtons(),
+              ],
             ),
-          ),
-        ],
+            _webNumberOfCards(),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(
+                    top: 40, left: 105, right: 105, bottom: 20,),
+                child: webCards(screenSize),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
