@@ -52,7 +52,7 @@ class AddCardsPage extends StatelessWidget {
 
   Widget _addButton(AddCardsController controller) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(105, 30, 105, 0),
+      margin: const EdgeInsets.fromLTRB(105, 30, 105, 30),
       height: 60,
       child: MaterialButton(
         onPressed: () {
