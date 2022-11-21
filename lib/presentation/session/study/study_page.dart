@@ -1,13 +1,16 @@
-import 'package:study_hub/model/models/card.dart' as card;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/model/models/card.dart' as card;
 import 'package:study_hub/presentation/session/study/study_controller.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
+
 import '../../widgets/image_preview.dart';
 
 class StudyPage extends StatelessWidget {
   final List<card.Card> cards;
+
   const StudyPage({required this.cards, Key? key}) : super(key: key);
 
   @override
@@ -17,19 +20,21 @@ class StudyPage extends StatelessWidget {
     return GetBuilder<StudyController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
-          child: Column(
-            children: [
-              _header(),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: cards.length,
-                itemBuilder: (context, index) {
-                  return _card(context, index);
-                },
-              ),
-            ],
-          ),
+          child: kIsWeb
+              ? _webStudyPage(controller)
+              : Column(
+                  children: [
+                    _header(),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: cards.length,
+                      itemBuilder: (context, index) {
+                        return _card(context, index);
+                      },
+                    ),
+                  ],
+                ),
         ),
       );
     });
@@ -183,6 +188,35 @@ class StudyPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  _webStudyPage(StudyController controller) {
+    return Column(
+      children: [
+        _webHeader(),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: cards.length,
+          itemBuilder: (context, index) {
+            return _card(context, index);
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _webHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _cancelButton(),
+        _numberOfCards(),
+        //TODO
+        const SizedBox(width: 60),
+      ],
     );
   }
 }
