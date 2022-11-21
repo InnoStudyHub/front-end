@@ -12,27 +12,25 @@ class MyDecksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery
-        .of(context)
-        .size;
+    var screenSize = MediaQuery.of(context).size;
 
     return GetBuilder<MyDecksController>(builder: (controller) {
       return kIsWeb
           ? _web(controller, screenSize)
           : Scaffold(
-        body: Center(
-          child: controller.decks == null
-              ? const Center(child: CircularProgressIndicator())
-              : ListView.builder(
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            itemCount: controller.decks!.length,
-            itemBuilder: (context, index) {
-              return DeckPreview(deck: controller.decks![index]);
-            },
-          ),
-        ),
-      );
+              body: Center(
+                child: controller.decks == null
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: controller.decks!.length,
+                        itemBuilder: (context, index) {
+                          return DeckPreview(deck: controller.decks![index]);
+                        },
+                      ),
+              ),
+            );
     });
   }
 
@@ -41,35 +39,35 @@ class MyDecksPage extends StatelessWidget {
       body: controller.decks == null
           ? const Center(child: CircularProgressIndicator())
           : Column(
-        children: [
-          _webSearchBar(),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(108, 40, 102, 5),
-              child: DynamicHeightGridView(
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                /*gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              children: [
+                _webSearchBar(),
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.fromLTRB(108, 40, 102, 5),
+                    child: DynamicHeightGridView(
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      /*gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
                   childAspectRatio:
                   screenSize.width / screenSize.height * 1.4,
                 ),*/
-                crossAxisCount: screenSize.width > 1500
-                    ? 4
-                    : screenSize.width > 1300
-                    ? 3
-                    : screenSize.width > 1000
-                    ? 2
-                    : 1,
-                itemCount: controller.decks!.length,
-                builder: (context, index) {
-                  return WebDeckPreview(deck: controller.decks![index]);
-                },
-              ),
+                      crossAxisCount: screenSize.width > 1500
+                          ? 4
+                          : screenSize.width > 1300
+                              ? 3
+                              : screenSize.width > 1000
+                                  ? 2
+                                  : 1,
+                      itemCount: controller.decks!.length,
+                      builder: (context, index) {
+                        return WebDeckPreview(deck: controller.decks![index]);
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 
