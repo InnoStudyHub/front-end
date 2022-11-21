@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -6,16 +7,20 @@ import 'package:study_hub/presentation/session/check_knowledge/check_knowledge_p
 import 'package:study_hub/presentation/util/color_codes.dart';
 import 'package:study_hub/presentation/widgets/image_preview.dart';
 import 'package:study_hub/presentation/widgets/themed_material_button.dart';
+
 import '../study/study_page.dart';
 import 'deck_view_controller.dart';
 
 class DeckViewPage extends StatelessWidget {
   final Deck deck;
+
   const DeckViewPage({required this.deck, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<DeckViewController>(() => DeckViewController());
+
+    var screenSize = MediaQuery.of(context).size;
 
     return GetBuilder<DeckViewController>(builder: (controller) {
       return Scaffold(
@@ -23,55 +28,57 @@ class DeckViewPage extends StatelessWidget {
           title: Text(deck.deckName),
           elevation: 0,
         ),
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _infoField(
-                asset: "assets/icons/deck_view/folder.svg",
-                text: deck.folderName,
+        body: kIsWeb
+            ? _webDeckView(controller, screenSize)
+            : SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _infoField(
+                      asset: "assets/icons/deck_view/folder.svg",
+                      text: deck.folderName,
+                    ),
+                    _infoField(
+                      asset: "assets/icons/deck_view/user.svg",
+                      text: deck.authorId.toString(),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _infoField(
+                          asset: "assets/icons/deck_view/year.svg",
+                          text: deck.semester,
+                        ),
+                        _numberOfCards(),
+                      ],
+                    ),
+                    Container(
+                      height: 300,
+                      margin: const EdgeInsets.only(top: 35, left: 20),
+                      child: cards(),
+                    ),
+                    Expanded(child: Container()),
+                    ThemedMaterialButton(
+                      text: "Check knowledge",
+                      callback: () {
+                        Get.to(() => CheckKnowledgePage(cards: deck.cards));
+                      },
+                      color: selectedTabColor,
+                    ),
+                    ThemedMaterialButton(
+                      text: "Study Material",
+                      callback: () {
+                        Get.to(() => StudyPage(cards: deck.cards));
+                      },
+                      color: purpleAppColor,
+                    ),
+                    SizedBox(
+                      height: 30,
+                      child: Container(),
+                    ),
+                  ],
+                ),
               ),
-              _infoField(
-                asset: "assets/icons/deck_view/user.svg",
-                text: deck.authorId.toString(),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _infoField(
-                    asset: "assets/icons/deck_view/year.svg",
-                    text: deck.semester,
-                  ),
-                  _numberOfCards(),
-                ],
-              ),
-              Container(
-                height: 300,
-                margin: const EdgeInsets.only(top: 35, left: 20),
-                child: cards(),
-              ),
-              Expanded(child: Container()),
-              ThemedMaterialButton(
-                text: "Check knowledge",
-                callback: () {
-                  Get.to(() => CheckKnowledgePage(cards: deck.cards));
-                },
-                color: selectedTabColor,
-              ),
-              ThemedMaterialButton(
-                text: "Study Material",
-                callback: () {
-                  Get.to(() => StudyPage(cards: deck.cards));
-                },
-                color: purpleAppColor,
-              ),
-              SizedBox(
-                height: 30,
-                child: Container(),
-              ),
-            ],
-          ),
-        ),
       );
     });
   }
@@ -169,6 +176,103 @@ class DeckViewPage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  _webDeckView(DeckViewController controller, Size screenSize) {
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _webDeckInfoColumn(),
+              _webDeckButtons(),
+            ],
+          ),
+          Container(
+            height: 300,
+            margin: const EdgeInsets.only(top: 35, left: 20),
+            child: cards(),
+          ),
+          Expanded(child: Container()),
+          SizedBox(
+            height: 30,
+            child: Container(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _webDeckInfoColumn() {
+    return Container(
+      width: 500,
+      margin: const EdgeInsets.only(top: 30, left: 95),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: Container(
+              margin: const EdgeInsets.only(left: 20),
+              child: Text(
+                deck.deckName,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: "Roboto",
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: _infoField(
+              asset: "assets/icons/deck_view/folder.svg",
+              text: deck.folderName,
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: _infoField(
+              asset: "assets/icons/deck_view/user.svg",
+              text: deck.authorId.toString(),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: _infoField(
+              asset: "assets/icons/deck_view/year.svg",
+              text: deck.semester,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _webDeckButtons() {
+    return Container(
+      margin: const EdgeInsets.only(right: 85),
+      child: Column(
+        children: [
+          ThemedMaterialButton(
+            text: "Check knowledge",
+            callback: () {
+              Get.to(() => CheckKnowledgePage(cards: deck.cards));
+            },
+            color: selectedTabColor,
+          ),
+          ThemedMaterialButton(
+            text: "Study Material",
+            callback: () {
+              Get.to(() => StudyPage(cards: deck.cards));
+            },
+            color: purpleAppColor,
+          ),
+        ],
+      ),
     );
   }
 }
