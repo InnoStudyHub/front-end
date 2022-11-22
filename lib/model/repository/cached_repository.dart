@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import '../models/deck.dart';
-import '../models/folders_list.dart';
+import '../models/folder.dart';
 
 abstract class CachedRepository {
   RxList<Deck> get favouriteDecks;

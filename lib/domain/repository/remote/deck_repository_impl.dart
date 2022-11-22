@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:study_hub/common/constants.dart';
 import 'package:study_hub/model/models/create_deck.dart';
 import 'package:study_hub/model/models/deck.dart';
-import 'package:study_hub/model/models/folders_list.dart';
+import 'package:study_hub/model/models/folder.dart';
 import 'package:study_hub/model/models/resource.dart';
+import 'package:study_hub/model/models/search_result.dart';
 import 'package:study_hub/model/repository/auth_repository.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import '../../../model/models/search_query.dart';
 
 class DeckRepositoryImpl implements DeckRepository {
   final AuthRepository authRepo = Get.find();
@@ -257,7 +259,9 @@ class DeckRepositoryImpl implements DeckRepository {
 
   @override
   Future<Resource<Deck>> uploadDeckFromSheet(
-      CreateDeck deck, String link) async {
+    CreateDeck deck,
+    String link,
+  ) async {
     http.Response? response;
     final url = Uri.parse("$serverIP/deck/createFromSheet/");
     final body = jsonEncode({
@@ -292,6 +296,45 @@ class DeckRepositoryImpl implements DeckRepository {
         statusCode: response.statusCode,
         errorMessage: response.body,
       );
+    }
+  }
+
+  @override
+  Future<Resource<SearchResult>> search(SearchQuery query) async {
+    var credentialsResponse = await getAuthorizationHeader();
+    if (credentialsResponse is Fail) {
+      return Fail(errorMessage: credentialsResponse.message!);
+    }
+
+    var credentials = credentialsResponse.data!;
+
+    var headers = {"Content-Type": "application/json"};
+    headers.addAll(credentials);
+    var url = Uri.parse("$serverIP/user/search/");
+
+    var body = json.encode(query.toJson()).toString();
+
+    http.Response response;
+
+    try {
+      response = await http.post(url, headers: headers, body: body);
+    } catch (e) {
+      return Fail(errorMessage: e.toString());
+    }
+
+    int statusCode = response.statusCode;
+
+    if (statusCode == 200) {
+      var json = jsonDecode(response.body);
+      SearchResult result = SearchResult.fromJson(json);
+
+      return Success(successData: result);
+    } else {
+      if (statusCode == 403) {
+        return Fail(errorMessage: response.body);
+      }
+
+      return Fail(errorMessage: "Unexpected error");
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:study_hub/model/models/deck.dart';
-import 'package:study_hub/model/models/folders_list.dart';
+import 'package:study_hub/model/models/folder.dart';
 import 'package:study_hub/model/repository/cached_repository.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
 import '../../../model/models/resource.dart';

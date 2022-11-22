@@ -5,7 +5,7 @@ import 'upload_from_sheet/upload_from_sheet_page.dart';
 import 'create_card/add_cards_controller.dart';
 import 'upload_from_sheet/upload_from_sheet_controller.dart';
 import '../../../domain/use_case/deck/get_folder_list_use_case.dart';
-import '../../../model/models/folders_list.dart';
+import '../../../model/models/folder.dart';
 import 'create_card/add_cards.dart';
 
 class CreateDeckController extends GetxController {
@@ -95,7 +95,8 @@ class CreateDeckController extends GetxController {
     );
     if (toSheet) {
       Get.lazyPut<UploadFromSheetController>(
-          () => UploadFromSheetController(deck));
+        () => UploadFromSheetController(deck),
+      );
       Get.to(() => const UploadFromSheetPage());
     } else {
       Get.lazyPut<AddCardsController>(() => AddCardsController(deck));
