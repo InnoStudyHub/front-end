@@ -12,7 +12,6 @@ class UploadFromSheetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<UploadFromSheetController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
@@ -64,7 +63,7 @@ class UploadFromSheetPage extends StatelessWidget {
                 text: "See Example Sheet",
                 callback: () async {
                   Uri url = Uri.parse(
-                      "https://docs.google.com/spreadsheets/d/1BVIUaZ2Yach5lDKDN5W9_D7WVNkQzPZs1l3JTQ0R3q0/edit#gid=0",
+                    "https://docs.google.com/spreadsheets/d/1BVIUaZ2Yach5lDKDN5W9_D7WVNkQzPZs1l3JTQ0R3q0/edit#gid=0",
                   );
                   if (!await launchUrl(url)) {
                     debugPrint("Can't open sheet");

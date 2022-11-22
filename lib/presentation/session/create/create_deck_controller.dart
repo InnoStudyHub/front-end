@@ -94,7 +94,8 @@ class CreateDeckController extends GetxController {
       semester: _materialSemester,
     );
     if (toSheet) {
-      Get.lazyPut<UploadFromSheetController>(() => UploadFromSheetController(deck));
+      Get.lazyPut<UploadFromSheetController>(
+          () => UploadFromSheetController(deck));
       Get.to(() => const UploadFromSheetPage());
     } else {
       Get.lazyPut<AddCardsController>(() => AddCardsController(deck));
