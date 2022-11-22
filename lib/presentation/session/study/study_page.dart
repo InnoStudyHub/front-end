@@ -47,7 +47,7 @@ class StudyPage extends StatelessWidget {
       children: [
         _cancelButton(),
         _numberOfCards(),
-        const SizedBox(width: 60),
+        _downloadButton(),
       ],
     );
   }
@@ -57,14 +57,19 @@ class StudyPage extends StatelessWidget {
       margin: const EdgeInsets.only(left: 20, top: 20),
       child: Align(
         alignment: Alignment.topLeft,
-        child: IconButton(
-          iconSize: 20,
-          onPressed: () {
-            Get.back();
-          },
-          icon: SvgPicture.asset(
-            "assets/icons/deck_view/close.svg",
-          ),
+        child: Row(
+          children: [
+            IconButton(
+              iconSize: 20,
+              onPressed: () {
+                Get.back();
+              },
+              icon: SvgPicture.asset(
+                "assets/icons/deck_view/close.svg",
+              ),
+            ),
+            kIsWeb ? _webDeckName() : null,
+          ],
         ),
       ),
     );
@@ -82,6 +87,24 @@ class StudyPage extends StatelessWidget {
           fontWeight: FontWeight.w400,
           color: greySecondary,
           fontSize: 16,
+        ),
+      ),
+    );
+  }
+
+  Widget _downloadButton() {
+    return Container(
+      margin: const EdgeInsets.only(right: 20, top: 20),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: IconButton(
+          iconSize: 20,
+          onPressed: () {
+            //TODO
+          },
+          icon: SvgPicture.asset(
+            "assets/icons/deck_view/download.svg",
+          ),
         ),
       ),
     );
@@ -192,31 +215,35 @@ class StudyPage extends StatelessWidget {
   }
 
   _webStudyPage(StudyController controller) {
-    return Column(
-      children: [
-        _webHeader(),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: cards.length,
-          itemBuilder: (context, index) {
-            return _card(context, index);
-          },
-        ),
-      ],
+    return Container(
+      margin: const EdgeInsets.fromLTRB(90, 10, 90, 30),
+      child: Column(
+        children: [
+          _header(),
+          const SizedBox(height: 20),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemCount: cards.length,
+              itemBuilder: (context, index) {
+                return _card(context, index);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _webHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        _cancelButton(),
-        _numberOfCards(),
-        //TODO
-        const SizedBox(width: 60),
-      ],
+  _webDeckName() {
+    return const Text(
+      // TODO get deck name from card
+      "There should be deck's name",
+      style: TextStyle(
+        color: selectedMenuColor,
+        fontSize: 20,
+      ),
     );
   }
 }
