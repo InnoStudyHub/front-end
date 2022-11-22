@@ -48,7 +48,7 @@ class CreateDeckPage extends StatelessWidget {
               ThemedMaterialButton(
                 text: "Create Cards",
                 callback: () {
-                  controller.createCards();
+                  controller.createCards(false);
                   if (controller.courseNameError != null) {
                     showSnackBar();
                   }
@@ -59,7 +59,10 @@ class CreateDeckPage extends StatelessWidget {
               ThemedMaterialButton(
                 text: "Upload from google sheet",
                 callback: () {
-                  Get.to(() => const UploadFromSheetPage());
+                  controller.createCards(true);
+                  if (controller.courseNameError != null) {
+                    showSnackBar();
+                  }
                 },
                 color: purpleAppColor,
               ),

@@ -26,7 +26,7 @@ class DeckRepositoryImpl implements DeckRepository {
   }
 
   @override
-  Future<Resource<Deck>> uploadDeck(CreateDeck deck, String accessToken) async {
+  Future<Resource<Deck>> uploadDeck(CreateDeck deck) async {
     http.StreamedResponse? response;
     final url = Uri.parse("$serverIP/deck/create/");
     final data = jsonEncode(deck.toJson());
@@ -93,12 +93,12 @@ class DeckRepositoryImpl implements DeckRepository {
   }
 
   @override
-  Future<Resource<List<Deck>>> getDecks(String accessToken) async {
+  Future<Resource<List<Deck>>> getDecks() async {
     return requestForDeck(url: Uri.parse("$serverIP/user/decks/get/"));
   }
 
   @override
-  Future<Resource<List<Deck>>> getFavourites(String accessToken) {
+  Future<Resource<List<Deck>>> getFavourites() {
     return requestForDeck(url: Uri.parse("$serverIP/user/favourite/get/"));
   }
 

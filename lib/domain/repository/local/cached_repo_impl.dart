@@ -59,7 +59,7 @@ class CachedRepoImpl implements CachedRepository {
 
   @override
   Future<void> updateMyDecks() async {
-    var response = await remote.getDecks("accessToken");
+    var response = await remote.getDecks();
     if (response is Success) {
       for (var deck in response.data!) {
         _myDecks.insert(0, deck);
@@ -69,7 +69,7 @@ class CachedRepoImpl implements CachedRepository {
 
   @override
   Future<void> updateFavourites() async {
-    var response = await remote.getFavourites("accessToken");
+    var response = await remote.getFavourites();
     if (response is Success) {
       for (var deck in response.data!) {
         _favouriteDecks.insert(0, deck);
