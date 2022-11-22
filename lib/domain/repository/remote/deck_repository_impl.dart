@@ -254,4 +254,44 @@ class DeckRepositoryImpl implements DeckRepository {
       return Fail(errorMessage: response.body);
     }
   }
+
+  @override
+  Future<Resource<Deck>> uploadDeckFromSheet(
+      CreateDeck deck, String link) async {
+    http.Response? response;
+    final url = Uri.parse("$serverIP/deck/createFromSheet/");
+    final body = jsonEncode({
+      "folder_id": deck.folderId,
+      "deck_name": deck.deckName,
+      "semester": deck.semester,
+      "url": link,
+    });
+    var credentialsResponse = await getAuthorizationHeader();
+    if (credentialsResponse is Fail) {
+      return Fail(errorMessage: credentialsResponse.message!);
+    }
+
+    var headers = {"Content-Type": "application/json"};
+    var credentials = credentialsResponse.data!;
+
+    headers.addAll(credentials);
+
+    try {
+      response = await http.post(url, headers: headers, body: body);
+    } catch (e) {
+      return Fail(errorMessage: e.toString());
+    }
+
+    if (response.statusCode == 201) {
+      var deckStr = response.body;
+      var newDeck = Deck.fromJson(json.decode(deckStr));
+
+      return Success(successData: newDeck);
+    } else {
+      return Fail(
+        statusCode: response.statusCode,
+        errorMessage: response.body,
+      );
+    }
+  }
 }

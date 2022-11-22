@@ -10,4 +10,5 @@ abstract class DeckRepository {
   Future<Resource<int>> addToFavourites(Deck deck);
   Future<Resource<int>> removeFromFavourites(Deck deck);
   Future<Resource<List<Folder>>> getFolderList();
+  Future<Resource<Deck>> uploadDeckFromSheet(CreateDeck deck, String link);
 }
