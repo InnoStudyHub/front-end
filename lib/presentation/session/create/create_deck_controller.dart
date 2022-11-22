@@ -9,12 +9,6 @@ import 'create_card/add_cards.dart';
 class CreateDeckController extends GetxController {
   RxList<Folder> folderList = RxList([Folder(id: 1, name: "math")]);
 
-  RxList<Folder> pidor = RxList([
-    // Folder(id: 1, name: "Course Name"),
-    // Folder(id: 10, name: "name"),
-    // Folder(id: 11, name: "AAAAAAAAAAAAAAA"),
-  ]);
-
   CreateDeckController() {
     folderList = GetFolderListUseCase.invoke();
 

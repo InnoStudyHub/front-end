@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'upload_from_sheet/upload_from_sheet_page.dart';
 import '../../../model/models/folders_list.dart';
 import '../../widgets/themed_material_button.dart';
 import '../../widgets/divider.dart';
@@ -58,7 +59,7 @@ class CreateDeckPage extends StatelessWidget {
               ThemedMaterialButton(
                 text: "Upload from google sheet",
                 callback: () {
-                  //TODO
+                  Get.to(() => const UploadFromSheetPage());
                 },
                 color: purpleAppColor,
               ),
@@ -77,7 +78,6 @@ class CreateDeckPage extends StatelessWidget {
       child: Obx(
         () => DropdownButton<Folder>(
           dropdownColor: backgroundDarkBlue,
-
           value: controller.folderList.isEmpty
               ? Folder(id: -1, name: "name")
               : controller.folderList.first,
@@ -96,7 +96,6 @@ class CreateDeckPage extends StatelessWidget {
               );
             }).toList();
           },
-
           items: controller.folderList
               .map<DropdownMenuItem<Folder>>((Folder value) {
             return DropdownMenuItem<Folder>(
