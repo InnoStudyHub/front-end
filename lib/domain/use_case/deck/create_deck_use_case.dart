@@ -12,7 +12,7 @@ class CreateDeckUseCase {
     DeckRepository remote = Get.find();
     CachedRepository cache = Get.find();
 
-    var response = await remote.uploadDeck(deck, "accessToken");
+    var response = await remote.uploadDeck(deck);
 
     if (response is Success) {
       cache.uploadDeck(deck: response.data!);

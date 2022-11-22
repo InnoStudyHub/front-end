@@ -29,7 +29,7 @@ class Deck {
     }
 
     return Deck(
-      id: jsonMap["id"] as int,
+      id: jsonMap["deck_id"] as int,
       folderId: jsonMap["folder_id"] as int,
       authorId: jsonMap["author_id"] as int,
       deckName: jsonMap["deck_name"] as String,
