@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'upload_from_sheet/upload_from_sheet_page.dart';
 import '../../widgets/themed_material_button.dart';
 import '../../widgets/divider.dart';
 import '../../widgets/outlined_text_field.dart';
-import 'upload_from_sheet/upload_from_sheet_page.dart';
 import '../../util/color_codes.dart';
 import 'create_deck_controller.dart';
 
@@ -13,6 +13,16 @@ class CreateDeckPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CreateDeckController>(builder: (controller) {
+      void showSnackBar() {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              controller.courseNameError.toString(),
+            ),
+          ),
+        );
+      }
+
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -46,7 +56,10 @@ class CreateDeckPage extends StatelessWidget {
                   ThemedMaterialButton(
                     text: "Create Cards",
                     callback: () {
-                      controller.createCards();
+                      controller.createCards(false);
+                      if (controller.courseNameError != null) {
+                        showSnackBar();
+                      }
                     },
                     color: selectedTabColor,
                   ),
@@ -54,7 +67,10 @@ class CreateDeckPage extends StatelessWidget {
                   ThemedMaterialButton(
                     text: "Upload from google sheet",
                     callback: () {
-                      Get.to(() => const UploadFromSheetPage());
+                      controller.createCards(true);
+                      if (controller.courseNameError != null) {
+                        showSnackBar();
+                      }
                     },
                     color: purpleAppColor,
                   ),

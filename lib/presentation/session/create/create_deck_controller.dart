@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:study_hub/model/models/create_deck.dart';
 import 'package:study_hub/presentation/session/create/create_card/add_cards_controller.dart';
 import 'create_card/add_cards.dart';
+import 'upload_from_sheet/upload_from_sheet_controller.dart';
+import 'upload_from_sheet/upload_from_sheet_page.dart';
 
 class CreateDeckController extends GetxController {
   CreateDeckController() {
@@ -75,7 +77,7 @@ class CreateDeckController extends GetxController {
     }
   }
 
-  void createCards() {
+  void createCards(bool toSheet) {
     debugPrint("CreateController, createCards: entered createCards");
     canProceed = true;
     _validateCourseName();
@@ -91,8 +93,14 @@ class CreateDeckController extends GetxController {
       deckName: _deckName,
       semester: _materialSemester,
     );
-    Get.lazyPut<AddCardsController>(() => AddCardsController(deck));
-    Get.to(() => const AddCardsPage());
+    if (toSheet) {
+      Get.lazyPut<UploadFromSheetController>(() => UploadFromSheetController(deck));
+      Get.to(() => const UploadFromSheetPage());
+    } else {
+      Get.lazyPut<AddCardsController>(() => AddCardsController(deck));
+      Get.to(() => const AddCardsPage());
+    }
+
     update();
   }
 }

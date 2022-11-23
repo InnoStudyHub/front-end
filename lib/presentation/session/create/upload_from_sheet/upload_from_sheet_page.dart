@@ -13,7 +13,6 @@ class UploadFromSheetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<UploadFromSheetController>(() => UploadFromSheetController());
 
     return GetBuilder<UploadFromSheetController>(builder: (controller) {
       return kIsWeb
@@ -56,7 +55,7 @@ class UploadFromSheetPage extends StatelessWidget {
                   ),
                 ),
               ),
-              _link(),
+              _link(controller),
               ThemedMaterialButton(
                 text: "Upload",
                 callback: () {
@@ -103,7 +102,7 @@ class UploadFromSheetPage extends StatelessWidget {
     );
   }
 
-  Widget _link() {
+  Widget _link(UploadFromSheetController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -119,9 +118,11 @@ class UploadFromSheetPage extends StatelessWidget {
             ),
           ),
         ),
-        const OutlinedTextField(
+        OutlinedTextField(
           assetName: "assets/icons/create_cards/link.svg",
           label: "Link",
+          error: controller.linkError,
+          textFieldController: controller.linkController,
         ),
       ],
     );
@@ -151,7 +152,7 @@ class UploadFromSheetPage extends StatelessWidget {
   Widget _webLeftButtonColumn(UploadFromSheetController controller){
     return Column(
       children: [
-        _link(),
+        _link(controller),
         const SizedBox(height: 70,),
         ThemedMaterialButton(
           text: "Upload",
