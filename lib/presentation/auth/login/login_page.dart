@@ -26,6 +26,7 @@ class LoginPage extends StatelessWidget {
       }
 
       return Scaffold(
+        // TODO adjust to Web and Mobile using kIsWeb
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: SingleChildScrollView(

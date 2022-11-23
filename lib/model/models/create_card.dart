@@ -1,7 +1,4 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:study_hub/model/models/image.dart';
 import 'package:study_hub/presentation/session/create/create_card/add_cards_controller.dart';
 
 class CreateCard {
@@ -9,10 +6,9 @@ class CreateCard {
   String? _answer;
   String? questionError;
   String? questionImageKey;
-  CardImage? questionImage;
-  List<CardImage>? answerImages;
+  List<String>? answerImages;
   List<String>? answerImageKeys;
-  Uint8List? webQuestionImage;
+  String? questionImage;
 
   TextEditingController questionController = TextEditingController();
   TextEditingController answerController = TextEditingController();
