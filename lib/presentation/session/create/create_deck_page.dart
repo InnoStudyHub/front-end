@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../model/models/folders_list.dart';
+import '../../../model/models/folder.dart';
 import '../../widgets/themed_material_button.dart';
 import '../../widgets/divider.dart';
 import '../../widgets/outlined_text_field.dart';

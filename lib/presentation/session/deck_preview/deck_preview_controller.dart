@@ -8,11 +8,13 @@ class DeckPreviewController extends GetxController {
   final DeckRepository deckRepo = Get.find();
 
   void addDeckToFavourites(Deck deck) {
+    deck.isFavourite = true;
     AddToFavouritesUseCase.invoke(deck);
     update();
   }
 
   void removeDeckFromFavourites(Deck deck) {
+    deck.isFavourite = false;
     RemoveFromFavouritesUseCase.invoke(deck);
     update();
   }

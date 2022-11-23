@@ -20,13 +20,15 @@ class StudyPage extends StatelessWidget {
           child: Column(
             children: [
               _header(),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: cards.length,
-                itemBuilder: (context, index) {
-                  return _card(context, index);
-                },
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: cards.length,
+                  itemBuilder: (context, index) {
+                    return _card(context, index);
+                  },
+                ),
               ),
             ],
           ),
@@ -142,7 +144,8 @@ class StudyPage extends StatelessWidget {
 
   Widget _answer(BuildContext context, int i) {
     bool isTextPresent = cards[i].answer != null;
-    bool areImagesPresent = cards[i].answerImageUrls != null;
+    bool areImagesPresent = cards[i].answerImageUrls != null &&
+        cards[i].answerImageUrls!.isNotEmpty;
 
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 15),
@@ -153,35 +156,38 @@ class StudyPage extends StatelessWidget {
             "assets/icons/create_cards/create_card_answer_tick.svg",
             color: unselectedMenuColor,
           ),
-          Column(
-            children: [
-              !isTextPresent
-                  ? Container()
-                  : Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: Text(
-                        cards[i].answer!,
-                        style: _style,
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                !isTextPresent
+                    ? Container()
+                    : Container(
+                        margin: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          cards[i].answer!,
+                          style: _style,
+                        ),
                       ),
-                    ),
-              !areImagesPresent
-                  ? Container()
-                  : SizedBox(
-                      height: 70,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: cards[i].answerImageUrls!.length,
-                        itemBuilder: (context, index) {
-                          return imagePreview(
-                            cards[i].answerImageUrls![index],
-                            50,
-                          );
-                        },
+                !areImagesPresent
+                    ? Container()
+                    : SizedBox(
+                        height: 70,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: cards[i].answerImageUrls!.length,
+                          itemBuilder: (context, index) {
+                            return imagePreview(
+                              cards[i].answerImageUrls![index],
+                              50,
+                            );
+                          },
+                        ),
                       ),
-                    ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

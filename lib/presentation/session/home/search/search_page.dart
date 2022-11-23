@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../widgets/folder_view.dart';
+import '../../deck_preview/deck_preview.dart';
 import 'search_controller.dart';
 import 'package:get/get.dart';
 import '../../../util/color_codes.dart';
@@ -29,8 +31,49 @@ class SearchPage extends StatelessWidget {
                       color: selectedMenuColor,
                     ),
                   ),
-                  _searchBar(),
+                  _searchBar(controller),
                 ],
+              ),
+              Expanded(
+                child: controller.hasResults
+                    ? ListView(
+                        children: [
+                          Obx(
+                            () => ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: controller.folders.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return FolderView(
+                                  folder: controller.folders[index],
+                                );
+                              },
+                            ),
+                          ),
+                          Obx(
+                            () => ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: controller.decks.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return DeckPreview(
+                                  deck: controller.decks[index],
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      )
+                    : const Center(
+                        child: Text(
+                          "No results",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                            color: selectedMenuColor,
+                          ),
+                        ),
+                      ),
               ),
             ],
           ),
@@ -39,13 +82,13 @@ class SearchPage extends StatelessWidget {
     });
   }
 
-  Widget _searchBar() {
+  Widget _searchBar(SearchController controller) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.only(right: 20, top: 6),
         height: 48,
         child: TextField(
-          onChanged: (value) => {},
+          //controller: controller,
           decoration: const InputDecoration(
             filled: true,
             fillColor: mainAppColor,
@@ -56,6 +99,11 @@ class SearchPage extends StatelessWidget {
           ),
           style: const TextStyle(fontSize: 18, color: greySecondary),
           cursorColor: greySecondary,
+          textInputAction: TextInputAction.search,
+          onSubmitted: (value) {
+            debugPrint(value);
+            controller.search(value);
+          },
         ),
       ),
     );
