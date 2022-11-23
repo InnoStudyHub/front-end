@@ -57,7 +57,8 @@ class SearchPage extends StatelessWidget {
                               itemCount: controller.decks.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return DeckPreview(
-                                    deck: controller.decks[index]);
+                                  deck: controller.decks[index],
+                                );
                               },
                             ),
                           ),

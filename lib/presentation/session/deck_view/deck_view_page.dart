@@ -148,13 +148,17 @@ class DeckViewPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
-                child: Text(
-                  deck.cards[index].question,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Text(
+                      deck.cards[index].question,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                   ),
                 ),
               ),
