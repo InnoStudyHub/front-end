@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../widgets/themed_material_button.dart';
 import '../../widgets/divider.dart';
 import '../../widgets/outlined_text_field.dart';
+import 'upload_from_sheet/upload_from_sheet_page.dart';
 import '../../util/color_codes.dart';
 import 'create_deck_controller.dart';
 
@@ -53,7 +54,7 @@ class CreateDeckPage extends StatelessWidget {
                   ThemedMaterialButton(
                     text: "Upload from google sheet",
                     callback: () {
-                      //TODO
+                      Get.to(() => const UploadFromSheetPage());
                     },
                     color: purpleAppColor,
                   ),
