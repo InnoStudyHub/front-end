@@ -19,7 +19,7 @@ class FavouritesController extends GetxController {
 
     if (accessToken is Fail) return;
 
-    var result = await decksRepo.getFavourites(accessToken.data!);
+    var result = await decksRepo.getFavourites();
 
     if (result is Success) {
       decks = result.data!;

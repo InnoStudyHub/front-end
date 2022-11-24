@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,28 +26,75 @@ class LoginPage extends StatelessWidget {
         );
       }
 
-      return Scaffold(
-        // TODO adjust to Web and Mobile using kIsWeb
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                _imageBackground(),
-                const SizedBox(
-                  width: 115,
+      return kIsWeb
+          ? Scaffold(
+              // TODO It is Web
+              resizeToAvoidBottomInset: false,
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      _webImageBackground(),
+                      const SizedBox(
+                        width: 115,
+                      ),
+                      Container(
+                        width: 333,
+                        margin:
+                            const EdgeInsets.only(top: 124.0, bottom: 124.0),
+                        child: Column(
+                          children: <Widget>[
+                            _webHeading(),
+                            const SizedBox(
+                              height: 87,
+                            ),
+                            OutlinedTextField(
+                              label: "Email",
+                              prefixIconData: Icons.email_outlined,
+                              textFieldController: controller.emailController,
+                              inputType: TextInputType.emailAddress,
+                              error: controller.emailError,
+                            ),
+                            _passwordFormField(controller: controller),
+                            _forgotPasswordButton(),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            _loginButton(controller, showSnackBar),
+                            _registerButton(),
+                            const SizedBox(
+                              height: 27,
+                            ),
+                            const ThemedDivider(),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            ContinueWithUIButton(callback: () {
+                              //TODO
+                            }),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Container(
-                  width: 333,
-                  margin: const EdgeInsets.only(top: 124.0, bottom: 124.0),
-                  child: Column(
+              ),
+            )
+          : Scaffold( //TODO It is Mobile
+              resizeToAvoidBottomInset: false,
+              body: SafeArea(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/login_page.png"),
+                      alignment: Alignment.centerLeft,
+                    ),
+                  ),
+                  child: ListView(
                     children: <Widget>[
                       _heading(),
-                      const SizedBox(
-                        height: 87,
-                      ),
                       OutlinedTextField(
                         label: "Email",
                         prefixIconData: Icons.email_outlined,
@@ -56,33 +104,39 @@ class LoginPage extends StatelessWidget {
                       ),
                       _passwordFormField(controller: controller),
                       _forgotPasswordButton(),
-                      const SizedBox(
-                        height: 10,
-                      ),
                       _loginButton(controller, showSnackBar),
                       _registerButton(),
-                      const SizedBox(
-                        height: 27,
-                      ),
                       const ThemedDivider(),
-                      const SizedBox(
-                        height: 12,
-                      ),
                       ContinueWithUIButton(callback: () {
                         //TODO
                       }),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-      );
+              ),
+            );
     });
   }
 
-  Widget _imageBackground() {
+  Widget _heading() {
+    return Align(
+      alignment: Alignment.topRight,
+      child: Container(
+        margin: const EdgeInsets.only(top: 50, right: 20, bottom: 65),
+        child: const Text(
+          "Welcome Back!",
+          style: TextStyle(
+            color: selectedMenuColor,
+            fontSize: 28,
+            fontFamily: "Roboto",
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _webImageBackground() {
     return Container(
       height: 632,
       width: 280,
@@ -95,7 +149,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _heading() {
+  Widget _webHeading() {
     return const Align(
       alignment: Alignment.topCenter,
       child: Text(

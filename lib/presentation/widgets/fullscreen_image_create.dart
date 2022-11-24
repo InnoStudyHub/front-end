@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -22,25 +21,8 @@ class FullscreenImageCreate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isWeb;
-    String? imagePath;
-    Uint8List? webImage;
-
-    if (isQuestion) {
-      isWeb = card.questionImage!.webImage != null;
-      if (!isWeb) {
-        imagePath = card.questionImage!.image;
-      } else {
-        webImage = card.questionImage!.webImage;
-      }
-    } else {
-      isWeb = card.answerImages![index].webImage != null;
-      if (!isWeb) {
-        imagePath = card.answerImages![index].image;
-      } else {
-        webImage = card.answerImages![index].webImage;
-      }
-    }
+    String imagePath =
+    isQuestion ? card.questionImage! : card.answerImages![index];
 
     return Scaffold(
       appBar: AppBar(
@@ -68,9 +50,7 @@ class FullscreenImageCreate extends StatelessWidget {
           child: Hero(
             tag: heroTag,
             child: Image(
-              image: isWeb
-                  ? MemoryImage(webImage!, scale: 1) as ImageProvider
-                  : FileImage(File(imagePath!)),
+              image: FileImage(File(imagePath)),
             ),
           ),
         ),

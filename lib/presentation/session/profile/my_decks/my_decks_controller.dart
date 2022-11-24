@@ -20,7 +20,7 @@ class MyDecksController extends GetxController {
 
     if (accessToken is Fail) return;
 
-    var result = await decksRepo.getDecks(accessToken.data!);
+    var result = await decksRepo.getDecks();
 
     if (result is Success) {
       decks = result.data!;
