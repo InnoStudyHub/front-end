@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../single_card/single_card_view.dart';
-import '../create_card/add_cards_controller.dart';
+
 import '../../../util/color_codes.dart';
+import '../create_card/add_cards_controller.dart';
+import '../single_card/single_card_view.dart';
 
 class AddCardsPage extends StatelessWidget {
   const AddCardsPage({Key? key}) : super(key: key);
@@ -10,12 +12,11 @@ class AddCardsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddCardsController>(builder: (controller) {
-      return Scaffold(
+      return kIsWeb
+      ? _web(controller, context)
+      : Scaffold(
         appBar: AppBar(
           title: const Text("Create"),
-          actions: [
-            _finishButton(controller),
-          ],
           elevation: 0,
         ),
         body: SingleChildScrollView(
@@ -25,6 +26,7 @@ class AddCardsPage extends StatelessWidget {
             children: <Widget>[
               _cards(controller, context),
               _addButton(controller),
+              _finishButton(controller),
             ],
           ),
         ),
@@ -32,9 +34,32 @@ class AddCardsPage extends StatelessWidget {
     });
   }
 
+  _web(AddCardsController controller, BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Create"),
+        actions: [
+          _finishButton(controller),
+        ],
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        physics: const ScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            _cards(controller, context),
+            _addButton(controller),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _cards(AddCardsController controller, BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 85, right: 85, top: 21),
+      margin:
+          kIsWeb ? const EdgeInsets.only(left: 85, right: 85, top: 21) : null,
       child: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -52,7 +77,9 @@ class AddCardsPage extends StatelessWidget {
 
   Widget _addButton(AddCardsController controller) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(105, 30, 105, 30),
+      margin: kIsWeb
+          ? const EdgeInsets.fromLTRB(105, 30, 105, 30)
+          : const EdgeInsets.fromLTRB(20, 30, 20, 0),
       height: 60,
       child: MaterialButton(
         onPressed: () {
@@ -70,9 +97,11 @@ class AddCardsPage extends StatelessWidget {
 
   Widget _finishButton(AddCardsController controller) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 15, 105, 15),
-      width: 156,
-      height: 30,
+      margin: kIsWeb
+          ? const EdgeInsets.fromLTRB(0, 15, 105, 15)
+          : const EdgeInsets.fromLTRB(20, 30, 20, 15),
+      width: kIsWeb ? 156 : null,
+      height: kIsWeb ? 30 : 60,
       child: MaterialButton(
         onPressed: () {
           controller.finish();
@@ -83,7 +112,7 @@ class AddCardsPage extends StatelessWidget {
           "Finish",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 16,
+            fontSize: kIsWeb ? 16 : 14,
             fontWeight: FontWeight.w400,
           ),
         ),
