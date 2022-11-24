@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
@@ -45,9 +44,7 @@ class FlipCard extends StatelessWidget {
 
   Widget _front() {
     return Container(
-      height: kIsWeb
-      ? 550
-      : 0,
+      height: 350,
       width: double.infinity,
       decoration: BoxDecoration(
         color: darkCard,
@@ -56,14 +53,20 @@ class FlipCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-            child: Text(
-              card.question,
-              style: const TextStyle(
-                fontSize: 16,
-                color: selectedMenuColor,
-                fontWeight: FontWeight.w400,
+          Expanded(
+            child: Center(
+              child: SingleChildScrollView(
+                child: Container(
+                  margin: const EdgeInsets.all(15),
+                  child: Text(
+                    card.question,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: selectedMenuColor,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -84,9 +87,7 @@ class FlipCard extends StatelessWidget {
       alignment: Alignment.center,
       transform: Matrix4.identity()..rotateY(pi),
       child: Container(
-        height: kIsWeb
-        ? 550
-        : 350,
+        height: 350,
         width: double.infinity,
         decoration: BoxDecoration(
           color: darkCard,
@@ -96,18 +97,25 @@ class FlipCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (card.answer != null)
-              Container(
-                margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-                child: Text(
-                  card.answer!,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: selectedMenuColor,
-                    fontWeight: FontWeight.w400,
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      margin: const EdgeInsets.all(15),
+                      child: Text(
+                        card.answer!,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: selectedMenuColor,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            if (card.answerImageUrls != null)
+            if (card.answerImageUrls != null &&
+                card.answerImageUrls!.isNotEmpty)
               Expanded(
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,

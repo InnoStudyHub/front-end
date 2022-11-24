@@ -14,11 +14,11 @@ class HomePage extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: backgroundDarkBlue,
+          elevation: kIsWeb ? 0.0 : null,
+          backgroundColor: kIsWeb ? backgroundDarkBlue : mainAppColor,
           flexibleSpace: SafeArea(
             child: Container(
-              margin: const EdgeInsets.only(left: 105),
+              margin: kIsWeb ? const EdgeInsets.only(left: 105) : null,
               child: TabBar(
                 isScrollable: kIsWeb ? true : false,
                 controller: controller.tabController,

@@ -15,11 +15,11 @@ class ProfilePage extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: backgroundDarkBlue,
-        elevation: 0.0,
+        backgroundColor: kIsWeb ? backgroundDarkBlue : mainAppColor,
+        elevation: kIsWeb ? 0.0 : null,
         flexibleSpace: SafeArea(
           child: Container(
-            margin: const EdgeInsets.only(left: 105),
+            margin: kIsWeb ? const EdgeInsets.only(left: 105) : null,
             child: TabBar(
               isScrollable: kIsWeb ? true : false,
               controller: controller.tabController,

@@ -29,41 +29,41 @@ class CheckKnowledgePage extends StatelessWidget {
           child: kIsWeb
               ? _webCheckKnowledgePage(swipeController)
               : Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _header(),
-              Container(
-                margin: const EdgeInsets.only(left: 20, right: 20),
-                height: 360,
-                width: Get.width,
-                child: Stack(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SwipableStack(
-                      detectableSwipeDirections: const {
-                        SwipeDirection.right,
-                        SwipeDirection.left,
-                      },
-                      stackClipBehaviour: Clip.none,
-                      controller: swipeController,
-                      horizontalSwipeThreshold: 0.5,
-                      verticalSwipeThreshold: 0.5,
-                      itemCount: cards.length,
-                      builder: (context, properties) {
-                        final itemIndex = properties.index % cards.length;
+                    _header(),
+                    Container(
+                      margin: const EdgeInsets.only(left: 20, right: 20),
+                      height: 360,
+                      width: Get.width,
+                      child: Stack(
+                        children: [
+                          SwipableStack(
+                            detectableSwipeDirections: const {
+                              SwipeDirection.right,
+                              SwipeDirection.left,
+                            },
+                            stackClipBehaviour: Clip.none,
+                            controller: swipeController,
+                            horizontalSwipeThreshold: 0.5,
+                            verticalSwipeThreshold: 0.5,
+                            itemCount: cards.length,
+                            builder: (context, properties) {
+                              final itemIndex = properties.index % cards.length;
 
-                        return FlipCard(card: cards[itemIndex]);
-                      },
-                    ),
-                    if (swipeController.currentIndex == cards.length)
-                      Center(
-                        child: _end(),
+                              return FlipCard(card: cards[itemIndex]);
+                            },
+                          ),
+                          if (swipeController.currentIndex == cards.length)
+                            Center(
+                              child: _end(),
+                            ),
+                        ],
                       ),
+                    ),
+                    const SizedBox(height: 60),
                   ],
                 ),
-              ),
-              const SizedBox(height: 60),
-            ],
-          ),
         ),
       );
     });
@@ -283,15 +283,19 @@ class CheckKnowledgePage extends StatelessWidget {
 
   _tapOnCardText() {
     return Container(
-      margin: const EdgeInsets.only(top: 15, left: 450,),
-      child: Align(
+      margin: const EdgeInsets.only(
+        top: 15,
+        left: 450,
+      ),
+      child: const Align(
         alignment: Alignment.centerLeft,
-        child: const Text(
+        child: Text(
           "Tap on the card to flip it",
           style: TextStyle(
             color: unselectedTabColor,
             fontSize: 18,
-          ),),
+          ),
+        ),
       ),
     );
   }
