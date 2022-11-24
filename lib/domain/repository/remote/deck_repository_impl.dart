@@ -259,9 +259,9 @@ class DeckRepositoryImpl implements DeckRepository {
 
   @override
   Future<Resource<Deck>> uploadDeckFromSheet(
-      CreateDeck deck,
-      String link,
-      ) async {
+    CreateDeck deck,
+    String link,
+  ) async {
     http.Response? response;
     final url = Uri.parse("$serverIP/deck/createFromSheet/");
     final body = jsonEncode({

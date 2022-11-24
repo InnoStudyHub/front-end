@@ -22,7 +22,7 @@ class FullscreenImageCreate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String imagePath =
-    isQuestion ? card.questionImage! : card.answerImages![index];
+        isQuestion ? card.questionImage! : card.answerImages![index];
 
     return Scaffold(
       appBar: AppBar(

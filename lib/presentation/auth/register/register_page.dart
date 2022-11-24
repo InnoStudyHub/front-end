@@ -36,7 +36,8 @@ class RegisterPage extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: kIsWeb
-                ? SingleChildScrollView( // TODO It is Web
+                ? SingleChildScrollView(
+                    // TODO It is Web
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,7 +91,8 @@ class RegisterPage extends StatelessWidget {
                       ],
                     ),
                   )
-                : Container( // TODO It is Mobile
+                : Container(
+                    // TODO It is Mobile
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/images/register_page.png"),

@@ -41,7 +41,7 @@ class CreateDeckController extends GetxController {
   TextEditingController courseNameController = TextEditingController();
   TextEditingController deckNameController = TextEditingController();
   TextEditingController materialSemesterNameController =
-  TextEditingController();
+      TextEditingController();
 
   void _validateCourseName() {
     if (folder.id == -1) {
@@ -95,7 +95,7 @@ class CreateDeckController extends GetxController {
     );
     if (toSheet) {
       Get.lazyPut<UploadFromSheetController>(
-            () => UploadFromSheetController(deck),
+        () => UploadFromSheetController(deck),
       );
       Get.to(() => const UploadFromSheetPage());
     } else {

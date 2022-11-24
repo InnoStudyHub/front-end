@@ -82,7 +82,8 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             )
-          : Scaffold( //TODO It is Mobile
+          : Scaffold(
+              //TODO It is Mobile
               resizeToAvoidBottomInset: false,
               body: SafeArea(
                 child: Container(

@@ -17,7 +17,8 @@ class MyDecksPage extends StatelessWidget {
     return GetBuilder<MyDecksController>(builder: (controller) {
       return kIsWeb
           ? _web(controller, screenSize)
-          : Scaffold( //TODO redo this code for Web (Nurdaulet)
+          : Scaffold(
+              //TODO redo this code for Web (Nurdaulet)
               body: Obx(
                 () => ListView.builder(
                   shrinkWrap: true,

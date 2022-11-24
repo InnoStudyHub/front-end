@@ -13,24 +13,24 @@ class AddCardsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AddCardsController>(builder: (controller) {
       return kIsWeb
-      ? _web(controller, context)
-      : Scaffold(
-        appBar: AppBar(
-          title: const Text("Create"),
-          elevation: 0,
-        ),
-        body: SingleChildScrollView(
-          physics: const ScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              _cards(controller, context),
-              _addButton(controller),
-              _finishButton(controller),
-            ],
-          ),
-        ),
-      );
+          ? _web(controller, context)
+          : Scaffold(
+              appBar: AppBar(
+                title: const Text("Create"),
+                elevation: 0,
+              ),
+              body: SingleChildScrollView(
+                physics: const ScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    _cards(controller, context),
+                    _addButton(controller),
+                    _finishButton(controller),
+                  ],
+                ),
+              ),
+            );
     });
   }
 

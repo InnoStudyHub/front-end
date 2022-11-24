@@ -86,7 +86,8 @@ class CreateDeckPage extends StatelessWidget {
                 ),
               ),
             )
-          : Scaffold( //TODO This is mobile
+          : Scaffold(
+              //TODO This is mobile
               resizeToAvoidBottomInset: false,
               body: SafeArea(
                 child: ListView(
@@ -142,7 +143,7 @@ class CreateDeckPage extends StatelessWidget {
       width: Get.width,
       margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Obx(
-            () => DropdownButton<Folder>(
+        () => DropdownButton<Folder>(
           dropdownColor: backgroundDarkBlue,
           value: controller.folderList.isEmpty
               ? Folder(id: -1, name: "name")

@@ -8,9 +8,9 @@ class Token {
       {"access": accessToken, "refresh": refreshToken};
 
   static Token fromJson(Map<String, Object?> json) => Token(
-    accessToken: json["access"] as String,
-    refreshToken: json["refresh"] as String,
-  );
+        accessToken: json["access"] as String,
+        refreshToken: json["refresh"] as String,
+      );
 
   @override
   String toString() => "refresh: $refreshToken \naccess: $accessToken";
