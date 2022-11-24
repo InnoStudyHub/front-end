@@ -59,14 +59,14 @@ class DeckViewPage extends StatelessWidget {
                     ),
                     Expanded(child: Container()),
                     ThemedMaterialButton(
-                      text: "Check knowledge",
+                      text: "Start",
                       callback: () {
                         Get.to(() => CheckKnowledgePage(cards: deck.cards));
                       },
                       color: selectedTabColor,
                     ),
                     ThemedMaterialButton(
-                      text: "Study Material",
+                      text: "Overview",
                       callback: () {
                         Get.to(() => StudyPage(cards: deck.cards));
                       },
@@ -155,13 +155,17 @@ class DeckViewPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
-                child: Text(
-                  deck.cards[index].question,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Text(
+                      deck.cards[index].question,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -196,7 +200,11 @@ class DeckViewPage extends StatelessWidget {
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(
-                    top: 40, left: 105, right: 105, bottom: 20,),
+                  top: 40,
+                  left: 105,
+                  right: 105,
+                  bottom: 20,
+                ),
                 child: webCards(screenSize),
               ),
             ),

@@ -61,7 +61,7 @@ class MyDecksPage extends StatelessWidget {
                                   : 1,
                       itemCount: controller.decks!.length,
                       builder: (context, index) {
-                        return WebDeckPreview(deck: controller.decks![index]);
+                        return DeckPreview(deck: controller.decks![index]);
                       },
                     ),
                   ),
