@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../favourites/favourites_controller.dart';
+import 'favourites/favourites_controller.dart';
 import 'settings/settings_controller.dart';
 import 'my_decks/my_decks_controller.dart';
 

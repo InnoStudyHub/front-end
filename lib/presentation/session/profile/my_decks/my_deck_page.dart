@@ -1,10 +1,10 @@
+import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/presentation/session/deck_preview/deck_preview.dart';
 import 'package:study_hub/presentation/util/color_codes.dart';
-import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
-import '../../deck_preview/web_deck_preview.dart';
+
 import 'my_decks_controller.dart';
 
 class MyDecksPage extends StatelessWidget {
@@ -17,18 +17,16 @@ class MyDecksPage extends StatelessWidget {
     return GetBuilder<MyDecksController>(builder: (controller) {
       return kIsWeb
           ? _web(controller, screenSize)
-          : Scaffold(
-              body: Center(
-                child: controller.decks == null
-                    ? const Center(child: CircularProgressIndicator())
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: controller.decks!.length,
-                        itemBuilder: (context, index) {
-                          return DeckPreview(deck: controller.decks![index]);
-                        },
-                      ),
+          : Scaffold( //TODO redo this code for Web (Nurdaulet)
+              body: Obx(
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: controller.decks.length,
+                  itemBuilder: (context, index) {
+                    return DeckPreview(deck: controller.decks[index]);
+                  },
+                ),
               ),
             );
     });
