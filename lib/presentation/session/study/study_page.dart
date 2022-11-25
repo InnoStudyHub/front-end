@@ -23,7 +23,6 @@ class StudyPage extends StatelessWidget {
           child: kIsWeb
               ? _webStudyPage(controller)
               : Column(
-                  //TODO large text error on mobile
                   children: [
                     _header(),
                     Expanded(

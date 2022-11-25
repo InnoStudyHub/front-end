@@ -81,7 +81,7 @@ class CheckKnowledgePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _cancelButton(),
+            kIsWeb ? _webCancelButton() : _cancelButton(),
             _numberOfCards(),
             _restartButton(),
           ],
@@ -105,6 +105,24 @@ class CheckKnowledgePage extends StatelessWidget {
       margin: const EdgeInsets.only(left: 20, top: 20),
       child: Align(
         alignment: Alignment.topLeft,
+        child: IconButton(
+          iconSize: 20,
+          onPressed: () {
+            Get.back();
+          },
+          icon: SvgPicture.asset(
+            "assets/icons/deck_view/close.svg",
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _webCancelButton() {
+    return Container(
+      margin: const EdgeInsets.only(left: 20, top: 20),
+      child: Align(
+        alignment: Alignment.topLeft,
         child: Row(
           children: [
             IconButton(
@@ -116,7 +134,7 @@ class CheckKnowledgePage extends StatelessWidget {
                 "assets/icons/deck_view/close.svg",
               ),
             ),
-            kIsWeb ? _webDeckName() : null,
+            _webDeckName(),
           ],
         ),
       ),
