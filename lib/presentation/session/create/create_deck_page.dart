@@ -27,7 +27,7 @@ class CreateDeckPage extends StatelessWidget {
 
       return kIsWeb
           ? Scaffold(
-              // TODO This is Web
+              // TODO This is Web. Нужно в отдельный метод запихнуть. Но не смог передать в параметры метода showSnackBar. Поэтому оставил так
               resizeToAvoidBottomInset: false,
               body: SafeArea(
                 child: Center(
@@ -38,7 +38,7 @@ class CreateDeckPage extends StatelessWidget {
                         const SizedBox(
                           height: 90,
                         ),
-                        coursesDropdown(controller), //TODO Adjust it for web
+                        webCoursesDropdown(controller), //TODO Adjust it for web
                         /*OutlinedTextField(
                           label: "Course name",
                           assetName: "assets/icons/create_page/course_name.svg",
@@ -153,6 +153,56 @@ class CreateDeckPage extends StatelessWidget {
               return Container(
                 alignment: Alignment.center,
                 constraints: BoxConstraints(minWidth: Get.width - 80),
+                child: Text(
+                  controller.folder.name,
+                  style: const TextStyle(
+                    color: selectedMenuColor,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              );
+            }).toList();
+          },
+          items: controller.folderList
+              .map<DropdownMenuItem<Folder>>((Folder value) {
+            return DropdownMenuItem<Folder>(
+              value: value,
+              child: Text(
+                value.name,
+                style: const TextStyle(
+                  color: selectedMenuColor,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            );
+          }).toList(),
+          onChanged: (Folder? value) {
+            controller.folder = value!;
+            controller.courseNameError = null;
+            debugPrint(controller.folder.name);
+            controller.update();
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget webCoursesDropdown(CreateDeckController controller) {
+    return Container(
+      alignment: Alignment.center,
+      width: Get.width,
+      margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+      child: Obx(
+        () => DropdownButton<Folder>(
+          dropdownColor: backgroundDarkBlue,
+          value: controller.folderList.isEmpty
+              ? Folder(id: -1, name: "name")
+              : controller.folderList.first,
+          selectedItemBuilder: (BuildContext context) {
+            return controller.folderList.map<Widget>((Folder item) {
+              return Container(
+                alignment: Alignment.center,
+                constraints: const BoxConstraints(minWidth: 256),
                 child: Text(
                   controller.folder.name,
                   style: const TextStyle(
