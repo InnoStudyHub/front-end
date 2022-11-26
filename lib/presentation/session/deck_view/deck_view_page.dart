@@ -23,15 +23,15 @@ class DeckViewPage extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
 
     return GetBuilder<DeckViewController>(builder: (controller) {
-      return kIsWeb
-          ? _webDeckView(controller, screenSize)
-          : Scaffold(
-              appBar: AppBar(
-                title: Text(deck.deckName),
-                elevation: 0,
-              ),
-              body: SafeArea(
-                child: Column(
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(deck.deckName),
+          elevation: 0,
+        ),
+        body: SafeArea(
+          child: kIsWeb
+              ? _webDeckView(controller, screenSize)
+              : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     _infoField(
@@ -78,8 +78,8 @@ class DeckViewPage extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-            );
+        ),
+      );
     });
   }
 
@@ -184,33 +184,29 @@ class DeckViewPage extends StatelessWidget {
   }
 
   _webDeckView(DeckViewController controller, Size screenSize) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _webDeckInfoColumn(),
-                _webDeckButtons(),
-              ],
-            ),
-            _webNumberOfCards(),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(
-                  top: 40,
-                  left: 105,
-                  right: 105,
-                  bottom: 20,
-                ),
-                child: webCards(screenSize),
-              ),
-            ),
+            _webDeckInfoColumn(),
+            _webDeckButtons(),
           ],
         ),
-      ),
+        _webNumberOfCards(),
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.only(
+              top: 40,
+              left: 105,
+              right: 105,
+              bottom: 20,
+            ),
+            child: webCards(screenSize),
+          ),
+        ),
+      ],
     );
   }
 
@@ -254,26 +250,13 @@ class DeckViewPage extends StatelessWidget {
   }
 
   Widget _deckNameInfoField() {
-    return Row(
-      children: [
-        IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: selectedMenuColor,
-          ),
-        ),
-        Text(
-          deck.deckName,
-          style: const TextStyle(
-            fontSize: 20,
-            fontFamily: "Roboto",
-            color: Colors.white,
-          ),
-        ),
-      ],
+    return Text(
+      deck.deckName,
+      style: const TextStyle(
+        fontSize: 20,
+        fontFamily: "Roboto",
+        color: Colors.white,
+      ),
     );
   }
 
