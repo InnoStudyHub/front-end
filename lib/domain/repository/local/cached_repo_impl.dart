@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/model/models/deck.dart';
 import 'package:study_hub/model/models/folder.dart';
@@ -33,6 +34,11 @@ class CachedRepoImpl implements CachedRepository {
         temp.isFavourite = true;
       }
     }
+    for (var temp in _recentDecks) {
+      if (temp.id == deck.id) {
+        temp.isFavourite = true;
+      }
+    }
   }
 
   @override
@@ -48,6 +54,11 @@ class CachedRepoImpl implements CachedRepository {
       if (temp.id == deck.id) {
         temp.isFavourite = false;
         break;
+      }
+    }
+    for (var temp in _recentDecks) {
+      if (temp.id == deck.id) {
+        temp.isFavourite = false;
       }
     }
   }
@@ -84,6 +95,29 @@ class CachedRepoImpl implements CachedRepository {
       for (var folder in response.data!) {
         _folderList.add(folder);
       }
+    }
+  }
+
+  @override
+  void logDeck({required Deck deck}){
+    if (_recentDecks.contains(deck)){
+      _recentDecks.remove(deck);
+    }
+    _recentDecks.insert(0, deck);
+  }
+
+
+  @override
+  Future<void> updateRecent() async {
+    var response = await remote.getRecent();
+    debugPrint("Got recents from remote");
+    if (response is Success) {
+      debugPrint(response.data.toString());
+      for (var deck in response.data!) {
+        _recentDecks.add(deck);
+      }
+    } else {
+      debugPrint(response.message);
     }
   }
 }

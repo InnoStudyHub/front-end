@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/model/models/deck.dart';
-import 'package:study_hub/presentation/session/deck_preview/deck_preview_controller.dart';
+import 'deck_preview_controller.dart';
+import '../../../domain/use_case/deck/log_deck_use_case.dart';
 import '../../util/color_codes.dart';
 import '../deck_view/deck_view_page.dart';
 
@@ -17,6 +18,7 @@ class DeckPreview extends StatelessWidget {
     return GetBuilder<DeckPreviewController>(builder: (controller) {
       return GestureDetector(
         onTap: () {
+          LogDeckUseCase.invoke(deck);
           Get.to(() => DeckViewPage(deck: deck));
         },
         child: Container(
