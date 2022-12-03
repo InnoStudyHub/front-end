@@ -14,4 +14,6 @@ abstract class DeckRepository {
   Future<Resource<List<Folder>>> getFolderList();
   Future<Resource<Deck>> uploadDeckFromSheet(CreateDeck deck, String link);
   Future<Resource<SearchResult>> search(SearchQuery query);
+  Future<Resource<List<Deck>>> getRecent();
+  Future<Resource<int>> logDeck(int id);
 }

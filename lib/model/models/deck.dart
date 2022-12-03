@@ -41,4 +41,20 @@ class Deck {
 
   @override
   String toString() => "Deck($id $folderId $authorId $deckName $semester)";
+
+  @override
+  int get hashCode {
+    return id * folderId * authorId * deckName.hashCode * semester.hashCode;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (other is Deck) {
+      return (id == other.id &&
+          folderId == other.folderId &&
+          authorId == other.authorId);
+    }
+
+    return false;
+  }
 }

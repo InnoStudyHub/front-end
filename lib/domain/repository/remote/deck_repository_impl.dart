@@ -104,6 +104,38 @@ class DeckRepositoryImpl implements DeckRepository {
     return requestForDeck(url: Uri.parse("$serverIP/user/favourite/get/"));
   }
 
+  @override
+  Future<Resource<List<Deck>>> getRecent() async {
+    return requestForDeck(url: Uri.parse("$serverIP/user/recent/"));
+  }
+
+  @override
+  Future<Resource<int>> logDeck(int id) async {
+    var credentialsResponse = await getAuthorizationHeader();
+    if (credentialsResponse is Fail) {
+      return Fail(errorMessage: credentialsResponse.message!);
+    }
+    var headers = {"Content-Type": "application/json"};
+    var credentials = credentialsResponse.data!;
+
+    headers.addAll(credentials);
+    var url = Uri.parse("$serverIP/user/log/deck/");
+
+    var body = json.encode({"deck_id": id}).toString();
+    debugPrint(body.toString());
+    http.Response response;
+
+    try {
+      response = await http.post(url, headers: headers, body: body);
+    } catch (e) {
+      return Fail(errorMessage: e.toString());
+    }
+
+    return response.statusCode == 200
+        ? Success(successData: 200)
+        : Fail(errorMessage: response.body);
+  }
+
   Future<Resource<List<Deck>>> requestForDeck({
     required Uri url,
   }) async {

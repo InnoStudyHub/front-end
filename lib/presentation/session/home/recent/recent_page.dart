@@ -13,21 +13,14 @@ class RecentPage extends StatelessWidget {
     return GetBuilder<RecentController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: <Widget>[
-              const SizedBox(
-                height: 17.5,
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.decks.length,
-                itemBuilder: (context, index) {
-                  return DeckPreview(deck: controller.decks[index]);
-                },
-              ),
-            ],
+          child: Obx(
+            () => ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.decks.length,
+              itemBuilder: (context, index) {
+                return DeckPreview(deck: controller.decks[index]);
+              },
+            ),
           ),
         ),
       );
