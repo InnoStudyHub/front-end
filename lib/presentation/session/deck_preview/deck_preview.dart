@@ -16,6 +16,8 @@ class DeckPreview extends StatelessWidget {
     Get.lazyPut<DeckPreviewController>(() => DeckPreviewController());
 
     return GetBuilder<DeckPreviewController>(builder: (controller) {
+      controller.getCourseName(deck.id);
+
       return GestureDetector(
         onTap: () {
           LogDeckUseCase.invoke(deck);
@@ -44,7 +46,7 @@ class DeckPreview extends StatelessWidget {
                   ],
                 ),
               ),
-              _courseName(),
+              _courseName(controller.courseName),
               const Divider(
                 thickness: 1,
                 indent: 16,
@@ -122,12 +124,12 @@ class DeckPreview extends StatelessWidget {
     );
   }
 
-  Widget _courseName() {
+  Widget _courseName(String name) {
     return Container(
       alignment: Alignment.centerLeft,
       margin: const EdgeInsets.only(top: 8, left: 16, right: 16),
       child: Text(
-        deck.folderName,
+        name,
         style: const TextStyle(
           color: greySecondary,
           fontSize: 14,

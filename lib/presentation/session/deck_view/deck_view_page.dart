@@ -18,6 +18,8 @@ class DeckViewPage extends StatelessWidget {
     Get.lazyPut<DeckViewController>(() => DeckViewController());
 
     return GetBuilder<DeckViewController>(builder: (controller) {
+      controller.getCourseName(deck.id);
+
       return Scaffold(
         appBar: AppBar(
           title: Text(deck.deckName),
@@ -29,7 +31,7 @@ class DeckViewPage extends StatelessWidget {
             children: [
               _infoField(
                 asset: "assets/icons/deck_view/folder.svg",
-                text: deck.folderName,
+                text: controller.courseName,
               ),
               _infoField(
                 asset: "assets/icons/deck_view/user.svg",
