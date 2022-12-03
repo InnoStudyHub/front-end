@@ -96,7 +96,7 @@ class FlipCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (card.answer != null)
+            if (card.answer != null && card.answer!.isNotEmpty)
               Expanded(
                 child: Center(
                   child: SingleChildScrollView(
