@@ -44,17 +44,15 @@ class Deck {
 
   @override
   int get hashCode {
-    return id*folderId*authorId*deckName.hashCode*semester.hashCode;
+    return id * folderId * authorId * deckName.hashCode * semester.hashCode;
   }
 
   @override
   bool operator ==(Object other) {
-    if (other is Deck){
-      return (
-          id == other.id &&
+    if (other is Deck) {
+      return (id == other.id &&
           folderId == other.folderId &&
-          authorId == other.authorId
-      );
+          authorId == other.authorId);
     }
 
     return false;

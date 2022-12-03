@@ -132,7 +132,8 @@ class DeckRepositoryImpl implements DeckRepository {
     }
 
     return response.statusCode == 200
-        ? Success(successData: 200) : Fail(errorMessage: response.body);
+        ? Success(successData: 200)
+        : Fail(errorMessage: response.body);
   }
 
   Future<Resource<List<Deck>>> requestForDeck({

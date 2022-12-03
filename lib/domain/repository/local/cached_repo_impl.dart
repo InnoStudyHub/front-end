@@ -99,13 +99,12 @@ class CachedRepoImpl implements CachedRepository {
   }
 
   @override
-  void logDeck({required Deck deck}){
-    if (_recentDecks.contains(deck)){
+  void logDeck({required Deck deck}) {
+    if (_recentDecks.contains(deck)) {
       _recentDecks.remove(deck);
     }
     _recentDecks.insert(0, deck);
   }
-
 
   @override
   Future<void> updateRecent() async {
