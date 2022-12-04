@@ -16,7 +16,8 @@ class DeckViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put<DeckViewController>(
-        DeckViewController(deck.folderId, deck.authorId));
+      DeckViewController(deck.folderId, deck.authorId),
+    );
 
     return GetBuilder<DeckViewController>(builder: (controller) {
       return Scaffold(

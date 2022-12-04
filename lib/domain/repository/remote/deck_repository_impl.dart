@@ -373,7 +373,8 @@ class DeckRepositoryImpl implements DeckRepository {
   @override
   Future<Resource<List<Deck>>> getDecksFromFolder(int folderId) async {
     return requestForDeck(
-        url: Uri.parse("$serverIP/folder/get?folderId=$folderId"));
+      url: Uri.parse("$serverIP/folder/get?folderId=$folderId"),
+    );
   }
 
   @override
