@@ -30,7 +30,8 @@ class FolderDecksPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               CircularProgressIndicator(
-                                  color: selectedTabColor),
+                                color: selectedTabColor,
+                              ),
                             ],
                           ),
                         )

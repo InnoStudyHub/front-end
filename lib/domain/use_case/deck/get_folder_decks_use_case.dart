@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:study_hub/model/models/resource.dart';
-import 'package:study_hub/model/repository/deck_repository.dart';
+import '../../../model/models/resource.dart';
+import '../../../model/repository/deck_repository.dart';
 import '../../../model/models/deck.dart';
 
 class GetFolderDecksUseCase {

@@ -1,7 +1,7 @@
-import 'package:study_hub/model/models/create_deck.dart';
-import 'package:study_hub/model/models/deck.dart';
-import 'package:study_hub/model/models/resource.dart';
-import 'package:study_hub/model/models/search_result.dart';
+import '../../../model/models/create_deck.dart';
+import '../../../model/models/deck.dart';
+import '../../../model/models/resource.dart';
+import '../../../model/models/search_result.dart';
 import '../models/folder.dart';
 import '../models/search_query.dart';
 

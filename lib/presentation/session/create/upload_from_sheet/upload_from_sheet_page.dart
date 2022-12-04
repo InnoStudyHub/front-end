@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/presentation/util/color_codes.dart';
-import 'package:study_hub/presentation/widgets/outlined_text_field.dart';
-import 'package:study_hub/presentation/widgets/themed_material_button.dart';
+import '../../../../presentation/util/color_codes.dart';
+import '../../../../presentation/widgets/outlined_text_field.dart';
+import '../../../../presentation/widgets/themed_material_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'upload_from_sheet_controller.dart';
 

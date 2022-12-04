@@ -2,7 +2,7 @@
     package="com.example.study_hub">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="study_hub"
+        android:label="StudyHub"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

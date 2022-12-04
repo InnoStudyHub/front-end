@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/presentation/widgets/themed_material_button.dart';
+import '../../../presentation/widgets/themed_material_button.dart';
 import '../../widgets/divider.dart';
 import '../../widgets/outlined_text_field.dart';
 import '../../widgets/continue_with_ui_button.dart';

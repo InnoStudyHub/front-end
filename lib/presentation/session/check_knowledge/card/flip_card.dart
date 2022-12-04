@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/presentation/util/color_codes.dart';
+import '../../../../presentation/util/color_codes.dart';
 import '../../../../model/models/card.dart' as c;
 import '../../../widgets/image_preview.dart';
 import 'flip_card_controller.dart';

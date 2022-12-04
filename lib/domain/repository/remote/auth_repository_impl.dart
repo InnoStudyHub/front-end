@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:study_hub/common/constants.dart';
-import 'package:study_hub/model/models/resource.dart';
-import 'package:study_hub/model/models/tokens.dart';
-import 'package:study_hub/model/repository/auth_repository.dart';
+import '../../../common/constants.dart';
+import '../../../model/models/resource.dart';
+import '../../../model/models/tokens.dart';
+import '../../../model/repository/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   static const headers = {"Content-Type": "application/json"};

@@ -1,9 +1,9 @@
-import 'package:study_hub/model/models/card.dart' as card;
+import '../../../model/models/card.dart' as card;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/presentation/session/study/study_controller.dart';
-import 'package:study_hub/presentation/util/color_codes.dart';
+import '../../../presentation/session/study/study_controller.dart';
+import '../../../presentation/util/color_codes.dart';
 import '../../widgets/image_preview.dart';
 
 class StudyPage extends StatelessWidget {

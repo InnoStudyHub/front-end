@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/model/models/deck.dart';
-import 'package:study_hub/presentation/session/check_knowledge/check_knowledge_page.dart';
-import 'package:study_hub/presentation/util/color_codes.dart';
-import 'package:study_hub/presentation/widgets/image_preview.dart';
-import 'package:study_hub/presentation/widgets/themed_material_button.dart';
+import '../../../model/models/deck.dart';
+import '../../../presentation/session/check_knowledge/check_knowledge_page.dart';
+import '../../../presentation/util/color_codes.dart';
+import '../../../presentation/widgets/image_preview.dart';
+import '../../../presentation/widgets/themed_material_button.dart';
 import '../study/study_page.dart';
 import 'deck_view_controller.dart';
 

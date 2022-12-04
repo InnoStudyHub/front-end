@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/model/models/deck.dart';
+import '../../../model/models/deck.dart';
 import 'deck_preview_controller.dart';
 import '../../../domain/use_case/deck/log_deck_use_case.dart';
 import '../../util/color_codes.dart';

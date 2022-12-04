@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/model/models/resource.dart';
+import '../../../model/models/resource.dart';
 import '../../../domain/use_case/auth/login_wtih_iu_use_case.dart';
 import '../../../model/repository/auth_repository.dart';
 import '../../util/routes.dart';

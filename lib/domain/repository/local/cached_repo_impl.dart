@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/model/models/deck.dart';
-import 'package:study_hub/model/models/folder.dart';
-import 'package:study_hub/model/repository/cached_repository.dart';
-import 'package:study_hub/model/repository/deck_repository.dart';
+import '../../../model/models/deck.dart';
+import '../../../model/models/folder.dart';
+import '../../../model/repository/cached_repository.dart';
+import '../../../model/repository/deck_repository.dart';
 import '../../../model/models/resource.dart';
 
 class CachedRepoImpl implements CachedRepository {
