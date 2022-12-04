@@ -15,11 +15,9 @@ class DeckViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<DeckViewController>(() => DeckViewController());
+    Get.put<DeckViewController>(DeckViewController(deck.id, deck.authorId));
 
     return GetBuilder<DeckViewController>(builder: (controller) {
-      controller.getCourseName(deck.id);
-
       return Scaffold(
         appBar: AppBar(
           title: Text(deck.deckName),
@@ -35,7 +33,7 @@ class DeckViewPage extends StatelessWidget {
               ),
               _infoField(
                 asset: "assets/icons/deck_view/user.svg",
-                text: deck.authorId.toString(),
+                text: controller.authorName,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,17 +89,20 @@ class DeckViewPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 20, top: 20),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(
             asset,
             height: 20,
             width: 20,
           ),
-          Container(
-            margin: const EdgeInsets.only(left: 10),
-            child: Text(
-              text,
-              style: defaultStyle,
+          Flexible(
+            child: Container(
+              margin: const EdgeInsets.only(left: 10, right: 10),
+              child: Text(
+                text,
+                style: defaultStyle,
+              ),
             ),
           ),
         ],

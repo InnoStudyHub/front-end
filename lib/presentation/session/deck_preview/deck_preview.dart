@@ -13,11 +13,9 @@ class DeckPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<DeckPreviewController>(() => DeckPreviewController());
+    Get.lazyPut<DeckPreviewController>(() => DeckPreviewController(deck.id));
 
     return GetBuilder<DeckPreviewController>(builder: (controller) {
-      controller.getCourseName(deck.id);
-
       return GestureDetector(
         onTap: () {
           LogDeckUseCase.invoke(deck);

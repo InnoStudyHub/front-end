@@ -369,4 +369,40 @@ class DeckRepositoryImpl implements DeckRepository {
       return Fail(errorMessage: "Unexpected error");
     }
   }
+
+  @override
+  Future<Resource<List<Deck>>> getDecksFromFolder(int folderId) async {
+    return requestForDeck(
+        url: Uri.parse("$serverIP/folder/get?folderId=$folderId"));
+  }
+
+  @override
+  Future<Resource<String>> getAuthorName(int authorId) async {
+    var credentialsResponse = await getAuthorizationHeader();
+    if (credentialsResponse is Fail) {
+      return Fail(errorMessage: credentialsResponse.message!);
+    }
+
+    var credentials = credentialsResponse.data!;
+
+    var headers = {"Content-Type": "application/json"};
+    headers.addAll(credentials);
+    var url = Uri.parse("$serverIP/user/info?userId=$authorId");
+
+    http.Response response;
+
+    try {
+      response = await http.get(url, headers: headers);
+    } catch (error) {
+      return Fail(errorMessage: error.toString());
+    }
+
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body) as Map<String, Object?>;
+
+      return Success(successData: json["fullname"] as String);
+    }
+
+    return Fail(errorMessage: response.body);
+  }
 }
