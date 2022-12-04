@@ -5,14 +5,8 @@ import '../../../domain/use_case/deck/get_course_name_use_case.dart';
 import '../../../domain/use_case/deck/remove_from_favourites_use_case.dart';
 
 class DeckPreviewController extends GetxController {
-  var courseName = "Course Name not specified";
-
-  DeckPreviewController(int course) {
-    getCourseName(course);
-  }
-
-  Future<void> getCourseName(int course) async {
-    courseName = await GetCourseNameUseCase.invoke(course);
+  Future<void> setCourseName(Deck deck) async {
+    deck.folderName = await GetCourseNameUseCase.invoke(deck.folderId);
     update();
   }
 

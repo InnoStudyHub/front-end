@@ -8,8 +8,7 @@ class Deck {
   String semester;
   List<Card> cards;
   bool isFavourite;
-
-  get folderName => folderId.toString();
+  String folderName = "";
 
   Deck({
     required this.id,
