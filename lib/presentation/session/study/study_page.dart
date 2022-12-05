@@ -1,13 +1,16 @@
 import '../../../model/models/card.dart' as card;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/model/models/card.dart' as card;
 import '../../../presentation/session/study/study_controller.dart';
 import '../../../presentation/util/color_codes.dart';
 import '../../widgets/image_preview.dart';
 
 class StudyPage extends StatelessWidget {
   final List<card.Card> cards;
+
   const StudyPage({required this.cards, Key? key}) : super(key: key);
 
   @override
@@ -17,21 +20,23 @@ class StudyPage extends StatelessWidget {
     return GetBuilder<StudyController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
-          child: Column(
-            children: [
-              _header(),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: cards.length,
-                  itemBuilder: (context, index) {
-                    return _card(context, index);
-                  },
+          child: kIsWeb
+              ? _webStudyPage(controller)
+              : Column(
+                  children: [
+                    _header(),
+                    Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: cards.length,
+                        itemBuilder: (context, index) {
+                          return _card(context, index);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
         ),
       );
     });
@@ -67,6 +72,41 @@ class StudyPage extends StatelessWidget {
     );
   }
 
+  Widget _webHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _webCancelButton(),
+        _numberOfCards(),
+        _downloadButton(),
+      ],
+    );
+  }
+
+  Widget _webCancelButton() {
+    return Container(
+      margin: const EdgeInsets.only(left: 20, top: 20),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Row(
+          children: [
+            IconButton(
+              iconSize: 20,
+              onPressed: () {
+                Get.back();
+              },
+              icon: SvgPicture.asset(
+                "assets/icons/deck_view/close.svg",
+              ),
+            ),
+            _webDeckName(),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _numberOfCards() {
     String cardString = "";
     cards.length == 1 ? cardString = "card" : cardString = "cards";
@@ -79,6 +119,24 @@ class StudyPage extends StatelessWidget {
           fontWeight: FontWeight.w400,
           color: greySecondary,
           fontSize: 16,
+        ),
+      ),
+    );
+  }
+
+  Widget _downloadButton() {
+    return Container(
+      margin: const EdgeInsets.only(right: 20, top: 20),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: IconButton(
+          iconSize: 20,
+          onPressed: () {
+            //TODO
+          },
+          icon: SvgPicture.asset(
+            "assets/icons/deck_view/download.svg",
+          ),
         ),
       ),
     );
@@ -190,6 +248,39 @@ class StudyPage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  _webStudyPage(StudyController controller) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(90, 10, 90, 30),
+      child: Column(
+        children: [
+          _webHeader(),
+          const SizedBox(height: 20),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemCount: cards.length,
+              itemBuilder: (context, index) {
+                return _card(context, index);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _webDeckName() {
+    return const Text(
+      //TODO get deck name from card
+      "There should be deck's name",
+      style: TextStyle(
+        color: selectedMenuColor,
+        fontSize: 20,
       ),
     );
   }
