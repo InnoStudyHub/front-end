@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../presentation/util/color_codes.dart';
@@ -44,7 +45,7 @@ class FlipCard extends StatelessWidget {
 
   Widget _front() {
     return Container(
-      height: 350,
+      height: kIsWeb ? 550 : 350,
       width: double.infinity,
       decoration: BoxDecoration(
         color: darkCard,
@@ -87,7 +88,7 @@ class FlipCard extends StatelessWidget {
       alignment: Alignment.center,
       transform: Matrix4.identity()..rotateY(pi),
       child: Container(
-        height: 350,
+        height: kIsWeb ? 550 : 350,
         width: double.infinity,
         decoration: BoxDecoration(
           color: darkCard,

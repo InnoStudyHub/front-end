@@ -13,6 +13,7 @@ class ProfileController extends GetxController
     Get.put<MyDecksController>(MyDecksController());
     Get.put<SettingsController>(SettingsController());
     Get.put<FavouritesController>(FavouritesController());
+    //TODO Controllers for new pages
 
     tabController = TabController(vsync: this, length: 3);
     super.onInit();
