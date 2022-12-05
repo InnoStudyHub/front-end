@@ -406,4 +406,45 @@ class DeckRepositoryImpl implements DeckRepository {
 
     return Fail(errorMessage: response.body);
   }
+
+  @override
+  Future<Resource<List<Folder>>> getForYou() async {
+    var credentialsResponse = await getAuthorizationHeader();
+    if (credentialsResponse is Fail) {
+      return Fail(errorMessage: credentialsResponse.message!);
+    }
+
+    var credentials = credentialsResponse.data!;
+
+    var headers = {"Content-Type": "application/json"};
+    headers.addAll(credentials);
+    var url = Uri.parse("$serverIP/user/forYou/");
+    http.Response response;
+
+    try {
+      response = await http.get(url, headers: headers);
+    } catch (error) {
+      debugPrint("deck repository, getForYou. Error: ${error.toString()}");
+
+      return Fail(errorMessage: error.toString());
+    }
+
+    var statusCode = response.statusCode;
+
+    if (statusCode == 200) {
+      List<Folder> folders = [];
+      List decksListJson = json.decode(response.body);
+      debugPrint(response.body);
+
+      for (var i = decksListJson.length - 1; i >= 0; i--) {
+        folders.add(Folder.fromJson(decksListJson[i]));
+      }
+
+      return Success(successData: folders);
+    } else {
+      debugPrint(response.body);
+
+      return Fail(errorMessage: response.body);
+    }
+  }
 }

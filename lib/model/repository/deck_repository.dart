@@ -18,4 +18,5 @@ abstract class DeckRepository {
   Future<Resource<int>> logDeck(int id);
   Future<Resource<List<Deck>>> getDecksFromFolder(int folderId);
   Future<Resource<String>> getAuthorName(int authorId);
+  Future<Resource<List<Folder>>> getForYou();
 }
