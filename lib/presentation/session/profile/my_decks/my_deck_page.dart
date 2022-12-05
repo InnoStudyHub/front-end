@@ -17,16 +17,26 @@ class MyDecksPage extends StatelessWidget {
       return kIsWeb
           ? _web(controller, screenSize)
           : Scaffold(
-              //TODO redo this code for Web (Nurdaulet)
               body: Obx(
-                () => ListView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: controller.decks.length,
-                  itemBuilder: (context, index) {
-                    return DeckPreview(deck: controller.decks[index]);
-                  },
-                ),
+                () => controller.decks.isEmpty
+                    ? const Center(
+                        child: Text(
+                          "You have no decks.\nPerfect time to create one",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                            color: selectedMenuColor,
+                          ),
+                        ),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: controller.decks.length,
+                        itemBuilder: (context, index) {
+                          return DeckPreview(deck: controller.decks[index]);
+                        },
+                      ),
               ),
             );
     });
@@ -34,8 +44,18 @@ class MyDecksPage extends StatelessWidget {
 
   _web(MyDecksController controller, Size screenSize) {
     return Scaffold(
-      body: controller.decks == null
-          ? const Center(child: CircularProgressIndicator())
+      body: controller.decks.isEmpty
+          ? const Center(
+              child: Text(
+                "You have no decks.\nPerfect time to create one",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  color: selectedMenuColor,
+                ),
+              ),
+            )
           : Column(
               children: [
                 _webSearchBar(),
@@ -57,9 +77,9 @@ class MyDecksPage extends StatelessWidget {
                               : screenSize.width > 1000
                                   ? 2
                                   : 1,
-                      itemCount: controller.decks!.length,
+                      itemCount: controller.decks.length,
                       builder: (context, index) {
-                        return DeckPreview(deck: controller.decks![index]);
+                        return DeckPreview(deck: controller.decks[index]);
                       },
                     ),
                   ),

@@ -15,4 +15,3 @@ class GetFavouritesUseCase {
     return cacheRepo.favouriteDecks;
   }
 }
->>>>>>> desktop

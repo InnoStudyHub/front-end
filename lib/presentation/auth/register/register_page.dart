@@ -2,13 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../presentation/widgets/themed_material_button.dart';
-import 'package:study_hub/presentation/widgets/themed_material_button.dart';
 import '../../util/color_codes.dart';
 import '../../widgets/continue_with_ui_button.dart';
 import '../../widgets/divider.dart';
 import '../../widgets/outlined_text_field.dart';
 import 'register_controller.dart';
-import '../../util/color_codes.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});

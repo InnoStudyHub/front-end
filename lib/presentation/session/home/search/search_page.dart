@@ -4,9 +4,6 @@ import '../../deck_preview/deck_preview.dart';
 import 'search_controller.dart';
 import 'package:get/get.dart';
 import '../../../util/color_codes.dart';
-import '../../../widgets/folder_view.dart';
-import '../../deck_preview/deck_preview.dart';
-import 'search_controller.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);

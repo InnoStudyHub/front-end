@@ -14,6 +14,7 @@ class DeckPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put<DeckPreviewController>(DeckPreviewController());
+
     return GetBuilder<DeckPreviewController>(builder: (controller) {
       deck.folderName.isEmpty ? controller.setCourseName(deck) : null;
 

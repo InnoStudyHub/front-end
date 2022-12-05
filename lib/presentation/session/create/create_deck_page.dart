@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../model/models/folder.dart';
 import '../../widgets/themed_material_button.dart';
-import '../../../model/models/folder.dart';
 import '../../util/color_codes.dart';
 import '../../widgets/divider.dart';
 import '../../widgets/outlined_text_field.dart';
-import '../../widgets/themed_material_button.dart';
 import 'create_deck_controller.dart';
 
 class CreateDeckPage extends StatelessWidget {

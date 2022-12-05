@@ -27,8 +27,8 @@ class HomePage extends StatelessWidget {
                 indicatorColor: selectedTabColor,
                 indicatorSize: TabBarIndicatorSize.label,
                 tabs: const [
-                  Tab(text: 'Recent'),
                   Tab(text: 'For You'),
+                  Tab(text: 'Recent'),
                 ],
               ),
             ),

@@ -5,10 +5,7 @@ import 'favourites/favourites_page.dart';
 import 'my_decks/my_deck_page.dart';
 import 'settings/setting_page.dart';
 import '../../util/color_codes.dart';
-import 'history/history_page.dart';
-import 'my_decks/my_deck_page.dart';
 import 'profile_controller.dart';
-
 
 class ProfilePage extends GetView<ProfileController> {
   const ProfilePage({super.key});

@@ -65,6 +65,7 @@ class WelcomeScreen extends StatelessWidget {
                           if (response is Success) {
                             Get.offNamed(AppRoutes.session);
                           }
+                        },
                         color: selectedMenuColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -195,7 +196,7 @@ class WelcomeScreen extends StatelessWidget {
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _webInopolisAccountContainer(),
+          _webInnopolisAccountContainer(),
           const SizedBox(
             height: 15,
           ),
@@ -205,7 +206,7 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _webInopolisAccountContainer() {
+  Widget _webInnopolisAccountContainer() {
     return SizedBox(
       height: 44,
       width: 320,

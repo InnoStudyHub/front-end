@@ -1,17 +1,17 @@
-import '../../../model/models/card.dart' as card;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/model/models/card.dart' as card;
+import '../../../model/models/deck.dart';
 import '../../../presentation/session/study/study_controller.dart';
 import '../../../presentation/util/color_codes.dart';
 import '../../widgets/image_preview.dart';
 
 class StudyPage extends StatelessWidget {
-  final List<card.Card> cards;
+  //final List<card.Card> cards;
+  final Deck deck;
 
-  const StudyPage({required this.cards, Key? key}) : super(key: key);
+  const StudyPage({required this.deck, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class StudyPage extends StatelessWidget {
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
-                        itemCount: cards.length,
+                        itemCount: deck.cards.length,
                         itemBuilder: (context, index) {
                           return _card(context, index);
                         },
@@ -109,12 +109,12 @@ class StudyPage extends StatelessWidget {
 
   Widget _numberOfCards() {
     String cardString = "";
-    cards.length == 1 ? cardString = "card" : cardString = "cards";
+    deck.cards.length == 1 ? cardString = "card" : cardString = "cards";
 
     return Container(
       margin: const EdgeInsets.only(top: 20),
       child: Text(
-        "${cards.length} $cardString",
+        "${deck.cards.length} $cardString",
         style: const TextStyle(
           fontWeight: FontWeight.w400,
           color: greySecondary,
@@ -149,9 +149,9 @@ class StudyPage extends StatelessWidget {
   );
 
   Widget _card(BuildContext context, int index) {
-    bool isAnswerPresent =
-        cards[index].answer != null && cards[index].answer!.isNotEmpty ||
-            cards[index].answerImageUrls != null;
+    bool isAnswerPresent = deck.cards[index].answer != null &&
+            deck.cards[index].answer!.isNotEmpty ||
+        deck.cards[index].answerImageUrls != null;
 
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 15, 20, 0),
@@ -185,13 +185,13 @@ class StudyPage extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(left: 10),
                   child: Text(
-                    cards[index].question,
+                    deck.cards[index].question,
                     style: _style,
                   ),
                 ),
-                cards[index].questionImageUrl == null
+                deck.cards[index].questionImageUrl == null
                     ? Container()
-                    : imagePreview(cards[index].questionImageUrl!, 50),
+                    : imagePreview(deck.cards[index].questionImageUrl!, 50),
               ],
             ),
           ),
@@ -201,9 +201,9 @@ class StudyPage extends StatelessWidget {
   }
 
   Widget _answer(BuildContext context, int i) {
-    bool isTextPresent = cards[i].answer != null;
-    bool areImagesPresent = cards[i].answerImageUrls != null &&
-        cards[i].answerImageUrls!.isNotEmpty;
+    bool isTextPresent = deck.cards[i].answer != null;
+    bool areImagesPresent = deck.cards[i].answerImageUrls != null &&
+        deck.cards[i].answerImageUrls!.isNotEmpty;
 
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 15),
@@ -223,7 +223,7 @@ class StudyPage extends StatelessWidget {
                     : Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: Text(
-                          cards[i].answer!,
+                          deck.cards[i].answer!,
                           style: _style,
                         ),
                       ),
@@ -235,10 +235,10 @@ class StudyPage extends StatelessWidget {
                           shrinkWrap: true,
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          itemCount: cards[i].answerImageUrls!.length,
+                          itemCount: deck.cards[i].answerImageUrls!.length,
                           itemBuilder: (context, index) {
                             return imagePreview(
-                              cards[i].answerImageUrls![index],
+                              deck.cards[i].answerImageUrls![index],
                               50,
                             );
                           },
@@ -263,7 +263,7 @@ class StudyPage extends StatelessWidget {
             child: ListView.builder(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              itemCount: cards.length,
+              itemCount: deck.cards.length,
               itemBuilder: (context, index) {
                 return _card(context, index);
               },
@@ -275,10 +275,9 @@ class StudyPage extends StatelessWidget {
   }
 
   _webDeckName() {
-    return const Text(
-      //TODO get deck name from card
-      "There should be deck's name",
-      style: TextStyle(
+    return Text(
+      deck.deckName,
+      style: const TextStyle(
         color: selectedMenuColor,
         fontSize: 20,
       ),

@@ -61,14 +61,14 @@ class DeckViewPage extends StatelessWidget {
                     ThemedMaterialButton(
                       text: "Start",
                       callback: () {
-                        Get.to(() => CheckKnowledgePage(cards: deck.cards));
+                        Get.to(() => CheckKnowledgePage(deck: deck));
                       },
                       color: selectedTabColor,
                     ),
                     ThemedMaterialButton(
                       text: "Overview",
                       callback: () {
-                        Get.to(() => StudyPage(cards: deck.cards));
+                        Get.to(() => StudyPage(deck: deck));
                       },
                       color: purpleAppColor,
                     ),
@@ -271,14 +271,14 @@ class DeckViewPage extends StatelessWidget {
           ThemedMaterialButton(
             text: "Start",
             callback: () {
-              Get.to(() => CheckKnowledgePage(cards: deck.cards));
+              Get.to(() => CheckKnowledgePage(deck: deck));
             },
             color: selectedTabColor,
           ),
           ThemedMaterialButton(
             text: "Overview",
             callback: () {
-              Get.to(() => StudyPage(cards: deck.cards));
+              Get.to(() => StudyPage(deck: deck));
             },
             color: purpleAppColor,
           ),

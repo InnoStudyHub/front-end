@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import '../../../model/models/deck.dart';
 import '../../../presentation/session/check_knowledge/card/flip_card.dart';
 import '../../../presentation/session/check_knowledge/check_knowledge_controller.dart';
 import 'package:swipable_stack/swipable_stack.dart';
-
-import '../../../model/models/card.dart' as card;
 import '../../util/color_codes.dart';
 
 class CheckKnowledgePage extends StatelessWidget {
-  final List<card.Card> cards;
+  final Deck deck;
 
-  CheckKnowledgePage({required this.cards, Key? key}) : super(key: key);
+  CheckKnowledgePage({required this.deck, Key? key}) : super(key: key);
 
   final swipeController = SwipableStackController();
 
@@ -47,14 +46,15 @@ class CheckKnowledgePage extends StatelessWidget {
                             controller: swipeController,
                             horizontalSwipeThreshold: 0.5,
                             verticalSwipeThreshold: 0.5,
-                            itemCount: cards.length,
+                            itemCount: deck.cards.length,
                             builder: (context, properties) {
-                              final itemIndex = properties.index % cards.length;
+                              final itemIndex =
+                                  properties.index % deck.cards.length;
 
-                              return FlipCard(card: cards[itemIndex]);
+                              return FlipCard(card: deck.cards[itemIndex]);
                             },
                           ),
-                          if (swipeController.currentIndex == cards.length)
+                          if (swipeController.currentIndex == deck.cards.length)
                             Center(
                               child: _end(),
                             ),
@@ -70,10 +70,10 @@ class CheckKnowledgePage extends StatelessWidget {
   }
 
   Widget _header() {
-    int cur = swipeController.currentIndex >= cards.length
-        ? cards.length
+    int cur = swipeController.currentIndex >= deck.cards.length
+        ? deck.cards.length
         : swipeController.currentIndex + 1;
-    double progress = cur.toDouble() / cards.length;
+    double progress = cur.toDouble() / deck.cards.length;
 
     return Column(
       children: [
@@ -142,14 +142,14 @@ class CheckKnowledgePage extends StatelessWidget {
   }
 
   Widget _numberOfCards() {
-    int cur = swipeController.currentIndex >= cards.length
-        ? cards.length
+    int cur = swipeController.currentIndex >= deck.cards.length
+        ? deck.cards.length
         : swipeController.currentIndex + 1;
 
     return Container(
       margin: const EdgeInsets.only(top: 20),
       child: Text(
-        "$cur/${cards.length}",
+        "$cur/${deck.cards.length}",
         style: const TextStyle(
           fontWeight: FontWeight.w400,
           color: selectedMenuColor,
@@ -228,14 +228,14 @@ class CheckKnowledgePage extends StatelessWidget {
                       controller: swipeController,
                       horizontalSwipeThreshold: 0.5,
                       verticalSwipeThreshold: 0.5,
-                      itemCount: cards.length,
+                      itemCount: deck.cards.length,
                       builder: (context, properties) {
-                        final itemIndex = properties.index % cards.length;
+                        final itemIndex = properties.index % deck.cards.length;
 
-                        return FlipCard(card: cards[itemIndex]);
+                        return FlipCard(card: deck.cards[itemIndex]);
                       },
                     ),
-                    if (swipeController.currentIndex == cards.length)
+                    if (swipeController.currentIndex == deck.cards.length)
                       Center(
                         child: _end(),
                       ),
@@ -252,10 +252,9 @@ class CheckKnowledgePage extends StatelessWidget {
   }
 
   _webDeckName() {
-    return const Text(
-      // TODO get deck name from card
-      "There should be deck's name",
-      style: TextStyle(
+    return Text(
+      deck.deckName,
+      style: const TextStyle(
         color: selectedMenuColor,
         fontSize: 20,
       ),
@@ -263,7 +262,7 @@ class CheckKnowledgePage extends StatelessWidget {
   }
 
   _webNextButton() {
-    return Container(
+    return SizedBox(
       height: 550,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,7 +280,7 @@ class CheckKnowledgePage extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                //TODO
+                swipeController.currentIndex++;
               },
               child: const Text(
                 "Next",
