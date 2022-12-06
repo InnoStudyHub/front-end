@@ -8,7 +8,12 @@ import '../../../model/models/tokens.dart';
 import '../../../model/repository/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  static const headers = {"Content-Type": "application/json"};
+  static const headers = {
+    "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json",
+    'Accept': '*/*',
+  };
   var getStorage = GetStorage();
 
   @override

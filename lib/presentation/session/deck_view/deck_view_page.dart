@@ -40,7 +40,7 @@ class DeckViewPage extends StatelessWidget {
                     ),
                     _infoField(
                       asset: "assets/icons/deck_view/user.svg",
-                      text: deck.authorId.toString(),
+                      text: controller.authorName,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

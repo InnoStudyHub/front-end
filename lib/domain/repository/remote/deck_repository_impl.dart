@@ -38,10 +38,14 @@ class DeckRepositoryImpl implements DeckRepository {
     }
 
     var credentials = credentialsResponse.data!;
+    var headers = {
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
+    headers.addAll(credentials);
 
     try {
       var request = http.MultipartRequest('POST', url);
-      request.headers.addAll(credentials);
+      request.headers.addAll(headers);
       List<http.MultipartFile> files = await collectImages(deck);
 
       request.files.addAll(files);
@@ -115,7 +119,10 @@ class DeckRepositoryImpl implements DeckRepository {
     if (credentialsResponse is Fail) {
       return Fail(errorMessage: credentialsResponse.message!);
     }
-    var headers = {"Content-Type": "application/json"};
+    var headers = {
+      "Content-Type": "application/json",
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     var credentials = credentialsResponse.data!;
 
     headers.addAll(credentials);
@@ -144,11 +151,16 @@ class DeckRepositoryImpl implements DeckRepository {
       return Fail(errorMessage: credentialsResponse.message!);
     }
 
+    var headers = {
+      "Content-Type": "application/json",
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     var credentials = credentialsResponse.data!;
+    headers.addAll(credentials);
     http.Response response;
 
     try {
-      response = await http.get(url, headers: credentials);
+      response = await http.get(url, headers: headers);
     } catch (error) {
       debugPrint("deck repository, getDecks. Error: ${error.toString()}");
 
@@ -177,7 +189,10 @@ class DeckRepositoryImpl implements DeckRepository {
     if (credentialsResponse is Fail) {
       return Fail(errorMessage: credentialsResponse.message!);
     }
-    var headers = {"Content-Type": "application/json"};
+    var headers = {
+      "Content-Type": "application/json",
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     var credentials = credentialsResponse.data!;
 
     headers.addAll(credentials);
@@ -219,7 +234,10 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var credentials = credentialsResponse.data!;
 
-    var headers = {"Content-Type": "application/json"};
+    var headers = {
+      "Content-Type": "application/json",
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/favourite/remove/");
 
@@ -257,7 +275,10 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var credentials = credentialsResponse.data!;
 
-    var headers = {"Content-Type": "application/json"};
+    var headers = {
+      "Content-Type": "application/json",
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/folder/list/");
     http.Response response;
@@ -307,7 +328,10 @@ class DeckRepositoryImpl implements DeckRepository {
       return Fail(errorMessage: credentialsResponse.message!);
     }
 
-    var headers = {"Content-Type": "application/json"};
+    var headers = {
+      "Content-Type": "application/json",
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     var credentials = credentialsResponse.data!;
 
     headers.addAll(credentials);
@@ -340,7 +364,10 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var credentials = credentialsResponse.data!;
 
-    var headers = {"Content-Type": "application/json"};
+    var headers = {
+      "Content-Type": "application/json",
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/search/");
 
@@ -386,7 +413,9 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var credentials = credentialsResponse.data!;
 
-    var headers = {"Content-Type": "application/json"};
+    var headers = {
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/info?userId=$authorId");
 
@@ -416,7 +445,10 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var credentials = credentialsResponse.data!;
 
-    var headers = {"Content-Type": "application/json"};
+    var headers = {
+      "Content-Type": "application/json",
+      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+    };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/forYou/");
     http.Response response;
