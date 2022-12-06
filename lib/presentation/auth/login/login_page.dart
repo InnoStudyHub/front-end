@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/presentation/util/do_nothing_callback.dart';
 import '../../util/color_codes.dart';
 import '../../util/routes.dart';
 import '../../widgets/continue_with_ui_button.dart';
@@ -27,7 +28,6 @@ class LoginPage extends StatelessWidget {
 
       return kIsWeb
           ? Scaffold(
-              // TODO It is Web
               resizeToAvoidBottomInset: false,
               body: SafeArea(
                 child: SingleChildScrollView(
@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
                               error: controller.emailError,
                             ),
                             _passwordFormField(controller: controller),
-                            _forgotPasswordButton(),
+                            //_forgotPasswordButton(),
                             const SizedBox(
                               height: 10,
                             ),
@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
                               height: 12,
                             ),
                             ContinueWithUIButton(callback: () {
-                              //TODO
+                              controller.loginWithIU();
                             }),
                           ],
                         ),
@@ -82,7 +82,6 @@ class LoginPage extends StatelessWidget {
               ),
             )
           : Scaffold(
-              //TODO It is Mobile
               resizeToAvoidBottomInset: false,
               body: SafeArea(
                 child: Container(
@@ -108,7 +107,7 @@ class LoginPage extends StatelessWidget {
                       _registerButton(),
                       const ThemedDivider(),
                       ContinueWithUIButton(callback: () {
-                        //TODO
+                        controller.loginWithIU();
                       }),
                     ],
                   ),
@@ -232,7 +231,7 @@ class LoginPage extends StatelessWidget {
         height: 44,
         child: MaterialButton(
           onPressed: () {
-            //TODO
+            doNothing();
           },
           child: const CircularProgressIndicator(),
         ),

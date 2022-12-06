@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_hub/presentation/util/do_nothing_callback.dart';
 import '../../../presentation/widgets/themed_material_button.dart';
 import '../../util/color_codes.dart';
 import '../../widgets/continue_with_ui_button.dart';
@@ -36,7 +37,6 @@ class RegisterPage extends StatelessWidget {
           body: SafeArea(
             child: kIsWeb
                 ? SingleChildScrollView(
-                    // TODO It is Web
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,7 +78,7 @@ class RegisterPage extends StatelessWidget {
                               ),
                               const ThemedDivider(),
                               ContinueWithUIButton(callback: () {
-                                //TODO
+                                controller.loginWithIU();
                               }),
                             ],
                           ),
@@ -91,7 +91,6 @@ class RegisterPage extends StatelessWidget {
                     ),
                   )
                 : Container(
-                    // TODO It is Mobile
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/images/register_page.png"),
@@ -120,7 +119,7 @@ class RegisterPage extends StatelessWidget {
                         _loginButton(),
                         const ThemedDivider(),
                         ContinueWithUIButton(callback: () {
-                          //TODO
+                          controller.loginWithIU();
                         }),
                       ],
                     ),
@@ -228,7 +227,7 @@ class RegisterPage extends StatelessWidget {
         height: 44,
         child: MaterialButton(
           onPressed: () {
-            //TODO
+            doNothing();
           },
           child: const CircularProgressIndicator(),
         ),

@@ -74,6 +74,7 @@ class LoginController extends GetxController {
 
   void loginWithIU() async {
     isLoading = true;
+    update();
     var response = await LoginWithIUUseCase.invoke();
     debugPrint(response.toString());
     if (response is Success) {
