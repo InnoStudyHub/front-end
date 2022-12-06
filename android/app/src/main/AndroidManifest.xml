@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.study_hub">
-   <application
-        android:label="study_hub"
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:label="StudyHub"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
