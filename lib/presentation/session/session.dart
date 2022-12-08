@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../util/color_codes.dart';
 import 'create/create_deck_page.dart';
@@ -285,6 +286,33 @@ class Session extends StatelessWidget {
               Get.to(() => const SearchPage());
             },
             icon: const Icon(Icons.search, color: greySecondary),
+          ),
+        if (controller.tabTitle == "Profile")
+          IconButton(
+            onPressed: () {
+              Get.defaultDialog(
+                barrierDismissible: true,
+                radius: 6,
+                contentPadding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                titlePadding: const EdgeInsets.only(top: 20),
+                title: "Support",
+                titleStyle: const TextStyle(color: selectedMenuColor),
+                middleTextStyle: const TextStyle(color: greySecondary),
+                middleText:
+                    "Have any questions or suggestions? Write us on telegram!",
+                textConfirm: "Send message",
+                backgroundColor: backgroundDarkBlue,
+                confirmTextColor: selectedMenuColor,
+                buttonColor: selectedTabColor,
+                onConfirm: () async {
+                  await launchUrl(
+                    Uri.parse("https://t.me/dionyusus"),
+                    mode: LaunchMode.externalApplication,
+                  );
+                },
+              );
+            },
+            icon: const Icon(Icons.info_outline_rounded, color: greySecondary),
           ),
       ],
       elevation: 0,
