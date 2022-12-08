@@ -171,7 +171,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
     if (statusCode == 200) {
       List<Deck> decks = [];
-      List decksListJson = json.decode(response.body);
+      List decksListJson = json.decode(utf8.decode(response.bodyBytes));
 
       for (var i = decksListJson.length - 1; i >= 0; i--) {
         decks.add(Deck.fromJson(decksListJson[i]));
