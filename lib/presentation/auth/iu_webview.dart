@@ -33,7 +33,6 @@ class UIWebView extends StatelessWidget {
                 var responseUrl = Uri.parse(navReq.url);
                 Get.back(result: [responseUrl.queryParameters["code"]]);
               }
-              Get.back();
 
               return NavigationDecision.navigate;
             },
