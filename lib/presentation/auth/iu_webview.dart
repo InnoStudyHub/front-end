@@ -18,7 +18,7 @@ class UIWebView extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put<UIWebViewController>(UIWebViewController());
 
-    return GetBuilder<UIWebViewController>(builder: (controller){
+    return GetBuilder<UIWebViewController>(builder: (controller) {
       return Stack(
         children: [
           WebView(
@@ -48,6 +48,5 @@ class UIWebView extends StatelessWidget {
         ],
       );
     });
-
   }
 }
