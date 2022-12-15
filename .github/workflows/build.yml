@@ -1,0 +1,75 @@
+name: Build apk
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    name: Build apk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for check to succeed
+        uses: fountainhead/action-wait-for-check@v1.1.0
+        id: wait-for-check
+        with:
+          token: ${{ secrets.TOKEN }}
+          checkName: Lint check
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Checkout source code
+        if: steps.wait-for-check.outputs.conclusion == 'success'
+        uses: actions/checkout@v2
+      - name: Install Flutter
+        if: steps.wait-for-check.outputs.conclusion == 'success'
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - name: Get packages in a Flutter project
+        if: steps.wait-for-check.outputs.conclusion == 'success'
+        run: flutter pub get
+      - name: Build
+        if: steps.wait-for-check.outputs.conclusion == 'success'
+        run: flutter build apk --no-sound-null-safety
+##      - uses: actions/upload-artifact@v1
+##        with:
+##          name: release-apk
+##          path: build/app/outputs/apk/release/app-release.apk
+          
+##  failure_message:
+##    needs: build
+##    if: failure()
+##    name: Send message on failure
+##    runs-on: ubuntu-latest
+##    steps:
+##      - name: Send telegram message on build failure
+##        uses: appleboy/telegram-action@master
+##        with:
+##          to: ${{ secrets.TELEGRAM_ID }}
+##          token: ${{ secrets.TELEGRAM_TOKEN }}
+##          message: |
+##            Commit failed!
+##            
+##            ${{ github.actor }} created commit:
+##            Commit message: ${{ github.event.commits[0].message }}
+##            
+##            Repository: ${{ github.repository }}
+##            
+##            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+##  success_message:
+##    needs: build
+##    if: success()
+##    name: Send message on success
+##    runs-on: ubuntu-latest
+##    steps:
+##      - name: Send telegram message on build failure
+##        uses: appleboy/telegram-action@master
+##        with:
+##          to: ${{ secrets.TELEGRAM_ID }}
+##          token: ${{ secrets.TELEGRAM_TOKEN }}
+##          message: |
+##            Success commit!
+##            
+##            ${{ github.actor }} created commit:
+##            Commit message: ${{ github.event.commits[0].message }}
+##            
+##            Repository: ${{ github.repository }}
+##            
+##            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
