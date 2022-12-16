@@ -91,20 +91,43 @@ jobs:
     needs: [build_apk, build_ios, build_web]
     name: Send report
     runs-on: ubuntu-latest
-    env: 
-      APK_RESULT: 'APK build failed'
-      WEB_RESULT: 'Web build failed'
-      IOS_RESULT: 'iOS build failed'
     steps:
-##      - name: APK report
-##        if: needs.build_apk.result == 'success'
-##        run: echo "::set-env name=APK_RESULT::APK built successfully"
-      - name: Web report
+      - name: APK report success 
+        if: needs.build_apk.result == 'success'
+        env:
+          APK_RESULT: 'APK built successfully'
+        run: |
+          echo "$APK_RESULT" >> $GITHUB_STEP_SUMMARY
+      - name: APK report failure 
+        if: needs.build_apk.result == 'failure'
+        env:
+          APK_RESULT: 'APK build failed'
+        run: |
+          echo "$APK_RESULT" >> $GITHUB_STEP_SUMMARY
+      - name: Web report success
         if: needs.build_web.result == 'success'
-        run: echo "::set-env name=WEB_RESULT::Web built successfully" >> $GITHUB_ENV
-##      - name: iOS report
-##        if: needs.build_ios.result == 'success'
-##        run: echo "::set-env name=IOS_RESULT::iOS built successfully" >> $GITHUB_ENV
+        env:
+          WEB_RESULT: 'Web built successfully'
+        run: |
+          echo "$WEB_RESULT" >> $GITHUB_STEP_SUMMARY
+      - name: Web report failure
+        if: needs.build_web.result == 'failure'
+        env:
+          WEB_RESULT: 'Web build failed'
+        run: |
+          echo "$WEB_RESULT" >> $GITHUB_STEP_SUMMARY
+      - name: iOS report success
+        if: needs.build_ios.result == 'success'
+        env:
+          IOS_RESULT: 'iOS built successfully'
+        run: |
+          echo "$IOS_RESULT" >> $GITHUB_STEP_SUMMARY
+      - name: iOS report failure
+        if: needs.build_ios.result == 'failure'
+        env:
+          IOS_RESULT: 'iOS build failed'
+        run: |
+          echo "$IOS_RESULT" >> $GITHUB_STEP_SUMMARY
       - name: Send telegram message on build failure
         uses: appleboy/telegram-action@master
         with:
