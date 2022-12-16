@@ -92,26 +92,23 @@ jobs:
     name: Send report
     runs-on: ubuntu-latest
     env: 
-      APK_RESULT: ':x: **APK build failed**'
-      WEB_RESULT: ':x: **Web build failed**'
-      IOS_RESULT: ':x: **iOS build failed**'
+      APK_RESULT: 'APK build failed'
+      WEB_RESULT: 'Web build failed'
+      IOS_RESULT: 'iOS build failed'
     steps:
       - name: APK report
         if: needs.build_apk.result == 'success'
-        env:
-          APK_RESULT: ':heavy_check_mark: **APK built successfully**'
+        APK_RESULT: 'APK built successfully'
         run: |
           echo "$APK_RESULT" >> $GITHUB_STEP_SUMMARY
       - name: Web report
         if: needs.build_web.result == 'success'
-        env:
-          WEB_RESULT: ':heavy_check_mark: **Web built successfully**'
+        WEB_RESULT: 'Web built successfully'
         run: |
           echo "$WEB_RESULT" >> $GITHUB_STEP_SUMMARY
       - name: iOS report
         if: needs.build_ios.result == 'success'
-        env:
-          IOS_RESULT: ':heavy_check_mark: **iOS built successfully**'
+        IOS_RESULT: 'iOS built successfully'
         run: |
           echo "$IOS_RESULT" >> $GITHUB_STEP_SUMMARY
       - name: Send telegram message on build failure
