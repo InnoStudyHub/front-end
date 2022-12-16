@@ -100,18 +100,19 @@ jobs:
         if: needs.build_apk.result == 'success';
         env:
           APK_RESULT: 'APK built successfully<br/>'
+        run: |
+          echo "$APK_RESULT" >> $GITHUB_STEP_SUMMARY
       - name: Web report
         if: needs.build_web.result == 'success'
         env:
           WEB_RESULT: RESULT + 'Web built successfully<br/>'
+        run: |
+          echo "$WEB_RESULT" >> $GITHUB_STEP_SUMMARY
       - name: iOS report
         if: needs.build_ios.result == 'success'
         env:
           IOS_RESULT: RESULT + 'iOS built successfully<br/>'
-      - name: Print
         run: |
-          echo "$APK_RESULT" >> $GITHUB_STEP_SUMMARY
-          echo "$WEB_RESULT" >> $GITHUB_STEP_SUMMARY
           echo "$IOS_RESULT" >> $GITHUB_STEP_SUMMARY
 
 ##  failure_message:
