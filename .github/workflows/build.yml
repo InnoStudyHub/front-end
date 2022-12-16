@@ -1,9 +1,10 @@
 name: Build apk
 
-on:
-  push:
-    branches:
-      - main
+on: [push, workflow_dispatch]
+##on:
+##  push:
+##    branches:
+##      - main
 
 jobs:
   wait:
@@ -18,7 +19,8 @@ jobs:
           checkName: Conclusion
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           intervalSeconds: 60
-          timeoutSeconds: 400
+          timeoutSeconds: 1000
+
   build_apk:
     needs: wait
     if: success()
@@ -37,6 +39,7 @@ jobs:
         run: flutter clean
       - name: Build APK
         run: flutter build apk --no-sound-null-safety
+
   build_web:
     needs: wait
     if: success()
@@ -55,6 +58,7 @@ jobs:
         run: flutter clean
       - name: Build web
         run: flutter build web --web-renderer html
+
   build_ios:
     needs: wait
     if: success()
@@ -82,7 +86,36 @@ jobs:
 ##        with:
 ##          name: release-apk
 ##          path: build/app/outputs/apk/release/app-release.apk
-          
+
+  summary:
+    needs: [build_apk, build_ios, build_web]
+    name: Send report
+    runs-on: ubuntu-latest
+    steps:
+      - name: APK report
+        env:
+          if needs.build_apk.result == 'success'; then
+            RESULT = 'APK built successfully<br/>'
+          else
+            RESULT = 'APK build failed<br/>'
+          fi
+      - name: Web report
+        env:
+          if needs.build_web.result == 'success'; then
+            RESULT = RESULT + 'Web built successfully<br/>'
+          else
+            RESULT = RESULT + 'Web build failed<br/>'
+          fi
+      - name: iOS report
+        env:
+          if needs.build_ios.result == 'success'; then
+            RESULT = RESULT + 'iOS built successfully<br/>'
+          else
+            RESULT = RESULT + 'iOS build failed<br/>'
+          fi
+      - name: Print
+        run: echo "${{RESULT}}" >> $GITHUB_STEP_SUMMARY
+
 ##  failure_message:
 ##    needs: build
 ##    if: failure()
@@ -103,6 +136,7 @@ jobs:
 ##            Repository: ${{ github.repository }}
 ##            
 ##            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+
 ##  success_message:
 ##    needs: build
 ##    if: success()
