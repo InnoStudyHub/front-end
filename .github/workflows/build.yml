@@ -15,22 +15,16 @@ jobs:
           checkName: Flutter check
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           intervalSeconds: 60
+          timeoutSeconds: 400
   build:
-    needs: wait
-    if: success()
-    name: Build project
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-      - name: Install Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: 'stable'
       - name: Get packages in a Flutter project
         run: flutter pub get
-      - name: Build
+      - name: Build APK
         run: flutter build apk --no-sound-null-safety
+      - name: Build web
+        run: flutter build web --web-renderer html
+      - name: Build ipa
+        run: flutter build ios
 ##      - uses: actions/upload-artifact@v1
 ##        with:
 ##          name: release-apk
