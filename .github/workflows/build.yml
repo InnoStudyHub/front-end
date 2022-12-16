@@ -93,26 +93,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: APK report
-        env: RESULT = ''
+        env: 
+          RESULT: ''
         run: |
           if needs.build_apk.result == 'success'; then
-            RESULT = 'APK built successfully<br/>'
+            RESULT: 'APK built successfully<br/>'
           else
-            RESULT = 'APK build failed<br/>'
+            RESULT: 'APK build failed<br/>'
           fi
       - name: Web report
         run: |
           if needs.build_web.result == 'success'; then
-            RESULT = RESULT + 'Web built successfully<br/>'
+            RESULT: RESULT + 'Web built successfully<br/>'
           else
-            RESULT = RESULT + 'Web build failed<br/>'
+            RESULT: RESULT + 'Web build failed<br/>'
           fi
       - name: iOS report
         run: |
           if needs.build_ios.result == 'success'; then
-            RESULT = RESULT + 'iOS built successfully<br/>'
+            RESULT: RESULT + 'iOS built successfully<br/>'
           else
-            RESULT = RESULT + 'iOS build failed<br/>'
+            RESULT: RESULT + 'iOS build failed<br/>'
           fi
       - name: Print
         run: echo "${{RESULT}}" >> $GITHUB_STEP_SUMMARY
