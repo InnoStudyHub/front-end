@@ -94,6 +94,7 @@ jobs:
     steps:
       - name: APK report
         env: RESULT = ''
+        run: |
           if needs.build_apk.result == 'success'; then
             RESULT = 'APK built successfully<br/>'
           else
