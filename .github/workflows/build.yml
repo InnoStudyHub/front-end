@@ -116,7 +116,7 @@ jobs:
             RESULT: RESULT + 'iOS build failed<br/>'
           fi
       - name: Print
-        run: echo "${{RESULT}}" >> $GITHUB_STEP_SUMMARY
+        run: echo "$RESULT" >> $GITHUB_STEP_SUMMARY
 
 ##  failure_message:
 ##    needs: build
