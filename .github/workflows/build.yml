@@ -12,7 +12,7 @@ jobs:
         id: wait-for-check
         with:
           token: ${{ secrets.TOKEN }}
-          checkName: Summary
+          checkName: Flutter check
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           intervalSeconds: 60
   build:
