@@ -17,7 +17,7 @@ jobs:
           intervalSeconds: 60
   build:
     needs: wait
-    if: wait.wait-for-check.outputs.conclusion == 'success'
+    if: success()
     name: Build project
     runs-on: ubuntu-latest
     steps:
