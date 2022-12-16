@@ -6,6 +6,11 @@ on: [push, workflow_dispatch]
 ##    branches:
 ##      - main
 
+env: 
+  APK_RESULT: ':x: **APK build failed**'
+  WEB_RESULT: ':x: **Web build failed**'
+  IOS_RESULT: ':x: **iOS build failed**'
+
 jobs:
   wait:
     name: Wait for checks
@@ -91,68 +96,46 @@ jobs:
     needs: [build_apk, build_ios, build_web]
     name: Send report
     runs-on: ubuntu-latest
-    env: 
-      APK_RESULT: 'APK build failed'
-      WEB_RESULT: 'Web build failed'
-      IOS_RESULT: 'iOS build failed'
     steps:
       - name: APK report
         if: needs.build_apk.result == 'success'
         env:
-          APK_RESULT: 'APK built successfully'
+          APK_RESULT: ':heavy_check_mark: **APK built successfully**'
         run: |
           echo "$APK_RESULT" >> $GITHUB_STEP_SUMMARY
       - name: Web report
         if: needs.build_web.result == 'success'
         env:
-          WEB_RESULT: RESULT + 'Web built successfully'
+          WEB_RESULT: ':heavy_check_mark: **Web built successfully**'
         run: |
           echo "$WEB_RESULT" >> $GITHUB_STEP_SUMMARY
       - name: iOS report
         if: needs.build_ios.result == 'success'
         env:
-          IOS_RESULT: RESULT + 'iOS built successfully'
+          IOS_RESULT: ':heavy_check_mark: **iOS built successfully**'
         run: |
           echo "$IOS_RESULT" >> $GITHUB_STEP_SUMMARY
 
-##  failure_message:
-##    needs: build
-##    if: failure()
-##    name: Send message on failure
-##    runs-on: ubuntu-latest
-##    steps:
-##      - name: Send telegram message on build failure
-##        uses: appleboy/telegram-action@master
-##        with:
-##          to: ${{ secrets.TELEGRAM_ID }}
-##          token: ${{ secrets.TELEGRAM_TOKEN }}
-##          message: |
-##            Commit failed!
-##            
-##            ${{ github.actor }} created commit:
-##            Commit message: ${{ github.event.commits[0].message }}
-##            
-##            Repository: ${{ github.repository }}
-##            
-##            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+  telegram_message:
+    needs: summary
+    name: Send message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send telegram message on build failure
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Push to main branch
 
-##  success_message:
-##    needs: build
-##    if: success()
-##    name: Send message on success
-##    runs-on: ubuntu-latest
-##    steps:
-##      - name: Send telegram message on build failure
-##        uses: appleboy/telegram-action@master
-##        with:
-##          to: ${{ secrets.TELEGRAM_ID }}
-##          token: ${{ secrets.TELEGRAM_TOKEN }}
-##          message: |
-##            Success commit!
-##            
-##            ${{ github.actor }} created commit:
-##            Commit message: ${{ github.event.commits[0].message }}
-##            
-##            Repository: ${{ github.repository }}
-##            
-##            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            $APK_RESULT
+            $IOS_RESULT
+            $WEB_RESULT
+            
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
