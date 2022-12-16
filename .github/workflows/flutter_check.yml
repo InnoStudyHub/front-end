@@ -67,7 +67,7 @@ jobs:
     steps:
       - name: Print summary
         run: |
-          echo "${{needs.format.conclusion}}" >> $GITHUB_STEP_SUMMARY
+          echo "${{needs.format.result}}" >> $GITHUB_STEP_SUMMARY
   
   let_build:
     needs: [format, lint, metrics]
