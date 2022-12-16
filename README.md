@@ -52,15 +52,11 @@ Build Android version (apk):
 flutter build apk
 ```
 
-Build iOS version (ipa):
+Build iOS version (ipa) - available only on macOS:
 
 ```bash
 flutter build ios
 ```
-
-## Content
-
-The application allows to sign in with Innopolis University account. In this case you will see reccomendations according to your current courses.
 
 ## How to contribute
 
