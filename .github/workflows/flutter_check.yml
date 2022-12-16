@@ -66,8 +66,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print summary
+        if: needs.format.result == 'success'
         run: |
-          echo "${{needs.format.result}}" >> $GITHUB_STEP_SUMMARY
+          echo "Format passed" >> $GITHUB_STEP_SUMMARY
   
   let_build:
     needs: [format, lint, metrics]
