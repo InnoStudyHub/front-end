@@ -12,9 +12,10 @@ jobs:
         id: wait-for-check
         with:
           token: ${{ secrets.TOKEN }}
-          checkName: Flutter check
+          checkName: Summary
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           intervalSeconds: 60
+          timeoutSeconds: 400
   build_apk:
     needs: wait
     if: success()
@@ -29,6 +30,8 @@ jobs:
           channel: 'stable'
       - name: Get packages in a Flutter project
         run: flutter pub get
+      - name: Clean
+        run: flutter clean
       - name: Build APK
         run: flutter build apk --no-sound-null-safety
   build_web:
@@ -45,6 +48,8 @@ jobs:
           channel: 'stable'
       - name: Get packages in a Flutter project
         run: flutter pub get
+      - name: Clean
+        run: flutter clean
       - name: Build web
         run: flutter build web --web-renderer html
   build_ios:
@@ -53,16 +58,20 @@ jobs:
     name: Build ios
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
+    - name: Checkout source code
+      uses: actions/checkout@v1
+    - name: Install java
+      uses: actions/setup-java@v1
       with:
         java-version: '12.x'
-    - uses: subosito/flutter-action@v1
+    - name: Install Flutter
+      uses: subosito/flutter-action@v1
       with:
-          channel: 'stable'
+        channel: 'stable'
     - name: Get packages in a Flutter project
       run: flutter pub get
-    - run: flutter clean
+    - name: Clean
+      run: flutter clean
     - name: Build ios
       run: flutter build ios --release --no-codesign
 ##      - uses: actions/upload-artifact@v1
