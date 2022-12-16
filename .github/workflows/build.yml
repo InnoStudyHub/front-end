@@ -1,10 +1,9 @@
 name: Build apk
 
-on: [push, workflow_dispatch]
-##on:
-##  push:
-##    branches:
-##      - main
+on:
+  [push, workflow_dispatch]
+    branches:
+      - main
 
 jobs:
   wait:

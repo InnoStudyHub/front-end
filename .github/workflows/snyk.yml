@@ -1,0 +1,22 @@
+name: Snyk
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    name: Snyk report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Snyk setup
+        uses: snyk/actions/setup@master
+      - name: Snyk Test
+        run: snyk test --sarif-file-output=snyk-sarif.json
+        continue-on-error: true       
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
