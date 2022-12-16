@@ -2,9 +2,7 @@
 
 <img src="./assets/readme/logo.png" alt="logo" width="100"/>
 
-![Format check](https://github.com/InnoStudyHub/front-end/actions/workflows/format.yml/badge.svg)
-![Lint check](https://github.com/InnoStudyHub/front-end/actions/workflows/lint.yml/badge.svg)
-![Code metrics](https://github.com/InnoStudyHub/front-end/actions/workflows/metrics.yml/badge.svg)
+![Flutter check](https://github.com/InnoStudyHub/front-end/actions/workflows/flutter_check.yml/badge.svg)
 
 ## About the project
 
