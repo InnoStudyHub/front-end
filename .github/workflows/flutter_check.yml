@@ -65,10 +65,11 @@ jobs:
     name: Checks
     runs-on: ubuntu-latest
     steps:
-      - name: Print format summary
+      - name: Print format success
         if: needs.format.result == 'success'
         run: |
           echo ":heavy_check_mark: **Format passed**" >> $GITHUB_STEP_SUMMARY
+      - name: Print format failure
         if: needs.format.result == 'failure'
         run: |
           echo ":x: **Format failed**" >> $GITHUB_STEP_SUMMARY
