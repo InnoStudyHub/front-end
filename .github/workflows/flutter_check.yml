@@ -62,18 +62,21 @@ jobs:
 
   summary:
     needs: [format, lint, metrics]
-    name: Summary
+    name: Checks
     runs-on: ubuntu-latest
     steps:
-      - name: Print summary
+      - name: Print format summary
         if: needs.format.result == 'success'
         run: |
-          echo "Format passed" >> $GITHUB_STEP_SUMMARY
+          echo ":heavy_check_mark: **Format passed**" >> $GITHUB_STEP_SUMMARY
+        if: needs.format.result == 'failure'
+        run: |
+          echo ":x: **Format failed**" >> $GITHUB_STEP_SUMMARY
   
   let_build:
     needs: [format, lint, metrics]
     if: success()
-    name: Let build
+    name: Conclusion
     runs-on: ubuntu-latest
     steps:
       - name: Let build
