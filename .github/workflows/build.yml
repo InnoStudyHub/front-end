@@ -92,7 +92,7 @@ jobs:
 ##          name: release-apk
 ##          path: build/app/outputs/apk/release/app-release.apk
 
-  summary:
+  report:
     needs: [build_apk, build_ios, build_web]
     name: Send report
     runs-on: ubuntu-latest
@@ -115,27 +115,20 @@ jobs:
           IOS_RESULT: ':heavy_check_mark: **iOS built successfully**'
         run: |
           echo "$IOS_RESULT" >> $GITHUB_STEP_SUMMARY
-
-  telegram_message:
-    needs: summary
-    name: Send message
-    runs-on: ubuntu-latest
-    steps:
       - name: Send telegram message on build failure
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
+            Repository: ${{ github.repository }}
             Push to main branch
 
-            $APK_RESULT
-            $IOS_RESULT
-            $WEB_RESULT
+            ${{APK_RESULT}}
+            ${{IOS_RESULT}}
+            ${{WEB_RESULT}}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
