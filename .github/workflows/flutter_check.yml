@@ -3,7 +3,7 @@ name: Flutter check
 on: [push, workflow_dispatch]
 
 jobs:
-  lint:
+  setup:
     name: Flutter check
     runs-on: ubuntu-latest
     steps:
@@ -18,9 +18,32 @@ jobs:
           channel: "stable"
       - name: Flutter pub get
         run: flutter pub get
+  format:
+    needs: setup
+    if: success()
+    name: Flutter formatter
+    runs-on: ubuntu-latest
+    steps:
       - name: Flutter formatter
         run: flutter format lib
+  lint:
+    needs: setup
+    if: success()
+    name: Flutter linter
+    runs-on: ubuntu-latest
+    steps:
       - name: Flutter linter
         run: flutter analyze lib
+  metrics:
+    needs: setup
+    if: success()
+    name: Code Metrics
+    runs-on: ubuntu-latest
+    steps:
       - name: Run Code Metrics
         run: flutter pub run dart_code_metrics:metrics --reporter=github lib
+  summary:
+    needs: [format, lint, metrics]
+    if: success()
+    name: Summary
+    runs-on: ubuntu-latest

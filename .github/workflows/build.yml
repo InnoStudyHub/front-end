@@ -12,12 +12,12 @@ jobs:
         id: wait-for-check
         with:
           token: ${{ secrets.TOKEN }}
-          checkName: Flutter check
+          checkName: Summary
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           intervalSeconds: 60
   build:
     needs: wait
-    if: steps.wait-for-check.outputs.conclusion == 'success'
+    if: wait.wait-for-check.outputs.conclusion == 'success'
     name: Build project
     runs-on: ubuntu-latest
     steps:
