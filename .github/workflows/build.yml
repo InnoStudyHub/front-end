@@ -6,11 +6,6 @@ on: [push, workflow_dispatch]
 ##    branches:
 ##      - main
 
-env: 
-  APK_RESULT: ':x: **APK build failed**'
-  WEB_RESULT: ':x: **Web build failed**'
-  IOS_RESULT: ':x: **iOS build failed**'
-
 jobs:
   wait:
     name: Wait for checks
@@ -96,6 +91,10 @@ jobs:
     needs: [build_apk, build_ios, build_web]
     name: Send report
     runs-on: ubuntu-latest
+    env: 
+      APK_RESULT: ':x: **APK build failed**'
+      WEB_RESULT: ':x: **Web build failed**'
+      IOS_RESULT: ':x: **iOS build failed**'
     steps:
       - name: APK report
         if: needs.build_apk.result == 'success'
@@ -124,9 +123,9 @@ jobs:
             Repository: ${{ github.repository }}
             Push to main branch
 
-            ${{APK_RESULT}}
-            ${{IOS_RESULT}}
-            ${{WEB_RESULT}}
+            ${{env.APK_RESULT}}
+            ${{env.IOS_RESULT}}
+            ${{env.WEB_RESULT}}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
