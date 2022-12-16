@@ -58,7 +58,9 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
       - name: Run Code Metrics
-        run: flutter pub run dart_code_metrics:metrics --reporter=github lib
+        uses: dart-code-checker/dart-code-metrics-action@v3
+        with:
+          github_token: ${{ secrets.TOKEN }}
 
   summary:
     needs: [format, lint, metrics]
