@@ -91,32 +91,28 @@ jobs:
     needs: [build_apk, build_ios, build_web]
     name: Send report
     runs-on: ubuntu-latest
+    env: 
+      APK_RESULT: 'APK build failed'
+      WEB_RESULT: 'Web build failed'
+      IOS_RESULT: 'iOS build failed'
     steps:
       - name: APK report
-        env: 
-          RESULT: ''
-        run: |
-          if needs.build_apk.result == 'success'; then
-            RESULT: 'APK built successfully<br/>'
-          else
-            RESULT: 'APK build failed<br/>'
-          fi
+        if: needs.build_apk.result == 'success';
+        env:
+          APK_RESULT: 'APK built successfully<br/>'
       - name: Web report
-        run: |
-          if needs.build_web.result == 'success'; then
-            RESULT: RESULT + 'Web built successfully<br/>'
-          else
-            RESULT: RESULT + 'Web build failed<br/>'
-          fi
+        if: needs.build_web.result == 'success'
+        env:
+          WEB_RESULT: RESULT + 'Web built successfully<br/>'
       - name: iOS report
-        run: |
-          if needs.build_ios.result == 'success'; then
-            RESULT: RESULT + 'iOS built successfully<br/>'
-          else
-            RESULT: RESULT + 'iOS build failed<br/>'
-          fi
+        if: needs.build_ios.result == 'success'
+        env:
+          IOS_RESULT: RESULT + 'iOS built successfully<br/>'
       - name: Print
-        run: echo "$RESULT" >> $GITHUB_STEP_SUMMARY
+        run: |
+          echo "$APK_RESULT" >> $GITHUB_STEP_SUMMARY
+          echo "$WEB_RESULT" >> $GITHUB_STEP_SUMMARY
+          echo "$IOS_RESULT" >> $GITHUB_STEP_SUMMARY
 
 ##  failure_message:
 ##    needs: build
