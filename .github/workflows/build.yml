@@ -3,31 +3,33 @@ name: Build apk
 on: [push, workflow_dispatch]
 
 jobs:
-  build:
-    name: Build apk
+  wait:
+    name: Wait for checks
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for check to succeed
+      - name: Wait for checks to succeed
         uses: fountainhead/action-wait-for-check@v1.1.0
         id: wait-for-check
         with:
           token: ${{ secrets.TOKEN }}
-          checkName: Flutter analyze
+          checkName: Flutter check
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           intervalSeconds: 60
+  build:
+    needs: wait
+    if: steps.wait-for-check.outputs.conclusion == 'success'
+    name: Build project
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout source code
-        if: steps.wait-for-check.outputs.conclusion == 'success'
         uses: actions/checkout@v2
       - name: Install Flutter
-        if: steps.wait-for-check.outputs.conclusion == 'success'
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
       - name: Get packages in a Flutter project
-        if: steps.wait-for-check.outputs.conclusion == 'success'
         run: flutter pub get
       - name: Build
-        if: steps.wait-for-check.outputs.conclusion == 'success'
         run: flutter build apk --no-sound-null-safety
 ##      - uses: actions/upload-artifact@v1
 ##        with:
