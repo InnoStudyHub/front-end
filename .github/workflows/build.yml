@@ -1,6 +1,9 @@
 name: Build apk
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   wait:
@@ -65,7 +68,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-          cache: 'gradle'
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
