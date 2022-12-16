@@ -73,6 +73,22 @@ jobs:
         if: needs.format.result == 'failure'
         run: |
           echo ":x: **Format failed**" >> $GITHUB_STEP_SUMMARY
+      - name: Print linter success
+        if: needs.lint.result == 'success'
+        run: |
+          echo ":heavy_check_mark: **Linter passed**" >> $GITHUB_STEP_SUMMARY
+      - name: Print linter failure
+        if: needs.lint.result == 'failure'
+        run: |
+          echo ":x: **Linter failed**" >> $GITHUB_STEP_SUMMARY
+      - name: Print code metrics success
+        if: needs.metrics.result == 'success'
+        run: |
+          echo ":heavy_check_mark: **Code metrics generated**" >> $GITHUB_STEP_SUMMARY
+      - name: Print code metrics failure
+        if: needs.metrics.result == 'failure'
+        run: |
+          echo ":x: **Code metrics generation failed**" >> $GITHUB_STEP_SUMMARY
   
   let_build:
     needs: [format, lint, metrics]
