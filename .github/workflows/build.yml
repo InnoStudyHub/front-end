@@ -12,8 +12,9 @@ jobs:
         id: wait-for-check
         with:
           token: ${{ secrets.TOKEN }}
-          checkName: Lint check
+          checkName: Flutter analyze
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          intervalSeconds: 60
       - name: Checkout source code
         if: steps.wait-for-check.outputs.conclusion == 'success'
         uses: actions/checkout@v2
