@@ -93,21 +93,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: APK report
-        env:
+        env: RESULT = ''
           if needs.build_apk.result == 'success'; then
             RESULT = 'APK built successfully<br/>'
           else
             RESULT = 'APK build failed<br/>'
           fi
       - name: Web report
-        env:
+        run: |
           if needs.build_web.result == 'success'; then
             RESULT = RESULT + 'Web built successfully<br/>'
           else
             RESULT = RESULT + 'Web build failed<br/>'
           fi
       - name: iOS report
-        env:
+        run: |
           if needs.build_ios.result == 'success'; then
             RESULT = RESULT + 'iOS built successfully<br/>'
           else
