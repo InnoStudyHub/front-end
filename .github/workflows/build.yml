@@ -98,19 +98,13 @@ jobs:
     steps:
       - name: APK report
         if: needs.build_apk.result == 'success'
-        env.APK_RESULT: 'APK built successfully'
-        run: |
-          echo "$APK_RESULT" >> $GITHUB_STEP_SUMMARY
+        run: echo "$APK_RESULT=APK built successfully" >> $GITHUB_ENV
       - name: Web report
         if: needs.build_web.result == 'success'
-        env.WEB_RESULT: 'Web built successfully'
-        run: |
-          echo "$WEB_RESULT" >> $GITHUB_STEP_SUMMARY
+        run: echo "$WEB_RESULT=Web built successfully" >> $GITHUB_ENV
       - name: iOS report
         if: needs.build_ios.result == 'success'
-        env.IOS_RESULT: 'iOS built successfully'
-        run: |
-          echo "$IOS_RESULT" >> $GITHUB_STEP_SUMMARY
+        run: echo "$IOS_RESULT=iOS built successfully" >> $GITHUB_ENV
       - name: Send telegram message on build failure
         uses: appleboy/telegram-action@master
         with:
