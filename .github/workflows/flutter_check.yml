@@ -15,7 +15,6 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: 'gradle'
-      - run: ./gradlew build --no-daemon
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
@@ -35,7 +34,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-          cache: gradle
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
