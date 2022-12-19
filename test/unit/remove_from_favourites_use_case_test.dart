@@ -18,11 +18,11 @@ final deck = Deck(
   isFavourite: true,
 );
 
-void main () {
+void main() {
   Get.put<DeckRepository>(TestDeckRepository());
   Get.put<CachedRepository>(CachedRepoImpl());
 
-  group('Testing Use Cases', (){
+  group('Testing Use Cases', () {
     CachedRepository cache = Get.find();
 
     test('A deck should be removed', () {
@@ -33,5 +33,4 @@ void main () {
       expect(cache.favouriteDecks.contains(deck), false);
     });
   });
-
 }

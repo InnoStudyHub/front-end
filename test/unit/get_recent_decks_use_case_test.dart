@@ -7,7 +7,6 @@ import 'package:study_hub/model/models/deck.dart';
 import 'package:study_hub/model/repository/cached_repository.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
 
-
 final deck1 = Deck(
   id: 0,
   folderId: 1,
@@ -28,12 +27,11 @@ final deck2 = Deck(
   isFavourite: false,
 );
 
-
-void main () {
+void main() {
   Get.put<DeckRepository>(TestDeckRepository());
   Get.put<CachedRepository>(CachedRepoImpl());
 
-  group('Testing Use Cases', (){
+  group('Testing Use Cases', () {
     CachedRepository cache = Get.find();
 
     test('A new deck should be added to recents', () async {
@@ -45,8 +43,6 @@ void main () {
 
       LogDeckUseCase.invoke(deck1);
       expect(cache.recentDecks[0] == deck1, true);
-
     });
   });
-
 }

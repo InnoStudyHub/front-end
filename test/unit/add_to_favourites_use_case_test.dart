@@ -17,11 +17,11 @@ final deck = Deck(
   isFavourite: true,
 );
 
-void main () {
+void main() {
   Get.put<DeckRepository>(TestDeckRepository());
   Get.put<CachedRepository>(CachedRepoImpl());
 
-  group('Testing Use Cases', (){
+  group('Testing Use Cases', () {
     CachedRepository cache = Get.find();
 
     test('A new deck should be added', () {
@@ -29,5 +29,4 @@ void main () {
       expect(cache.favouriteDecks.contains(deck), true);
     });
   });
-
 }
