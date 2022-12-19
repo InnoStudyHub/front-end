@@ -1,4 +1,3 @@
-/*
 import 'dart:typed_data';
 
 class CardImage {
@@ -10,4 +9,3 @@ class CardImage {
     this.webImage,
   });
 }
-*/
