@@ -13,7 +13,7 @@ class TestAuthRepository implements AuthRepository {
     await Future.delayed(duration);
 
     return Success(
-        successData: Token(accessToken: "access", refreshToken: "refresh"),
+      successData: Token(accessToken: "access", refreshToken: "refresh"),
     );
   }
 
@@ -32,7 +32,7 @@ class TestAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<Resource<String>> refresh() async  {
+  Future<Resource<String>> refresh() async {
     await Future.delayed(duration);
 
     return Success(successData: "refresh");
@@ -50,5 +50,4 @@ class TestAuthRepository implements AuthRepository {
       successData: Token(accessToken: "access", refreshToken: "refresh"),
     );
   }
-
 }

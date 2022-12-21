@@ -5,11 +5,11 @@ import '../../../model/models/deck.dart';
 class GetMyDecksUseCase {
   GetMyDecksUseCase._();
 
-  static RxList<Deck> invoke() {
+  static Future<RxList<Deck>> invoke() async {
     CachedRepository cacheRepo = Get.find();
 
     if (cacheRepo.myDecks.isEmpty) {
-      cacheRepo.updateMyDecks();
+      await cacheRepo.updateMyDecks();
     }
 
     return cacheRepo.myDecks;

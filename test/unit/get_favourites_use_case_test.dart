@@ -12,7 +12,7 @@ void main() {
 
   group('Testing Use Cases', () {
     test('Favourite decks should be returned', () async {
-      var favourites = GetFavouritesUseCase.invoke();
+      var favourites = await GetFavouritesUseCase.invoke();
       for (var deck in favourites) {
         expect(deck.isFavourite, true);
       }
