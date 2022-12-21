@@ -39,7 +39,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var credentials = credentialsResponse.data!;
     var headers = {
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     headers.addAll(credentials);
 
@@ -121,7 +121,7 @@ class DeckRepositoryImpl implements DeckRepository {
     }
     var headers = {
       "Content-Type": "application/json",
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     var credentials = credentialsResponse.data!;
 
@@ -153,7 +153,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var headers = {
       "Content-Type": "application/json",
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     var credentials = credentialsResponse.data!;
     headers.addAll(credentials);
@@ -191,7 +191,7 @@ class DeckRepositoryImpl implements DeckRepository {
     }
     var headers = {
       "Content-Type": "application/json",
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     var credentials = credentialsResponse.data!;
 
@@ -236,7 +236,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var headers = {
       "Content-Type": "application/json",
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/favourite/remove/");
@@ -277,7 +277,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var headers = {
       "Content-Type": "application/json",
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/folder/list/");
@@ -330,7 +330,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var headers = {
       "Content-Type": "application/json",
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     var credentials = credentialsResponse.data!;
 
@@ -366,7 +366,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var headers = {
       "Content-Type": "application/json",
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/search/");
@@ -414,7 +414,7 @@ class DeckRepositoryImpl implements DeckRepository {
     var credentials = credentialsResponse.data!;
 
     var headers = {
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/info?userId=$authorId");
@@ -447,7 +447,7 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var headers = {
       "Content-Type": "application/json",
-      "X-API-KEY": "CW0zU47q.wznOSh8oEF9A5XQLK1HnAoOW1VzM17J4",
+      "X-API-KEY": API_KEY,
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/forYou/");
