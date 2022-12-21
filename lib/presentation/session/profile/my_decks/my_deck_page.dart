@@ -2,9 +2,9 @@ import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../session/deck_preview/deck_preview.dart';
 import '../../../util/color_codes.dart';
+import '../../../widgets/loading_indicator.dart';
 import 'my_decks_controller.dart';
 
 class MyDecksPage extends StatelessWidget {
@@ -17,29 +17,33 @@ class MyDecksPage extends StatelessWidget {
     return GetBuilder<MyDecksController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
-          child: Obx(
-            () => controller.decks.isEmpty
-                ? const Center(
-                    child: Text(
-                      "You have no decks.\nPerfect time to create one",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        color: selectedMenuColor,
-                      ),
-                    ),
-                  )
-                : kIsWeb
-                    ? _web(controller, screenSize)
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.decks.length,
-                        itemBuilder: (context, index) {
-                          return DeckPreview(deck: controller.decks[index]);
-                        },
-                      ),
-          ),
+          child: controller.isLoading
+              ? const LoadingIndicator()
+              : Obx(
+                  () => controller.decks.isEmpty
+                      ? const Center(
+                          child: Text(
+                            "You have no decks.\nPerfect time to create one",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: selectedMenuColor,
+                            ),
+                          ),
+                        )
+                      : kIsWeb
+                          ? _web(controller, screenSize)
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: controller.decks.length,
+                              itemBuilder: (context, index) {
+                                return DeckPreview(
+                                  deck: controller.decks[index],
+                                );
+                              },
+                            ),
+                ),
         ),
       );
     });

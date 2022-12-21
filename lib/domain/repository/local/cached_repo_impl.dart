@@ -109,7 +109,6 @@ class CachedRepoImpl implements CachedRepository {
   @override
   Future<void> updateRecent() async {
     var response = await remote.getRecent();
-    debugPrint("Got recents from remote");
     if (response is Success) {
       debugPrint(response.data.toString());
       for (var deck in response.data!) {
