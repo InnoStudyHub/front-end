@@ -4,12 +4,15 @@ import '../../../../model/models/deck.dart';
 
 class RecentController extends GetxController {
   RxList<Deck> decks = RxList();
+  bool isLoading = true;
 
   RecentController() {
     getDecks();
   }
 
-  void getDecks() {
-    decks = GetRecentDecksUseCase.invoke();
+  void getDecks() async {
+    decks = await GetRecentDecksUseCase.invoke();
+    isLoading = false;
+    update();
   }
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:study_hub/presentation/widgets/folder_view.dart';
 
 import '../../../util/color_codes.dart';
+import '../../../widgets/loading_indicator.dart';
 import 'for_you_controller.dart';
 
 class ForYouPage extends StatelessWidget {
@@ -22,23 +23,13 @@ class ForYouPage extends StatelessWidget {
           child: controller.folders.isEmpty
               ? Center(
                   child: controller.isLoading
-                      ? AlertDialog(
-                          backgroundColor: mainAppColor,
-                          content: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              CircularProgressIndicator(
-                                color: selectedTabColor,
-                              ),
-                            ],
-                          ),
-                        )
+                      ? const LoadingIndicator()
                       : const Text(
-                          "No decks available.",
+                          "No folders available.",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400,
-                            color: greySecondary,
+                            color: selectedMenuColor,
                           ),
                         ),
                 )
