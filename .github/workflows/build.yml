@@ -41,7 +41,7 @@ jobs:
       - name: Clean
         run: flutter clean
       - name: Build APK
-        run: flutter build apk --no-sound-null-safety
+        run: flutter build apk --no-sound-null-safety --dart-define=API_KEY=${{secrets.API_KEY}}
       - name: Upload APK
         uses: actions/upload-artifact@master
         with:
@@ -65,7 +65,7 @@ jobs:
       - name: Clean
         run: flutter clean
       - name: Build web
-        run: flutter build web --web-renderer html
+        run: flutter build web --web-renderer html --dart-define=API_KEY=${{secrets.API_KEY}}
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
@@ -94,7 +94,7 @@ jobs:
       - name: Clean
         run: flutter clean
       - name: Build ios
-        run: flutter build ios --release --no-codesign
+        run: flutter build ios --release --no-codesign --dart-define=API_KEY=${{secrets.API_KEY}}
       - name: Upload iPA
         uses: actions/upload-artifact@master
         with:
