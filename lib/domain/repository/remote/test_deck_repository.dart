@@ -6,8 +6,7 @@ import 'package:study_hub/model/models/search_query.dart';
 import 'package:study_hub/model/models/search_result.dart';
 import 'package:study_hub/model/repository/deck_repository.dart';
 
-class TestDeckRepository implements DeckRepository{
-
+class TestDeckRepository implements DeckRepository {
   final deck = Deck(
     id: 0,
     folderId: 0,
@@ -17,7 +16,6 @@ class TestDeckRepository implements DeckRepository{
     cards: [],
     isFavourite: true,
   );
-
 
   @override
   Future<Resource<int>> addToFavourites(Deck deck) async {
@@ -44,7 +42,6 @@ class TestDeckRepository implements DeckRepository{
 
   @override
   Future<Resource<List<Deck>>> getFavourites() async {
-
     return Success(successData: [deck, deck]);
   }
 
@@ -63,9 +60,9 @@ class TestDeckRepository implements DeckRepository{
   Future<Resource<List<Folder>>> getForYou() async {
     return Success(
       successData: [
-      Folder(id: 1, name: "Folder 1"),
-      Folder(id: 2, name: "Folder 2"),
-      Folder(id: 3, name: "Folder 3"),
+        Folder(id: 1, name: "Folder 1"),
+        Folder(id: 2, name: "Folder 2"),
+        Folder(id: 3, name: "Folder 3"),
       ],
     );
   }
@@ -78,7 +75,6 @@ class TestDeckRepository implements DeckRepository{
   @override
   Future<Resource<int>> logDeck(int id) async {
     return Success(successData: 200);
-
   }
 
   @override
@@ -89,35 +85,19 @@ class TestDeckRepository implements DeckRepository{
   @override
   Future<Resource<SearchResult>> search(SearchQuery query) async {
     return Success(
-        successData: SearchResult(
-            folders: [
-              Folder(id: 1, name: "Folder 1"),
-              Folder(id: 2, name: "Folder 2"),
-              Folder(id: 3, name: "Folder 3"),
-            ],
-            decks: [deck, deck, deck],
-
-        ),
+      successData: SearchResult(
+        folders: [
+          Folder(id: 1, name: "Folder 1"),
+          Folder(id: 2, name: "Folder 2"),
+          Folder(id: 3, name: "Folder 3"),
+        ],
+        decks: [deck, deck, deck],
+      ),
     );
   }
 
   @override
   Future<Resource<Deck>> uploadDeck(CreateDeck deck) async {
-    return Success(
-        successData: Deck(
-          id: 0,
-          folderId: deck.folderId,
-          authorId: 0,
-          deckName: deck.deckName,
-          semester: deck.semester,
-          cards: [],
-          isFavourite: false,
-        ),
-    );
-  }
-
-  @override
-  Future<Resource<Deck>> uploadDeckFromSheet(CreateDeck deck, String link) async {
     return Success(
       successData: Deck(
         id: 0,
@@ -131,4 +111,19 @@ class TestDeckRepository implements DeckRepository{
     );
   }
 
+  @override
+  Future<Resource<Deck>> uploadDeckFromSheet(
+      CreateDeck deck, String link) async {
+    return Success(
+      successData: Deck(
+        id: 0,
+        folderId: deck.folderId,
+        authorId: 0,
+        deckName: deck.deckName,
+        semester: deck.semester,
+        cards: [],
+        isFavourite: false,
+      ),
+    );
+  }
 }
