@@ -23,7 +23,7 @@ jobs:
       - name: Clean
         run: flutter clean
       - name: Build web
-        run: flutter build web --web-renderer html --dart-define=API_KEY=$API_KEY
+        run: flutter build web --web-renderer html --dart-define=API_KEY=$API_KEY --release
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
