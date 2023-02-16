@@ -10,8 +10,8 @@ import '../../../model/repository/auth_repository.dart';
 class AuthRepositoryImpl implements AuthRepository {
   static const headers = {
     "X-API-KEY": apiKey,
-    "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
+    "Origin": "http://studyhub.kz",
     'Accept': '*/*',
   };
   var getStorage = GetStorage();

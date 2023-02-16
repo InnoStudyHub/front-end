@@ -1,4 +1,4 @@
-const String serverIP = "http://api.studyhub.kz:8000";
+const String serverIP = "http://api-dev.studyhub.kz:8000";
 const int registerSuccessCode = 201;
 const int registerCredentialsAlreadyExistCode = 400;
 const int loginSuccessCode = 200;
