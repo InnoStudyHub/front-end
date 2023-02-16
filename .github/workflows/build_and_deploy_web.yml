@@ -38,4 +38,4 @@ jobs:
           END
       - name: Copy files to vm
         run: |
-          scp build/web/ staging:~/web/
+          scp build/web staging:~/web
