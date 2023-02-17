@@ -1,6 +1,13 @@
 name: Build
 
-on: push
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    branches:
+      - main
+      - dev
 
 jobs:
   build_web:
