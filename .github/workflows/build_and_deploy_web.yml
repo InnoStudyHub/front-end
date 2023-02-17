@@ -40,6 +40,6 @@ jobs:
         run: |
           ssh staging 'rm -r /var/www/html/*'
           scp -r build/web/ staging:/var/www/html
-          ssh staging 'mv var/www/html/web/* var/www/html/'
+          ssh staging 'mv /var/www/html/web/* /var/www/html/'
           ssh staging 'rm -r /var/www/html/web'
           
