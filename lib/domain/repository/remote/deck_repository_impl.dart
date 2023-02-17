@@ -40,6 +40,9 @@ class DeckRepositoryImpl implements DeckRepository {
     var credentials = credentialsResponse.data!;
     var headers = {
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     headers.addAll(credentials);
 
@@ -120,8 +123,10 @@ class DeckRepositoryImpl implements DeckRepository {
       return Fail(errorMessage: credentialsResponse.message!);
     }
     var headers = {
-      "Content-Type": "application/json",
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     var credentials = credentialsResponse.data!;
 
@@ -152,8 +157,10 @@ class DeckRepositoryImpl implements DeckRepository {
     }
 
     var headers = {
-      "Content-Type": "application/json",
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     var credentials = credentialsResponse.data!;
     headers.addAll(credentials);
@@ -190,8 +197,10 @@ class DeckRepositoryImpl implements DeckRepository {
       return Fail(errorMessage: credentialsResponse.message!);
     }
     var headers = {
-      "Content-Type": "application/json",
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     var credentials = credentialsResponse.data!;
 
@@ -235,8 +244,10 @@ class DeckRepositoryImpl implements DeckRepository {
     var credentials = credentialsResponse.data!;
 
     var headers = {
-      "Content-Type": "application/json",
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/favourite/remove/");
@@ -276,8 +287,10 @@ class DeckRepositoryImpl implements DeckRepository {
     var credentials = credentialsResponse.data!;
 
     var headers = {
-      "Content-Type": "application/json",
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/folder/list/");
@@ -329,8 +342,10 @@ class DeckRepositoryImpl implements DeckRepository {
     }
 
     var headers = {
-      "Content-Type": "application/json",
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     var credentials = credentialsResponse.data!;
 
@@ -365,8 +380,10 @@ class DeckRepositoryImpl implements DeckRepository {
     var credentials = credentialsResponse.data!;
 
     var headers = {
-      "Content-Type": "application/json",
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/search/");
@@ -415,6 +432,9 @@ class DeckRepositoryImpl implements DeckRepository {
 
     var headers = {
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/info?userId=$authorId");
@@ -446,8 +466,10 @@ class DeckRepositoryImpl implements DeckRepository {
     var credentials = credentialsResponse.data!;
 
     var headers = {
-      "Content-Type": "application/json",
       "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+      "Origin": "http://studyhub.kz",
+      'Accept': '*/*',
     };
     headers.addAll(credentials);
     var url = Uri.parse("$serverIP/user/forYou/");
