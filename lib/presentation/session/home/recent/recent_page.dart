@@ -51,30 +51,29 @@ class RecentPage extends StatelessWidget {
   }
 
   _webRecentPage(RecentController controller, Size screenSize) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.fromLTRB(108, 20, 102, 5),
-        child: DynamicHeightGridView(
-          shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
-          /*gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      childAspectRatio:
-                      screenSize.width / screenSize.height * 1.4,
-                    ),*/
-          crossAxisCount: screenSize.width > 1500
-              ? 4
-              : screenSize.width > 1300
+    return Column(
+      children: [
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.fromLTRB(108, 20, 102, 5),
+            child: DynamicHeightGridView(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              crossAxisCount: screenSize.width > 1500
+                  ? 4
+                  : screenSize.width > 1300
                   ? 3
                   : screenSize.width > 1000
-                      ? 2
-                      : 1,
-          itemCount: controller.decks.length,
-          builder: (context, index) {
-            return DeckPreview(deck: controller.decks[index]);
-          },
+                  ? 2
+                  : 1,
+              itemCount: controller.decks.length,
+              builder: (context, index) {
+                return DeckPreview(deck: controller.decks[index]);
+              },
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
