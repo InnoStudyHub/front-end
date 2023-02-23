@@ -60,28 +60,28 @@ class ForYouPage extends StatelessWidget {
 
   _webForYouPage(ForYouController controller, Size screenSize) {
     return Column(
-        children: [
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(108, 20, 102, 5),
-              child: DynamicHeightGridView(
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                crossAxisCount: screenSize.width > 1500
-                    ? 4
-                    : screenSize.width > 1300
-                    ? 3
-                    : screenSize.width > 1000
-                    ? 2
-                    : 1,
-                itemCount: controller.folders.length,
-                builder: (context, index) {
-                  return FolderView(folder: controller.folders[index]);
-                },
-              ),
+      children: [
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.fromLTRB(108, 20, 102, 5),
+            child: DynamicHeightGridView(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              crossAxisCount: screenSize.width > 1500
+                  ? 4
+                  : screenSize.width > 1300
+                      ? 3
+                      : screenSize.width > 1000
+                          ? 2
+                          : 1,
+              itemCount: controller.folders.length,
+              builder: (context, index) {
+                return FolderView(folder: controller.folders[index]);
+              },
             ),
           ),
-        ],
+        ),
+      ],
     );
   }
 }
