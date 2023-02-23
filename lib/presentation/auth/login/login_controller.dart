@@ -80,6 +80,7 @@ class LoginController extends GetxController {
         ? await WebLoginWithIUUseCase.invoke()
         : await LoginWithIUUseCase.invoke();
     snackBarError = response.data.toString();
+    update();
     if (response is Success) {
       isLoading = false;
       snackBarError = response.data.toString();
