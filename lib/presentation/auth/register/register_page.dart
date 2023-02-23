@@ -78,7 +78,7 @@ class RegisterPage extends StatelessWidget {
                               ),
                               const ThemedDivider(),
                               ContinueWithUIButton(callback: () {
-                                controller.loginWithIU();
+                                controller.loginWithIU(true);
                               }),
                             ],
                           ),
@@ -119,7 +119,7 @@ class RegisterPage extends StatelessWidget {
                         _loginButton(),
                         const ThemedDivider(),
                         ContinueWithUIButton(callback: () {
-                          controller.loginWithIU();
+                          controller.loginWithIU(false);
                         }),
                       ],
                     ),
