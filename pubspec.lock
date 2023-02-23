@@ -224,6 +224,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_auth_2:
+    dependency: "direct main"
+    description:
+      name: flutter_web_auth_2
+      sha256: fb3727874982ddcfc95ae8c1d18b538612de2841e5e1369a66aaef9c82445e5f
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
+  flutter_web_auth_2_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_web_auth_2_platform_interface
+      sha256: "777df76e0a3b3c3ec2c33bda2fd832d58ba68183644ede0738665399c8810048"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -375,6 +391,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
+  oauth2:
+    dependency: "direct main"
+    description:
+      name: oauth2
+      sha256: "1e8376c222651904caf7785fd2fa01b1e2be608c94bec842a94e116deca88f13"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   package_config:
     dependency: transitive
     description:
@@ -596,6 +620,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  uni_links:
+    dependency: "direct main"
+    description:
+      name: uni_links
+      sha256: "051098acfc9e26a9fde03b487bef5d3d228ca8f67693480c6f33fd4fbb8e2b6e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  uni_links_platform_interface:
+    dependency: transitive
+    description:
+      name: uni_links_platform_interface
+      sha256: "929cf1a71b59e3b7c2d8a2605a9cf7e0b125b13bc858e55083d88c62722d4507"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  uni_links_web:
+    dependency: transitive
+    description:
+      name: uni_links_web
+      sha256: "7539db908e25f67de2438e33cc1020b30ab94e66720b5677ba6763b25f6394df"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   url_launcher:
     dependency: "direct main"
     description:

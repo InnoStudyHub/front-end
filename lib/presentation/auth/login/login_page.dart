@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
                               height: 12,
                             ),
                             ContinueWithUIButton(callback: () {
-                              controller.loginWithIU();
+                              controller.loginWithIU(true);
                             }),
                           ],
                         ),
@@ -107,7 +107,7 @@ class LoginPage extends StatelessWidget {
                       _registerButton(),
                       const ThemedDivider(),
                       ContinueWithUIButton(callback: () {
-                        controller.loginWithIU();
+                        controller.loginWithIU(false);
                       }),
                     ],
                   ),

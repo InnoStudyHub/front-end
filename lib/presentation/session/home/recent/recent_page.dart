@@ -62,10 +62,10 @@ class RecentPage extends StatelessWidget {
               crossAxisCount: screenSize.width > 1500
                   ? 4
                   : screenSize.width > 1300
-                  ? 3
-                  : screenSize.width > 1000
-                  ? 2
-                  : 1,
+                      ? 3
+                      : screenSize.width > 1000
+                          ? 2
+                          : 1,
               itemCount: controller.decks.length,
               builder: (context, index) {
                 return DeckPreview(deck: controller.decks[index]);
