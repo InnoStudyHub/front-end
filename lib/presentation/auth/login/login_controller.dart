@@ -79,9 +79,10 @@ class LoginController extends GetxController {
     var response = isWeb
         ? await WebLoginWithIUUseCase.invoke()
         : await LoginWithIUUseCase.invoke();
-    debugPrint(response.toString());
+    snackBarError = response.data.toString();
     if (response is Success) {
       isLoading = false;
+      snackBarError = response.data.toString();
       update();
       Get.offNamed(AppRoutes.session);
     } else {

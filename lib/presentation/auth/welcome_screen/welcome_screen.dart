@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../domain/use_case/auth/login_wtih_iu_use_case.dart';
+import '../../../domain/use_case/auth/web_login_wtih_iu_use_case.dart';
 import '../../../model/models/resource.dart';
 import '../../util/color_codes.dart';
 import '../../util/routes.dart';
@@ -211,8 +212,12 @@ class WelcomeScreen extends StatelessWidget {
       height: 44,
       width: 320,
       child: MaterialButton(
-        onPressed: () {
-          //TODO
+        onPressed: () async {
+          var response = await WebLoginWithIUUseCase.invoke();
+          debugPrint(response.toString());
+          if (response is Success) {
+            Get.offNamed(AppRoutes.session);
+          }
         },
         color: selectedMenuColor,
         child: Row(
