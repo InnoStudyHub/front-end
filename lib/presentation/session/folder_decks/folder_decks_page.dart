@@ -69,7 +69,7 @@ class FolderDecksPage extends StatelessWidget {
   _webFolderDecksPage(FolderDecksController controller, Size screenSize) {
     return Column(
       children: [
-        _webSearchBar(),
+        //_webSearchBar(),
         Expanded(
           child: Container(
             margin: const EdgeInsets.fromLTRB(108, 40, 102, 5),
@@ -96,7 +96,7 @@ class FolderDecksPage extends StatelessWidget {
     );
   }
 
-  Widget _webSearchBar() {
+  /*Widget _webSearchBar() {
     //TODO search bar
     return Container(
       margin: const EdgeInsets.only(
@@ -120,5 +120,5 @@ class FolderDecksPage extends StatelessWidget {
         cursorColor: greySecondary,
       ),
     );
-  }
+  }*/
 }

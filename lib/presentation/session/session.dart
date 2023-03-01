@@ -97,7 +97,7 @@ class Session extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
+            /*Container(
               width: screenSize.width,
               color: mainAppColor,
               height: 180,
@@ -109,7 +109,7 @@ class Session extends StatelessWidget {
                   _webBackToTop(),
                 ],
               ),
-            ),
+            ),*/
           ],
         ),
       ),
