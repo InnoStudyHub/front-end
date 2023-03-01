@@ -116,7 +116,7 @@ class Session extends StatelessWidget {
     );
   }
 
-  _webCopyrightText() {
+  /*_webCopyrightText() {
     return Container(
       width: 270,
       margin: const EdgeInsets.only(top: 25.0, left: 80.0),
@@ -167,9 +167,9 @@ class Session extends StatelessWidget {
         ],
       ),
     );
-  }
+  }*/
 
-  _webFooterButtons(SessionController controller) {
+  /*_webFooterButtons(SessionController controller) {
     final List<bool> selectedBottomButtons = <bool>[false, false, false];
 
     return ToggleButtons(
@@ -210,9 +210,9 @@ class Session extends StatelessWidget {
         ),
       ],
     );
-  }
+  }*/
 
-  _webBackToTop() {
+ /* _webBackToTop() {
     return Container(
       margin: const EdgeInsets.only(top: 35.0, right: 105.0),
       child: TextButton(
@@ -229,7 +229,7 @@ class Session extends StatelessWidget {
         ),
       ),
     );
-  }
+  }*/
 
   _webHomePageItem(SessionController controller) {
     return BottomNavigationBarItem(
