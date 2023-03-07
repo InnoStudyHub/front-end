@@ -40,7 +40,7 @@ class DeckRepositoryImpl implements DeckRepository {
     var credentials = credentialsResponse.data!;
     var headers = {
       "X-API-KEY": apiKey,
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/from-data",
       "Origin": "http://studyhub.kz",
       'Accept': '*/*',
     };
@@ -77,23 +77,45 @@ class DeckRepositoryImpl implements DeckRepository {
   Future<List<http.MultipartFile>> collectImages(CreateDeck deck) async {
     List<http.MultipartFile> files = [];
     for (var card in deck.cards) {
-      if (card.questionImage != null) {
-        var file = await http.MultipartFile.fromPath(
-          card.questionImageKey!,
-          card.questionImage!,
-          contentType: MediaType('image', 'jpg'),
-        );
-        files.add(file);
+
+      if (card.questionImage!= null) {
+        if (card.questionImage!.image != null) {
+          var file = await http.MultipartFile.fromPath(
+            card.questionImageKey!,
+            card.questionImage!.image!,
+            contentType: MediaType('image', 'jpg'),
+          );
+          files.add(file);
+        }
+        else if (card.questionImage!.webImage != null) {
+          var file = http.MultipartFile.fromBytes(
+            card.questionImageKey!,
+            card.questionImage!.webImage!,
+            contentType: MediaType('application', 'json'),
+            filename: "Name",
+          );
+          files.add(file);
+        }
       }
 
       if (card.answerImages != null) {
         for (var i = 0; i < card.answerImages!.length; i++) {
-          var file = await http.MultipartFile.fromPath(
-            card.answerImageKeys![i],
-            card.answerImages![i],
-            contentType: MediaType('image', 'jpg'),
-          );
-          files.add(file);
+          if (card.answerImages![i].image != null) {
+            var file = await http.MultipartFile.fromPath(
+              card.answerImageKeys![i],
+              card.answerImages![i].image!,
+              contentType: MediaType('image', 'jpg'),
+            );
+            files.add(file);
+          } else if (card.answerImages![i].webImage != null) {
+            var file = http.MultipartFile.fromBytes(
+              card.answerImageKeys![i],
+              card.answerImages![i].webImage!,
+              contentType: MediaType('application', 'json'),
+              filename: "Name",
+            );
+            files.add(file);
+          }
         }
       }
     }
