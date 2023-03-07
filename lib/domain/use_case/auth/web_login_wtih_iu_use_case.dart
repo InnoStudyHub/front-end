@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../common/constants.dart';
 import '../../../model/models/resource.dart';
 import '../../../model/models/tokens.dart';
-import 'dart:html' as html;
+import 'package:universal_html/html.dart' as html;
 import '../../../model/repository/auth_repository.dart';
 
 class WebLoginWithIUUseCase {
