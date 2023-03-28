@@ -11,7 +11,6 @@ class FavouritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<FavouritesController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(

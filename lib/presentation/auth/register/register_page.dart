@@ -35,36 +35,36 @@ class RegisterPage extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/register_page.png"),
-                        alignment: Alignment.centerRight,
-                      ),
-                    ),
-                    child: ListView(
-                      children: <Widget>[
-                        _heading(),
-                        OutlinedTextField(
-                          label: "Email",
-                          prefixIconData: Icons.email_outlined,
-                          textFieldController: controller.emailController,
-                          inputType: TextInputType.emailAddress,
-                          error: controller.emailError,
-                        ),
-                        OutlinedTextField(
-                          label: "Full name",
-                          assetName:
-                              "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
-                          textFieldController: controller.fullNameController,
-                          error: controller.fullNameError,
-                        ),
-                        _passwordFormField(controller: controller),
-                        _registerButton(controller, showSnackBar),
-                        _loginButton(),
-                        const ThemedDivider(),
-                      ],
-                    ),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/register_page.png"),
+                  alignment: Alignment.centerRight,
+                ),
+              ),
+              child: ListView(
+                children: <Widget>[
+                  _heading(),
+                  OutlinedTextField(
+                    label: "Email",
+                    prefixIconData: Icons.email_outlined,
+                    textFieldController: controller.emailController,
+                    inputType: TextInputType.emailAddress,
+                    error: controller.emailError,
                   ),
+                  OutlinedTextField(
+                    label: "Full name",
+                    assetName:
+                        "assets/icons/bottom_bar/profile_bottom_bar_ic_no_notification.svg",
+                    textFieldController: controller.fullNameController,
+                    error: controller.fullNameError,
+                  ),
+                  _passwordFormField(controller: controller),
+                  _registerButton(controller, showSnackBar),
+                  _loginButton(),
+                  const ThemedDivider(),
+                ],
+              ),
+            ),
           ),
         ),
       );

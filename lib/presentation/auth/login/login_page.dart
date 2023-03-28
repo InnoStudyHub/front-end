@@ -26,35 +26,35 @@ class LoginPage extends StatelessWidget {
       }
 
       return Scaffold(
-              resizeToAvoidBottomInset: false,
-              body: SafeArea(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/login_page.png"),
-                      alignment: Alignment.centerLeft,
-                    ),
-                  ),
-                  child: ListView(
-                    children: <Widget>[
-                      _heading(),
-                      OutlinedTextField(
-                        label: "Email",
-                        prefixIconData: Icons.email_outlined,
-                        textFieldController: controller.emailController,
-                        inputType: TextInputType.emailAddress,
-                        error: controller.emailError,
-                      ),
-                      _passwordFormField(controller: controller),
-                      _forgotPasswordButton(),
-                      _loginButton(controller, showSnackBar),
-                      _registerButton(),
-                      const ThemedDivider(),
-                    ],
-                  ),
-                ),
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/login_page.png"),
+                alignment: Alignment.centerLeft,
               ),
-            );
+            ),
+            child: ListView(
+              children: <Widget>[
+                _heading(),
+                OutlinedTextField(
+                  label: "Email",
+                  prefixIconData: Icons.email_outlined,
+                  textFieldController: controller.emailController,
+                  inputType: TextInputType.emailAddress,
+                  error: controller.emailError,
+                ),
+                _passwordFormField(controller: controller),
+                _forgotPasswordButton(),
+                _loginButton(controller, showSnackBar),
+                _registerButton(),
+                const ThemedDivider(),
+              ],
+            ),
+          ),
+        ),
+      );
     });
   }
 
