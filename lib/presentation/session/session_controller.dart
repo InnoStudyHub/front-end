@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class SessionController extends GetxController {
   var tabIndex = 0;
 
-  var pages = ["Home", "Create", "Profile"];
+  var pages = ["Home", "Search", "Profile"];
 
   var tabTitle = "Home";
 

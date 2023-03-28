@@ -60,16 +60,6 @@ class DeckPreview extends StatelessWidget {
                   Expanded(
                     child: Container(),
                   ),
-                  // IconButton(
-                  //   onPressed: () {
-                  //     //TODO
-                  //   },
-                  //   padding: const EdgeInsets.only(right: 15, bottom: 10),
-                  //   constraints: const BoxConstraints(),
-                  //   icon: SvgPicture.asset(
-                  //     "assets/icons/deck_preview/duplicate.svg",
-                  //   ),
-                  // ),
                   IconButton(
                     padding: const EdgeInsets.only(right: 15, bottom: 10),
                     constraints: const BoxConstraints(),

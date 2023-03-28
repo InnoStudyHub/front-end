@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/domain/use_case/auth/web_login_wtih_iu_use_case.dart';
 import '../../../model/models/resource.dart';
-import '../../../domain/use_case/auth/login_wtih_iu_use_case.dart';
 import '../../../model/repository/auth_repository.dart';
 import '../../util/routes.dart';
 
@@ -71,25 +69,5 @@ class LoginController extends GetxController {
     update();
 
     return isValid;
-  }
-
-  void loginWithIU(bool isWeb) async {
-    isLoading = true;
-    update();
-    var response = isWeb
-        ? await WebLoginWithIUUseCase.invoke()
-        : await LoginWithIUUseCase.invoke();
-    snackBarError = response.data.toString();
-    update();
-    if (response is Success) {
-      isLoading = false;
-      snackBarError = response.data.toString();
-      update();
-      Get.offNamed(AppRoutes.session);
-    } else {
-      snackBarError = response.message.toString();
-      isLoading = false;
-      update();
-    }
   }
 }

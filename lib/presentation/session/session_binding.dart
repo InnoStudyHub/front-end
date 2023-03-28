@@ -5,7 +5,6 @@ import '../../model/repository/cached_repository.dart';
 import '../../model/repository/deck_repository.dart';
 import 'home/home_controller.dart';
 import 'profile/profile_controller.dart';
-import 'create/create_deck_controller.dart';
 import 'session_controller.dart';
 
 class SessionBinding extends Bindings {
@@ -14,7 +13,6 @@ class SessionBinding extends Bindings {
     Get.lazyPut<SessionController>(() => SessionController());
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<ProfileController>(() => ProfileController());
-    Get.lazyPut<CreateDeckController>(() => CreateDeckController());
     Get.put<DeckRepository>(DeckRepositoryImpl());
     Get.put<CachedRepository>(CachedRepoImpl());
   }

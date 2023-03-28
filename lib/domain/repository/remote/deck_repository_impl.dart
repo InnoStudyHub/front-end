@@ -1,17 +1,17 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
 import '../../../common/constants.dart';
-import '../../../model/models/create_deck.dart';
 import '../../../model/models/deck.dart';
 import '../../../model/models/folder.dart';
 import '../../../model/models/resource.dart';
+import '../../../model/models/search_query.dart';
 import '../../../model/models/search_result.dart';
 import '../../../model/repository/auth_repository.dart';
 import '../../../model/repository/deck_repository.dart';
-import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
-import '../../../model/models/search_query.dart';
 
 class DeckRepositoryImpl implements DeckRepository {
   final AuthRepository authRepo = Get.find();
@@ -25,102 +25,6 @@ class DeckRepositoryImpl implements DeckRepository {
     }
 
     return Fail(errorMessage: "couldn't update access token");
-  }
-
-  @override
-  Future<Resource<Deck>> uploadDeck(CreateDeck deck) async {
-    http.StreamedResponse? response;
-    final url = Uri.parse("$serverIP/deck/create/");
-    final data = jsonEncode(deck.toJson());
-    var credentialsResponse = await getAuthorizationHeader();
-    if (credentialsResponse is Fail) {
-      return Fail(errorMessage: credentialsResponse.message!);
-    }
-
-    var credentials = credentialsResponse.data!;
-    var headers = {
-      "X-API-KEY": apiKey,
-      "Content-Type": "multipart/from-data",
-      "Origin": "http://studyhub.kz",
-      'Accept': '*/*',
-    };
-    headers.addAll(credentials);
-
-    try {
-      var request = http.MultipartRequest('POST', url);
-      request.headers.addAll(headers);
-      List<http.MultipartFile> files = await collectImages(deck);
-
-      request.files.addAll(files);
-      request.fields.addAll({"data": data.toString()});
-
-      response = await request.send();
-
-      if (response.statusCode != 201) {
-        return Fail(
-          statusCode: response.statusCode,
-          errorMessage: await response.stream.bytesToString(),
-        );
-      }
-
-      var deckStr = await response.stream.bytesToString();
-      var newDeck = Deck.fromJson(json.decode(deckStr));
-
-      return Success(successData: newDeck);
-    } catch (error) {
-      //debugPrint("deck repository, uploadDeck 64. Error: ${error.toString()}");
-
-      return Fail(errorMessage: error.toString());
-    }
-  }
-
-  Future<List<http.MultipartFile>> collectImages(CreateDeck deck) async {
-    List<http.MultipartFile> files = [];
-    for (var card in deck.cards) {
-
-      if (card.questionImage!= null) {
-        if (card.questionImage!.image != null) {
-          var file = await http.MultipartFile.fromPath(
-            card.questionImageKey!,
-            card.questionImage!.image!,
-            contentType: MediaType('image', 'jpg'),
-          );
-          files.add(file);
-        }
-        else if (card.questionImage!.webImage != null) {
-          var file = http.MultipartFile.fromBytes(
-            card.questionImageKey!,
-            card.questionImage!.webImage!,
-            contentType: MediaType('application', 'json'),
-            filename: "Name",
-          );
-          files.add(file);
-        }
-      }
-
-      if (card.answerImages != null) {
-        for (var i = 0; i < card.answerImages!.length; i++) {
-          if (card.answerImages![i].image != null) {
-            var file = await http.MultipartFile.fromPath(
-              card.answerImageKeys![i],
-              card.answerImages![i].image!,
-              contentType: MediaType('image', 'jpg'),
-            );
-            files.add(file);
-          } else if (card.answerImages![i].webImage != null) {
-            var file = http.MultipartFile.fromBytes(
-              card.answerImageKeys![i],
-              card.answerImages![i].webImage!,
-              contentType: MediaType('application', 'json'),
-              filename: "Name",
-            );
-            files.add(file);
-          }
-        }
-      }
-    }
-
-    return files;
   }
 
   @override
@@ -342,53 +246,6 @@ class DeckRepositoryImpl implements DeckRepository {
       debugPrint(response.body);
 
       return Fail(errorMessage: response.body);
-    }
-  }
-
-  @override
-  Future<Resource<Deck>> uploadDeckFromSheet(
-    CreateDeck deck,
-    String link,
-  ) async {
-    http.Response? response;
-    final url = Uri.parse("$serverIP/deck/createFromSheet/");
-    final body = jsonEncode({
-      "folder_id": deck.folderId,
-      "deck_name": deck.deckName,
-      "semester": deck.semester,
-      "url": link,
-    });
-    var credentialsResponse = await getAuthorizationHeader();
-    if (credentialsResponse is Fail) {
-      return Fail(errorMessage: credentialsResponse.message!);
-    }
-
-    var headers = {
-      "X-API-KEY": apiKey,
-      "Content-Type": "application/json",
-      "Origin": "http://studyhub.kz",
-      'Accept': '*/*',
-    };
-    var credentials = credentialsResponse.data!;
-
-    headers.addAll(credentials);
-
-    try {
-      response = await http.post(url, headers: headers, body: body);
-    } catch (e) {
-      return Fail(errorMessage: e.toString());
-    }
-
-    if (response.statusCode == 201) {
-      var deckStr = response.body;
-      var newDeck = Deck.fromJson(json.decode(deckStr));
-
-      return Success(successData: newDeck);
-    } else {
-      return Fail(
-        statusCode: response.statusCode,
-        errorMessage: response.body,
-      );
     }
   }
 

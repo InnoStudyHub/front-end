@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../../common/constants.dart';
-import '../../../domain/use_case/auth/login_wtih_iu_use_case.dart';
-import '../../../domain/use_case/auth/web_login_wtih_iu_use_case.dart';
 import '../../../model/models/resource.dart';
 import '../../../model/repository/auth_repository.dart';
 import '../../util/routes.dart';
@@ -112,21 +110,5 @@ class RegisterController extends GetxController {
 
   validateFullName() {
     fullNameError = _fullName.isEmpty ? "Full Name cannot be empty" : null;
-  }
-
-  void loginWithIU(bool isWeb) async {
-    isLoading = true;
-    var response = isWeb
-        ? await WebLoginWithIUUseCase.invoke()
-        : await LoginWithIUUseCase.invoke();
-    if (response is Success) {
-      isLoading = false;
-      update();
-      Get.offNamed(AppRoutes.session);
-    } else {
-      snackBarError = response.message.toString();
-      isLoading = false;
-      update();
-    }
   }
 }

@@ -1,4 +1,3 @@
-import 'package:study_hub/model/models/create_deck.dart';
 import 'package:study_hub/model/models/deck.dart';
 import 'package:study_hub/model/models/folder.dart';
 import 'package:study_hub/model/models/resource.dart';
@@ -92,37 +91,6 @@ class TestDeckRepository implements DeckRepository {
           Folder(id: 3, name: "Folder 3"),
         ],
         decks: [deck, deck, deck],
-      ),
-    );
-  }
-
-  @override
-  Future<Resource<Deck>> uploadDeck(CreateDeck deck) async {
-    return Success(
-      successData: Deck(
-        id: 0,
-        folderId: deck.folderId,
-        authorId: 0,
-        deckName: deck.deckName,
-        semester: deck.semester,
-        cards: [],
-        isFavourite: false,
-      ),
-    );
-  }
-
-  @override
-  Future<Resource<Deck>> uploadDeckFromSheet(
-      CreateDeck deck, String link) async {
-    return Success(
-      successData: Deck(
-        id: 0,
-        folderId: deck.folderId,
-        authorId: 0,
-        deckName: deck.deckName,
-        semester: deck.semester,
-        cards: [],
-        isFavourite: false,
       ),
     );
   }
