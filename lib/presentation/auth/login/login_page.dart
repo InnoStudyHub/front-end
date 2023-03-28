@@ -1,7 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/presentation/util/do_nothing_callback.dart';
+
 import '../../util/color_codes.dart';
 import '../../util/routes.dart';
 import '../../widgets/divider.dart';
