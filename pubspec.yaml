@@ -81,8 +81,6 @@ flutter:
     - assets/
     - assets/icons/bottom_bar/
     - assets/images/
-    - assets/icons/create_page/
-    - assets/icons/create_cards/
     - assets/icons/deck_preview/
     - assets/icons/deck_view/
   #   - images/a_dot_burr.jpeg

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_hub/presentation/session/home/search/search_controller.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -9,7 +8,6 @@ class HomeController extends GetxController
   @override
   void onInit() {
     tabController = TabController(vsync: this, length: 3);
-    Get.put<SearchController>(SearchController());
 
     super.onInit();
   }
