@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_hub/presentation/util/do_nothing_callback.dart';
-
 import '../../util/color_codes.dart';
-import '../../util/routes.dart';
 import '../../widgets/divider.dart';
 import '../../widgets/outlined_text_field.dart';
 import '../../widgets/themed_material_button.dart';
@@ -28,30 +26,20 @@ class LoginPage extends StatelessWidget {
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/login_page.png"),
-                alignment: Alignment.centerLeft,
+          child: ListView(
+            children: <Widget>[
+              _heading(),
+              OutlinedTextField(
+                label: "Email",
+                prefixIconData: Icons.email_outlined,
+                textFieldController: controller.emailController,
+                inputType: TextInputType.emailAddress,
+                error: controller.emailError,
               ),
-            ),
-            child: ListView(
-              children: <Widget>[
-                _heading(),
-                OutlinedTextField(
-                  label: "Email",
-                  prefixIconData: Icons.email_outlined,
-                  textFieldController: controller.emailController,
-                  inputType: TextInputType.emailAddress,
-                  error: controller.emailError,
-                ),
-                _passwordFormField(controller: controller),
-                _forgotPasswordButton(),
-                _loginButton(controller, showSnackBar),
-                _registerButton(),
-                const ThemedDivider(),
-              ],
-            ),
+              _passwordFormField(controller: controller),
+              _loginButton(controller, showSnackBar),
+              const ThemedDivider(),
+            ],
           ),
         ),
       );
@@ -117,26 +105,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _forgotPasswordButton() {
-    return Container(
-      alignment: Alignment.centerRight,
-      margin: const EdgeInsets.only(right: 34),
-      child: TextButton(
-        onPressed: () {
-          //TODO IGNORE. It is button
-        },
-        child: const Text(
-          "Forgot password?",
-          style: TextStyle(
-            color: unselectedMenuColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 12,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _loginButton(LoginController controller, VoidCallback showSnackBar) {
     if (controller.isLoading) {
       return Container(
@@ -161,35 +129,6 @@ class LoginPage extends StatelessWidget {
           showSnackBar();
         }
       },
-    );
-  }
-
-  Widget _registerButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "Don't have an account?",
-          style: TextStyle(
-            color: selectedMenuColor,
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            Get.toNamed(AppRoutes.register);
-          },
-          child: const Text(
-            "Register",
-            style: TextStyle(
-              color: selectedTabColor,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

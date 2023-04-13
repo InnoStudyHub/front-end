@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import '../../../../model/models/resource.dart';
 import '../../../../model/models/search_query.dart';
 import '../../../../model/models/deck.dart';
-import '../../../../model/models/folder.dart';
 import '../../../../model/repository/deck_repository.dart';
 import '../../../util/color_codes.dart';
 
@@ -11,7 +10,6 @@ class SearchController extends GetxController {
   DeckRepository deckRepo = Get.find<DeckRepository>();
 
   RxList<Deck> decks = RxList();
-  RxList<Folder> folders = RxList();
 
   bool hasResults = true;
 
@@ -22,8 +20,7 @@ class SearchController extends GetxController {
 
     if (response is Success) {
       decks.value = response.data!.decks;
-      folders.value = response.data!.folders;
-      hasResults = (decks.isNotEmpty || folders.isNotEmpty);
+      hasResults = (decks.isNotEmpty);
       update();
     }
   }

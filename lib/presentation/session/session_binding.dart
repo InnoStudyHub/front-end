@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import '../../domain/repository/local/cached_repo_impl.dart';
 import '../../domain/repository/remote/deck_repository_impl.dart';
-import '../../model/repository/cached_repository.dart';
 import '../../model/repository/deck_repository.dart';
 import 'home/home_controller.dart';
 import 'profile/profile_controller.dart';
@@ -14,6 +12,5 @@ class SessionBinding extends Bindings {
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<ProfileController>(() => ProfileController());
     Get.put<DeckRepository>(DeckRepositoryImpl());
-    Get.put<CachedRepository>(CachedRepoImpl());
   }
 }

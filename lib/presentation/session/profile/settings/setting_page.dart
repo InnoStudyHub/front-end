@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../util/color_codes.dart';
 import '../../../widgets/themed_material_button.dart';
 import 'settings_controller.dart';

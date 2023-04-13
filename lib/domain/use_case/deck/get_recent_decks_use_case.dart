@@ -1,17 +1,19 @@
 import 'package:get/get.dart';
-import '../../../model/repository/cached_repository.dart';
+import 'package:study_hub/model/repository/deck_repository.dart';
 import '../../../model/models/deck.dart';
+import '../../../model/models/resource.dart';
 
 class GetRecentDecksUseCase {
   GetRecentDecksUseCase._();
 
-  static Future<RxList<Deck>> invoke() async {
-    CachedRepository cacheRepo = Get.find();
+  static Future<List<Deck>> invoke() async {
+    DeckRepository remote = Get.find();
 
-    if (cacheRepo.myDecks.isEmpty) {
-      await cacheRepo.updateRecent();
+    var response = await remote.getRecent();
+    if (response is Success) {
+        return response.data!;
     }
 
-    return cacheRepo.recentDecks;
+    return [];
   }
 }

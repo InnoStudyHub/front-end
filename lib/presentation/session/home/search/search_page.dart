@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../util/color_codes.dart';
-import '../../../widgets/folder_view.dart';
 import '../../deck_preview/deck_preview.dart';
 import 'search_controller.dart';
 
@@ -38,18 +37,6 @@ class SearchPage extends StatelessWidget {
                 child: controller.hasResults
                     ? ListView(
                         children: [
-                          Obx(
-                            () => ListView.builder(
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              itemCount: controller.folders.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return FolderView(
-                                  folder: controller.folders[index],
-                                );
-                              },
-                            ),
-                          ),
                           Obx(
                             () => ListView.builder(
                               shrinkWrap: true,

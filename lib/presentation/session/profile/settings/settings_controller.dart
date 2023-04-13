@@ -7,6 +7,6 @@ class SettingsController extends GetxController {
 
   void logout() {
     authRepo.logout();
-    Get.offNamed(AppRoutes.auth);
+    Get.offNamed(AppRoutes.login);
   }
 }

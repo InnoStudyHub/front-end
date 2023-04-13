@@ -1,12 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
 import '../../../common/constants.dart';
 import '../../../model/models/deck.dart';
-import '../../../model/models/folder.dart';
 import '../../../model/models/resource.dart';
 import '../../../model/models/search_query.dart';
 import '../../../model/models/search_result.dart';
@@ -204,52 +201,6 @@ class DeckRepositoryImpl implements DeckRepository {
   }
 
   @override
-  Future<Resource<List<Folder>>> getFolderList() async {
-    var credentialsResponse = await getAuthorizationHeader();
-    if (credentialsResponse is Fail) {
-      return Fail(errorMessage: credentialsResponse.message!);
-    }
-
-    var credentials = credentialsResponse.data!;
-
-    var headers = {
-      "X-API-KEY": apiKey,
-      "Content-Type": "application/json",
-      "Origin": "http://studyhub.kz",
-      'Accept': '*/*',
-    };
-    headers.addAll(credentials);
-    var url = Uri.parse("$serverIP/folder/list/");
-    http.Response response;
-
-    try {
-      response = await http.get(url, headers: headers);
-    } catch (error) {
-      debugPrint("deck repository, getFolderList. Error: ${error.toString()}");
-
-      return Fail(errorMessage: error.toString());
-    }
-
-    var statusCode = response.statusCode;
-
-    if (statusCode == 200) {
-      List<Folder> folders = [];
-      List decksListJson = json.decode(response.body);
-      debugPrint(response.body);
-
-      for (var i = decksListJson.length - 1; i >= 0; i--) {
-        folders.add(Folder.fromJson(decksListJson[i]));
-      }
-
-      return Success(successData: folders);
-    } else {
-      debugPrint(response.body);
-
-      return Fail(errorMessage: response.body);
-    }
-  }
-
-  @override
   Future<Resource<SearchResult>> search(SearchQuery query) async {
     var credentialsResponse = await getAuthorizationHeader();
     if (credentialsResponse is Fail) {
@@ -333,51 +284,5 @@ class DeckRepositoryImpl implements DeckRepository {
     }
 
     return Fail(errorMessage: response.body);
-  }
-
-  @override
-  Future<Resource<List<Folder>>> getForYou() async {
-    var credentialsResponse = await getAuthorizationHeader();
-    if (credentialsResponse is Fail) {
-      return Fail(errorMessage: credentialsResponse.message!);
-    }
-
-    var credentials = credentialsResponse.data!;
-
-    var headers = {
-      "X-API-KEY": apiKey,
-      "Content-Type": "application/json",
-      "Origin": "http://studyhub.kz",
-      'Accept': '*/*',
-    };
-    headers.addAll(credentials);
-    var url = Uri.parse("$serverIP/user/forYou/");
-    http.Response response;
-
-    try {
-      response = await http.get(url, headers: headers);
-    } catch (error) {
-      debugPrint("deck repository, getForYou. Error: ${error.toString()}");
-
-      return Fail(errorMessage: error.toString());
-    }
-
-    var statusCode = response.statusCode;
-
-    if (statusCode == 200) {
-      List<Folder> folders = [];
-      List decksListJson = json.decode(response.body);
-      debugPrint(response.body);
-
-      for (var i = decksListJson.length - 1; i >= 0; i--) {
-        folders.add(Folder.fromJson(decksListJson[i]));
-      }
-
-      return Success(successData: folders);
-    } else {
-      debugPrint(response.body);
-
-      return Fail(errorMessage: response.body);
-    }
   }
 }

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../model/models/deck.dart';
-import 'deck_preview_controller.dart';
-import '../../../domain/use_case/deck/log_deck_use_case.dart';
 import '../../util/color_codes.dart';
 import '../deck_view/deck_view_page.dart';
 
@@ -13,14 +11,8 @@ class DeckPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put<DeckPreviewController>(DeckPreviewController());
-
-    return GetBuilder<DeckPreviewController>(builder: (controller) {
-      deck.folderName.isEmpty ? controller.setCourseName(deck) : null;
-
       return GestureDetector(
         onTap: () {
-          LogDeckUseCase.invoke(deck);
           Get.to(() => DeckViewPage(deck: deck));
         },
         child: Container(
@@ -63,11 +55,7 @@ class DeckPreview extends StatelessWidget {
                   IconButton(
                     padding: const EdgeInsets.only(right: 15, bottom: 10),
                     constraints: const BoxConstraints(),
-                    onPressed: () {
-                      deck.isFavourite
-                          ? controller.removeDeckFromFavourites(deck)
-                          : controller.addDeckToFavourites(deck);
-                    },
+                    onPressed: () { },
                     icon: SvgPicture.asset(
                       deck.isFavourite
                           ? "assets/icons/deck_preview/favourite.svg"
@@ -80,7 +68,6 @@ class DeckPreview extends StatelessWidget {
           ),
         ),
       );
-    });
   }
 
   Widget _deckTitle() {
