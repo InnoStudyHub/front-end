@@ -41,7 +41,7 @@ jobs:
       - name: Clean
         run: flutter clean
       - name: Build APK
-        run: flutter build apk --no-sound-null-safety --dart-define=API_KEY=${{secrets.API_KEY}}
+        run: flutter build apk --no-sound-null-safety --dart-define=API_KEY=${{secrets.API_KEY}} --dart-define=SERVER_ENDPOINT=${{secrets.SERVER_ENDPOINT}}
       - name: Upload APK
         uses: actions/upload-artifact@master
         with:
@@ -65,7 +65,7 @@ jobs:
       - name: Clean
         run: flutter clean
       - name: Build web
-        run: flutter build web --web-renderer html --dart-define=API_KEY=${{secrets.API_KEY}}
+        run: flutter build web --web-renderer html --dart-define=API_KEY=${{secrets.API_KEY}} --dart-define=SERVER_ENDPOINT=${{secrets.SERVER_ENDPOINT}}
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
@@ -94,7 +94,7 @@ jobs:
       - name: Clean
         run: flutter clean
       - name: Build ios
-        run: flutter build ios --release --no-codesign --dart-define=API_KEY=${{secrets.API_KEY}}
+        run: flutter build ios --release --no-codesign --dart-define=API_KEY=${{secrets.API_KEY}} --dart-define=SERVER_ENDPOINT=${{secrets.SERVER_ENDPOINT}}
       - name: Upload iPA
         uses: actions/upload-artifact@master
         with:

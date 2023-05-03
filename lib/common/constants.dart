@@ -1,4 +1,4 @@
-const String serverIP = "https://api-dev.studyhub.kz";
+const String serverIP = String.fromEnvironment("SERVER_ENDPOINT");
 const int registerSuccessCode = 201;
 const int registerCredentialsAlreadyExistCode = 400;
 const int loginSuccessCode = 200;
