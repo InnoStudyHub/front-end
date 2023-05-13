@@ -8,6 +8,6 @@ class MainController extends GetxController {
   String get initialRoute {
     String? token = box.read("access");
 
-    return /*token != null ? */ AppRoutes.session; //: AppRoutes.login;
+    return token != null ?  AppRoutes.session : AppRoutes.login;
   }
 }
