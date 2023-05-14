@@ -11,63 +11,63 @@ class DeckPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return GestureDetector(
-        onTap: () {
-          Get.to(() => DeckViewPage(deck: deck));
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: darkCard,
-            borderRadius: BorderRadius.circular(3),
-          ),
-          margin: const EdgeInsets.only(
-            top: 12.5,
-            left: 20,
-            right: 20,
-            bottom: 12.5,
-          ),
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.only(top: 10, left: 16, right: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    _deckTitle(),
-                    _numberOfCards(),
-                  ],
-                ),
-              ),
-              _courseName(deck.folderName),
-              const Divider(
-                thickness: 1,
-                indent: 16,
-                endIndent: 16,
-                color: unselectedMenuColor,
-              ),
-              Row(
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => DeckViewPage(deck: deck));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: darkCard,
+          borderRadius: BorderRadius.circular(3),
+        ),
+        margin: const EdgeInsets.only(
+          top: 12.5,
+          left: 20,
+          right: 20,
+          bottom: 12.5,
+        ),
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.only(top: 10, left: 16, right: 16),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  _semester(),
-                  Expanded(
-                    child: Container(),
-                  ),
-                  IconButton(
-                    padding: const EdgeInsets.only(right: 15, bottom: 10),
-                    constraints: const BoxConstraints(),
-                    onPressed: () { },
-                    icon: SvgPicture.asset(
-                      deck.isFavourite
-                          ? "assets/icons/deck_preview/favourite.svg"
-                          : "assets/icons/deck_preview/add_to_favourites.svg",
-                    ),
-                  ),
+                  _deckTitle(),
+                  _numberOfCards(),
                 ],
               ),
-            ],
-          ),
+            ),
+            _courseName(deck.folderName),
+            const Divider(
+              thickness: 1,
+              indent: 16,
+              endIndent: 16,
+              color: unselectedMenuColor,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                _semester(),
+                Expanded(
+                  child: Container(),
+                ),
+                IconButton(
+                  padding: const EdgeInsets.only(right: 15, bottom: 10),
+                  constraints: const BoxConstraints(),
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    deck.isFavourite
+                        ? "assets/icons/deck_preview/favourite.svg"
+                        : "assets/icons/deck_preview/add_to_favourites.svg",
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 
   Widget _deckTitle() {

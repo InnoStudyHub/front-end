@@ -11,7 +11,7 @@ class GetRecentDecksUseCase {
 
     var response = await remote.getRecent();
     if (response is Success) {
-        return response.data!;
+      return response.data!;
     }
 
     return [];
