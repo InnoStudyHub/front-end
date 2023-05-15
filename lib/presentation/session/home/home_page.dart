@@ -13,35 +13,33 @@ class HomePage extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
-          child: Expanded(
-            child: controller.hasResults
-                ? ListView(
-                    children: [
-                      Obx(
-                        () => ListView.builder(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: controller.decks.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return DeckPreview(
-                              deck: controller.decks[index],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  )
-                : const Center(
-                    child: Text(
-                      "There are no decks",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        color: selectedMenuColor,
+          child: controller.hasResults
+              ? ListView(
+                  children: [
+                    Obx(
+                      () => ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: controller.decks.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return DeckPreview(
+                            deck: controller.decks[index],
+                          );
+                        },
                       ),
                     ),
+                  ],
+                )
+              : const Center(
+                  child: Text(
+                    "There are no decks",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: selectedMenuColor,
+                    ),
                   ),
-          ),
+                ),
         ),
       );
     });
